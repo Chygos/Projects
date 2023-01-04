@@ -1,2 +1,2 @@
 # practice
-Contains practice notebooks.
+Contains practice notebooks and python codes.
