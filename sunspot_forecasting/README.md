@@ -47,7 +47,7 @@ B | 18.0323 | 14.9751
 _Figure 1: Monthly sunspot for 2022_
 
 
-![Figure 2: Yearly sunspot predictions for 2013-2022](https://user-images.githubusercontent.com/46559140/213822321-ff4a4c51-1151-44fd-8bf5-b03ef063bdf6.png)
+![Figure 2: Yearly sunspot predictions for 2013-2022](https://user-images.githubusercontent.com/46559140/213822776-2027a5fc-f84d-4098-8a0b-74e95df304a0.png)
 
 _Figure 2: Yearly sunspot forcast for 2013-2022_
 
