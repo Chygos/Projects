@@ -72,6 +72,7 @@ _Figure 4: Forecast for 2023-2033_
 -  There is no statistical evidence to conclude that there's a difference in means between the number of sunspots observed the last 50 years (pvalue (0.78) > 0.05)
 -  Optimal p,d,q order values for both tasks a and b were 3,0,2 respectively
 -  For both tasks, the model seem to have modelled the cyclical pattern of sunspots per year.
+-  Model's confidence for the monthly predictions seems to get worse from the 3rd/4th month in 2023 while its confidence for the yearly forecasts is higher.
 -  Model forecasts that the next solar cycle will peak at its maximum height in 2024, with the cycle completing between 2029 and 2030
 
 ### Resources
