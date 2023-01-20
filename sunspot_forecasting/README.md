@@ -41,12 +41,13 @@ Task | RMSE | MAE
 A | 15.9218 | 12.9170
 B | 18.0323 | 14.9751
 
+
 ![Figure 1: Monthly sunspot for 2022](https://user-images.githubusercontent.com/46559140/213817852-5e4233e0-09b1-4056-aa3f-4014617ea6d3.png)
 
 _Figure 1: Monthly sunspot for 2022_
 
 
-![Figure 2: Yearly sunspot forcast for 2013-2022](https://user-images.githubusercontent.com/46559140/213818142-54306c76-2505-4839-aee0-4f1659691c6b.png)
+![Figure 2: Yearly sunspot predictions for 2013-2022](https://user-images.githubusercontent.com/46559140/213818142-54306c76-2505-4839-aee0-4f1659691c6b.png)
 
 _Figure 2: Yearly sunspot forcast for 2013-2022_
 
@@ -54,10 +55,24 @@ _Figure 2: Yearly sunspot forcast for 2013-2022_
 
 For task a, the average number of sunspots to be observed in all the months in 2023 were forecasted. 
 
-![Figure 3: Forecast for January to December, 2023](https://user-images.githubusercontent.com/46559140/213818403-a57497f6-64de-4ddc-9d0a-e601b56c2cf5.png)
+![Figure 3: Forecast for January to December, 2023](https://user-images.githubusercontent.com/46559140/213819313-87179a42-d0d4-493e-b03a-c06aa60f7563.png)
 
 _Figure 3: Forecast for January to December, 2023_
 
 ![Figure 4: Forecast for 2023-2033](https://user-images.githubusercontent.com/46559140/213818508-07a0855e-323e-499d-9e5c-e4b3683e5f6e.png)
 
 _Figure 4: Forecast for 2023-2033_
+
+## Summary
+- Evidence exists that Solar cycle lasts about 11 years
+- Between Dec. 1818 till Dec. 2022, 18 solar cycles have occurred.
+- The highest average number of sunspots per cycle observed between 1954-1964, with a over 240 sunspots seen at its solar maximum (1957) around that time.
+- Since the last three cycles, the solar maximum have decreased.
+- The average total sunspots per year is 28,730 while the average number of sunspots observed per month of every year is 83
+-  There is no statistical evidence to conclude that there's a difference in means between the number of sunspots observed the last 50 years (pvalue (0.78) > 0.05)
+-  Optimal p,d,q order values for both tasks a and b were 3,0,2 respectively
+-  For both tasks, the model seem to have modelled the cyclical pattern of sunspots per year.
+-  Model forecasts that the next solar cycle will peak at its maximum height in 2024, with the cycle completing between 2029 and 2030
+
+### Resources
+Hyndman, R.J., & Athanasopoulos, G. (2018) Forecasting: principles and practice, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. Accessed on 20th January, 2023.
