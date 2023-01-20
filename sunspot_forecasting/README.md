@@ -47,7 +47,7 @@ B | 18.0323 | 14.9751
 _Figure 1: Monthly sunspot for 2022_
 
 
-![Figure 2: Yearly sunspot predictions for 2013-2022](https://user-images.githubusercontent.com/46559140/213818142-54306c76-2505-4839-aee0-4f1659691c6b.png)
+![Figure 2: Yearly sunspot predictions for 2013-2022](https://user-images.githubusercontent.com/46559140/213819313-87179a42-d0d4-493e-b03a-c06aa60f7563.png)
 
 _Figure 2: Yearly sunspot forcast for 2013-2022_
 
@@ -55,7 +55,7 @@ _Figure 2: Yearly sunspot forcast for 2013-2022_
 
 For task a, the average number of sunspots to be observed in all the months in 2023 were forecasted. 
 
-![Figure 3: Forecast for January to December, 2023](https://user-images.githubusercontent.com/46559140/213819313-87179a42-d0d4-493e-b03a-c06aa60f7563.png)
+![Figure 3: Forecast for January to December, 2023](https://user-images.githubusercontent.com/46559140/213821640-8e493465-2df7-42bc-8063-e4ab4b297a93.png)
 
 _Figure 3: Forecast for January to December, 2023_
 
