@@ -64,16 +64,16 @@ _Figure 3: Forecast for January to December, 2023_
 _Figure 4: Forecast for 2023-2033_
 
 ## Summary
-- Evidence exists that Solar cycle lasts about 11 years
-- Between Dec. 1818 till Dec. 2022, 18 solar cycles have occurred.
-- The highest average number of sunspots per cycle observed between 1954-1964, with a over 240 sunspots seen at its solar maximum (1957) around that time.
+- Evidence exists that a Solar cycle lasts about 11 years
+- Between Dec. 1818 and Dec. 2022, 18 solar cycles have occurred.
+- The highest average number of sunspots per cycle observed between 1954-1964, with over 240 sunspots seen at its solar maximum (1957) around that time.
 - Since the last three cycles, the solar maximum have decreased.
 - The average total sunspots per year is 28,730 while the average number of sunspots observed per month of every year is 83
--  There is no statistical evidence to conclude that there's a difference in means between the number of sunspots observed the last 50 years (pvalue (0.78) > 0.05)
--  Optimal p,d,q order values for both tasks a and b were 3,0,2 respectively
--  For both tasks, the model seem to have modelled the cyclical pattern of sunspots per year.
--  Model's confidence for the monthly predictions seems to get worse from the 3rd/4th month in 2023 while its confidence for the yearly forecasts is higher.
--  Model forecasts that the next solar cycle will peak at its maximum height in 2024, with the cycle completing between 2029 and 2030
+- There is no statistical evidence to conclude that there's a difference in means between the number of sunspots observed the last 50 years (pvalue (0.78) > 0.05)
+- Optimal p,d,q order values for both tasks a and b were 3,0,2 respectively
+- For both tasks, the model seem to have modelled the cyclical pattern of sunspots per year.
+- Model's confidence for the monthly predictions seems to get worse from the 3rd/4th month in 2023 while its confidence for the yearly forecasts is higher.
+- Model forecasts that the next solar cycle will peak at its maximum height in 2024, with the cycle completing between 2029 and 2030
 
 ### Resources
 Hyndman, R.J., & Athanasopoulos, G. (2018) _Forecasting: principles and practice_, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. (Accessed: 20 January 2023).
