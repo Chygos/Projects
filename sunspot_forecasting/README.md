@@ -76,6 +76,6 @@ _Figure 4: Forecast for 2023-2033_
 -  Model forecasts that the next solar cycle will peak at its maximum height in 2024, with the cycle completing between 2029 and 2030
 
 ### Resources
-Hyndman, R.J., & Athanasopoulos, G. (2018) Forecasting: principles and practice, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. Accessed on 20th January, 2023.
+Hyndman, R.J., & Athanasopoulos, G. (2018) _Forecasting: principles and practice_, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. (Accessed: 20th January 2023).
 
-https://spaceplace.nasa.gov/solar-cycles/en/
+NASA Science (2021) _What is the Solar Cycle_. Availabe at: https://spaceplace.nasa.gov/solar-cycles/en/. (Accessed: 19 January 2023)
