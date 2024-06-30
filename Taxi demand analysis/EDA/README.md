@@ -130,8 +130,7 @@ Finally, we visualised the performance of stations and boroughs by average rides
 __Fig 9: Map showing the average revenue obtained by stations in boroughs__
 
 
-
-## Conclusion
+# **Conclusion**
 
 In conclusion, taxi cabs provide the easiest and fastest way for commuters to get to their destinations on time, especially for last-minute trips, navigating unfamiliar locations, or ensuring a comfortable ride with luggage. For travellers unfamiliar with a city's layout or those with limited mobility, taxis offer a reliable and stress-free option. Additionally, taxis can often provide a more personalized experience compared to ride-sharing services.
 
