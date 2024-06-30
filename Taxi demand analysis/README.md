@@ -1,12 +1,12 @@
+# **Understanding Yellow Taxi Cab Demand In New York**
+
+![taxi](taxi_image2.png "Taxi")
+
 <style>
   body{
     text-align:justify;
   }
 </style>
-
-# **Understanding Yellow Taxi Cab Demand In New York**
-
-![taxi](taxi_image2.png "Taxi")
 
 ## **Introduction**
 
