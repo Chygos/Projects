@@ -16,29 +16,45 @@ Taxi trips paid by credit cards or cards were filtered, aggregated and stored in
 
 Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA) & Modelling
 
+### Exploratory Data Analysis
+
 In the EDA part, analyses were divided into the following headings
 
-A. Yellow taxi performance summary: Here, the performance of taxi demand and revenue generated were summarised. The summary included
+**A. Yellow taxi performance summary** 
 
-  - the total volume of rides demanded by commuters from January 2019 and March 2024.
-  - the total revenue generated between the same time frame
-  - the average amount of money generated in revenue in one station and in all stations per hour
-  - the average number of taxis demanded by commuters in one station and in all stations per hour
-  - The average distance travelled and average duration of each trip.
+Here, the performance of taxi demand and revenue generated were summarised. The summary included
 
-B. Temporal variations: Here, we investigated the total number of taxi rides and revenue generated over time and at various times of the year. Analysis was done station-wise (in a pickup station) and city-wise (in all pickup stations).
-This was done to determine if cab demand and revenue are significantly affected by temporal variations (hour, day of week, month and year) and also to understand taxi demand in New York at these times to provide better service to commuters.
+- the total volume of rides demanded by commuters from January 2019 and March 2024.
+- the total revenue generated between the same time frame
+- the average amount of money generated in revenue in one station and in all stations per hour
+- the average number of taxis demanded by commuters in one station and in all stations per hour
+- The average distance travelled and average duration of each trip.
 
-C. Impact of Holiday events, seasonal and weekend/weekday on demand and revenue: Here, we will compare ride volume and revenue on holidays and special events with regular days and if these events significantly impact demand. Similarly, we will investigate customer behaviour by comparing ride volume and revenue patterns on weekdays and weekends and seasons of the year and if there's a significant difference in customer behaviour
+**B. Temporal variations** 
 
-### D. Station popularity
-Here, we will analyse the number of rides originating from each pickup and dropoff station. We will look at the top and least 10 pickup and dropoff terminals. Analysing this will help to understand customer concentration areas and optimise service availability.
+Here, we investigated the total number of taxi rides and revenue generated over time and at various times of the year. Analysis was done station-wise (in a pickup station) and city-wise (in all pickup stations). This was done to determine if cab demand and revenue are significantly affected by temporal variations (hour, day of week, month and year) and also to understand taxi demand in New York at these times to provide better service to commuters.
 
-### E. Short vs Long trips
-We will examine pickup stations associated with shorter or longer trips. We will estimate this by reviewing the average duration of trips in each station and group into short or long trips based on a duration cutoff.
+**C. Impact of Holiday events, seasonal and weekend/weekday on demand and revenue**: 
 
-### F. Station Pricing 
+Here, we compared ride volume and revenue on holidays and special events with regular days and if these events significantly impact demand. Similarly, we investigated customer behaviour by comparing ride volume and revenue patterns on weekdays and weekends and seasons of the year and if there's a significant difference in customer behaviour.
+
+**D. Station popularity**
+
+Here, we analysed the number of rides originating from each pickup and dropoff station. We looked at the top and least 10 pickup and dropoff terminals. The goal was to understand customer concentrated areas and ways to optimise service availability.
+
+**E. Short vs Long trips**
+
+Here, we examined pickup stations associated with shorter or longer trips. Longer and shorter trips were estimated by reviewing the average duration of trips in each station and grouping them into short or long trips based on a duration cutoff (15 rides).
+
+**F. Station Pricing**
+
 We will examine the average cost a trip costs in a pickup station and the average amount incurred in charges. This will be investigated based on the top 10 cheap and expensive stations across New York. This will enable us to understand pricing strategies to increase revenue.
 
-### G. Borough and pickup station performance
-We will examine the performance of pickup stations and all pickup stations in all the boroughs of New York. We will visualise in map the average revenue and taxi demand in all the pickup stations. This will be supplemented with borough information (that is, the total revenue and taxi rides)
+**G. Borough and pickup station performance**
+
+We will examine the performance of pickup stations and all pickup stations in all the boroughs of New York. We will visualise in map the average revenue and taxi demand in all the pickup stations. This will be supplemented with borough information (that is, the total revenue and taxi rides).
+
+
+### Modelling
+
+In this part, we will predict the average number of taxis demanded by commuters per hour in all stations.
