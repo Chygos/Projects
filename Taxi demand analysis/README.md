@@ -1,4 +1,4 @@
-# **Taxi & Limousine Commission**
+# **Understanding Yellow Taxi Cab Demand In New York**
 
 ![taxi](taxi_image2.png "Taxi")
 
@@ -9,10 +9,10 @@ This analysis focuses on the hourly demand for Yellow cabs at car-hire stations 
 
 ## **Dataset**
 
-The dataset contains car rides for yellow Taxi Cabs in the environs of New York, made between Jan 2019 and till present. Data was obtained from [TLC Trip record data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page). The original data contains information about the pick-up and drop-off dates/times, pick-up and drop-off locations, trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts. The data were collected and provided to the NYC Taxi and Limousine Commission (TLC) by technology providers authorized under the Taxicab & Livery Passenger Enhancement Programs (TPEP/LPEP).
+The dataset contains car rides for yellow taxi cabs in the environs of New York, made between Jan 2019 and till present. Data was obtained from [TLC Trip record data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page). The original data contains information about the pick-up and drop-off dates/times, pick-up and drop-off locations, trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts. The data were collected and provided to the NYC Taxi and Limousine Commission (TLC) by technology providers authorised under the Taxicab & Livery Passenger Enhancement Programs (TPEP/LPEP).
 Taxi trips paid by credit cards or cards were filtered, aggregated and stored in a database. The database contains trip records for pickup and dropoff stations. Pickup station's record contains the total number of trips leaving the station, the average distance of all trips, the average duration of all journeys and the revenue generated from all trips per hour of each day while the droppff station's record contains the total number of trips arriving the station, the average distance and duration of all trips.
 
-## **Analysis workflow**
+## __Analysis workflow__
 
 Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA) & Modelling
 
@@ -48,13 +48,13 @@ Here, we examined pickup stations associated with shorter or longer trips. Longe
 
 **F. Station Pricing**
 
-We will examine the average cost a trip costs in a pickup station and the average amount incurred in charges. This will be investigated based on the top 10 cheap and expensive stations across New York. This will enable us to understand pricing strategies to increase revenue.
+We examined the average cost a trip costs in a pickup station and the average amount incurred in charges. This was investigated based on the top 10 cheap and expensive stations across New York. The goal was to understand pricing strategies and how various ways to increase revenue.
 
 **G. Borough and pickup station performance**
 
-We will examine the performance of pickup stations and all pickup stations in all the boroughs of New York. We will visualise in map the average revenue and taxi demand in all the pickup stations. This will be supplemented with borough information (that is, the total revenue and taxi rides).
+The performance of pickup stations and all pickup stations in all the boroughs of New York were examined. This was visualised in a map that showed the average revenue and taxi demand in all the pickup stations. This map was had information about the total revenue generated and taxi rides demanded in each borough.
 
 
 ### Modelling
 
-In this part, we will predict the average number of taxis demanded by commuters per hour in all stations.
+In this part, we will predict the average number of taxis demanded by commuters per hour in all stations. Prediction was focused on high demand areas (areas with 100 and above demand per hour). This was aimed at accurately predicting taxi demand in these areas to make ready enough taxis to meet up with the growing demand.
