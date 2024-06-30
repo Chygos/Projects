@@ -18,7 +18,7 @@ Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA
 
 ### Exploratory Data Analysis
 
-In the EDA part, analyses were divided into the following headings below. Different database queries were made to extract relevant information and further steps were taken using the `pandas`, 'seaborn`, `plotnine`, `matplotlib` libraries etc.
+In the EDA part, analyses were divided into the following headings below. Different database queries were made to extract relevant information and further steps were taken using the `pandas`, `seaborn`, `plotnine`, `matplotlib` libraries etc.
 
 **A. Yellow taxi performance summary** 
 
