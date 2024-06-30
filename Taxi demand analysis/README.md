@@ -10,7 +10,7 @@ This analysis focuses on the hourly demand for Yellow cabs at car-hire stations 
 ## **Dataset**
 
 The dataset contains car rides for yellow taxi cabs in the environs of New York, made between Jan 2019 and till present. Data was obtained from [TLC Trip record data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page). The original data contains information about the pick-up and drop-off dates/times, pick-up and drop-off locations, trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts. The data were collected and provided to the NYC Taxi and Limousine Commission (TLC) by technology providers authorised under the Taxicab & Livery Passenger Enhancement Programs (TPEP/LPEP).
-Taxi trips paid by credit cards or cards were filtered, aggregated and stored in a database. The database contains trip records for pickup and dropoff stations. Pickup station's record contains the total number of trips leaving the station, the average distance of all trips, the average duration of all journeys and the revenue generated from all trips per hour of each day while the droppff station's record contains the total number of trips arriving the station, the average distance and duration of all trips.
+Taxi trips paid by credit cards or cards were filtered, aggregated and stored in a database. The database contains trip records for pickup and dropoff stations. The pickup station's record contains the total number of trips leaving the station, the average distance of all trips, the average duration of all journeys and the revenue generated from all trips per hour of each day while the dropoff station's record contains the total number of trips arriving the station, the average distance and duration of all trips.
 
 ## __Analysis workflow__
 
@@ -18,7 +18,7 @@ Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA
 
 ### Exploratory Data Analysis
 
-In the EDA part, analyses were divided into the following headings
+In the EDA part, analyses were divided into the following headings below. Different database queries were made to extract relevant information and further steps were taken using the `pandas`, 'seaborn`, `plotnine`, `matplotlib` libraries etc.
 
 **A. Yellow taxi performance summary** 
 
