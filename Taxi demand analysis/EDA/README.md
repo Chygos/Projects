@@ -1,6 +1,6 @@
 # **Analysis Findings**
 
-We analysed New York's Taxi and Limousine Commission's (TLC) data about yellow taxi trips hauled between January 2019 and March 2024. The analysis was structured in six (6) main headings. We examined 
+We analysed New York's Taxi and Limousine Commission's (TLC) data about yellow taxi paid trips hauled between January 2019 and March 2024. The analysis was structured in six (6) main headings. We examined 
 
 - The Key Performance Indicators (KPIs) such as the total volume of yellow taxis booked and paid for by commuters
 - Temporal variations of taxi volume and revenue generated over time, per hour, day of the week, month, and year.
@@ -12,16 +12,25 @@ We analysed New York's Taxi and Limousine Commission's (TLC) data about yellow t
 
 **A. Key performance summary**
 
-Table 1: Key Performance Summary
+***Table 1: Key Performance Summary***
 
-Measure                     | value
---------------------------- | --------------------------
-Total Revenue ($)         | 3.97B
+Measure                                   | value
+------------------------------------------|-------------------------------
+Total Revenue                             | US$ 3.972 billion
+Total Ride Volume                         | 173.9 million
+Average Revenue (In a station)            | US$ 834.82
+Average Revenue (In all stations)         | US$ 86,361.44
+Average Ride volume (In a station)        | 37
+Average Ride Volume (In all stations)     | 3,780
+Average trip duration                     | 20.19 min
+Average trip distance                     | 35.55 KM
+
 
 Over 3.97 billion dollars have been generated in revenue by the TLC between January 2019 and March 2024 from over 173.9 million rides. This represents a revenue of 834.82 dollars on average in a pickup station and an aggregated revenue of 86,361 dollars on average across all pickup stations. However, 37 rides are demanded on average in a pickup station with an aggregate of 3,780 rides in all pickup stations in New York. 
 
 **B. Temporal variations**
 
+![hourly_rides](imgs/output_60_0.png "Houly rides")
 
 Before COVID-19 incidence, an average of about 4,500 rides in total were demanded across all pickup stations per hour (over 40 per hour in a pickup station). However, this declined to almost less than 500 rides due to the COVID-19 lockdown in 2020 and has since increased over time but has remained relatively the same on average between 2022 and the present. Similarly, the impact of the COVID-19 lockdown in 2020 was evident in the revenue generated, but since the resumption of vehicular activities, the revenue generated has seen an uptrend on average from April 2020 till now. To further understand the impact of temporal variations on taxi demand, we drilled down into looking at the variations in hours of the day, day of the week and month of the year.
 We identified that the demand of taxis differs per hour of the day. During the late hours of the night and the early hours of the morning (12-4 AM), the amount of taxis demanded declines. The demand begins to rise first between 5 AM and the first rush hour of 8-9 AM, slowly increases and peaks at the next rush hour of the day (that is hours marking the end of working activities) which is 6 PM before declining till the night hours. This is the same every year. Furthermore, the average taxi ride demanded by commuters begins to increase at the start of the week (Sunday) and peaks on Thursday before declining slowly from Friday and Saturday. In addition, the monthly demand for taxis is usually low during major holidays and the month after a major holiday, decreasing from the start of the year to the middle of the year before increasing towards the end of the year. Overall, the amount of taxis demanded by commuters declines during the Summer holidays and the Christmas holidays.
