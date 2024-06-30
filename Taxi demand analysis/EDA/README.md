@@ -112,7 +112,7 @@ __Figure 7: Top & Least 10 pickup stations by trip cost__
 
 __Top & Least 10 stations by charges__
 
-![top10_by_trip_cost](imgs/output_224_0.png "Top 10 by Trip charges")
+![top10_by_trip_cost](imgs/output_218_0.png "Top 10 by Trip charges")
 
 
 __Figure 8: Top 10 pickup stations by trip charges__
@@ -124,7 +124,7 @@ __Figure 8: Top 10 pickup stations by trip charges__
 
 Finally, we visualised the performance of stations and boroughs by average rides and revenues, total rides and revenue generated and the number of cities/places/towns found in them. (Fig 3) It was found that 91% (over 157 million) of all rides recorded and the average hourly demand concentrated in Manhattan with hourly demands above 30. Next were stations at the LaGuardia and JFK airports in Queens. Similarly, over 3 billion dollars in revenue was generated in Manhattan, followed by Queens with over 742 million dollars while Staten Island generated the least with about 1.2 million dollars (Fig 9).
 
-![station_borough_revenue_map](imgs/output_237_0.png "station vs borough revenue")
+![station_borough_revenue_map](imgs/output_238_0.png "station vs borough revenue")
 
 
 __Fig 9: Map showing the average revenue obtained by stations in boroughs__
