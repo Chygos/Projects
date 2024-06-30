@@ -139,7 +139,7 @@ Here, we analysed yellow taxi cab demand in the city of New York. We investigate
 
 From the analyses, the following insights were obtained
 
-- Over $\$$3.9 billion in over 173 million rides was generated in revenue by TLC for yellow taxis hauled between January 2019 and March 2024. This represents an average revenue of $\$$834.32 from an average of 37 rides per hour in a pickup station and over $\$$86,000 revenue in all stations and 3,750 rides in all pickup stations.
+- Over $3.9 billion in over 173 million rides was generated in revenue by TLC for yellow taxis hauled between January 2019 and March 2024. This represents an average revenue of $834.32 from an average of 37 rides per hour in a pickup station and over $86,000 in revenue in all stations and 3,750 rides in all pickup stations.
 - The demand for taxis depends on some temporal factors such as hours, holidays, and season of the year.
 - Most pickup stations with high taxi demand are located in Manhattan with only two from the Queens borough.
 - The least 10 stations in terms of taxi demand are stations located in areas that are less visited such as tourist centres, beaches, bays, cemeteries and parks.
