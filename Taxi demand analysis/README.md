@@ -54,6 +54,7 @@ We examined the average cost a trip costs in a pickup station and the average am
 
 The performance of pickup stations and all pickup stations in all the boroughs of New York were examined. This was visualised in a map that showed the average revenue and taxi demand in all the pickup stations. This map was had information about the total revenue generated and taxi rides demanded in each borough.
 
+The findings can be found [here](EDA/README.md)
 
 ### Modelling
 
