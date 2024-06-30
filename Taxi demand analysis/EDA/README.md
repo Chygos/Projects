@@ -12,6 +12,12 @@ We analysed New York's Taxi and Limousine Commission's (TLC) data about yellow t
 
 **A. Key performance summary**
 
+Table 1: Key Performance Summary
+
+Measure                     | value
+--------------------------- | --------------------------
+Total Revenue ($)         | 3.97B
+
 Over 3.97 billion dollars have been generated in revenue by the TLC between January 2019 and March 2024 from over 173.9 million rides. This represents a revenue of 834.82 dollars on average in a pickup station and an aggregated revenue of 86,361 dollars on average across all pickup stations. However, 37 rides are demanded on average in a pickup station with an aggregate of 3,780 rides in all pickup stations in New York. 
 
 **B. Temporal variations**
