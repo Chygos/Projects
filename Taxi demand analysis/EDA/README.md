@@ -58,7 +58,7 @@ __Fig 3: Map showing the concentration of commuters by average hourly pickups__
 
 ![top10](imgs/output_138_0.png "Top 10 ovarall")
 
-__Fig 4: Top 10 pickup stations by borough__
+__Fig 4: Top 10 pickup stations by ride volume__
 
 
 - Furthermore, we examined the number of rides going (dropoffs) into each station, and it was found that 8 out of the top 10 stations by dropoffs are among the top 10 stations by pickups, with only stations at Upper West Side South and Lenox Hill West making the list. These stations have dropoffs between 98 and 180 per hour. Similarly, 6 out of 10 least stations by dropoff stations are amongst the least 10 stations by total pickups with stations at Port Richmond, Crotona Park, Willets Point and Broad Channel included in the least 10 dropoff stations.
@@ -69,14 +69,14 @@ __Top 10 stations by ride volume in each borough__
 
 ![top10_by_borough](imgs/output_158_0.png "Top 10 by borough")
 
-__Fig 5: Top 10 pickup stations by borough__
+__Fig 5: Top 10 pickup stations by ride volume by borough__
 
 
 __Least 10 stations by ride volume in each borough__
 
 ![least10_by_borough](imgs/output_156_0.png "Least 10 by borough")
 
-__Figure 6: Top 10 pickup stations by borough__
+__Figure 6: Top 10 pickup stations by ride volume by borough__
 
 - Next, we looked at the percentage of taxi dropoffs across stations. This was done by finding the fraction of all rides (pickup and dropoffs) that were dropoffs. This was to identify stations that are dropoff stations by commuters. This percentage of dropoffs was further grouped into three: stations where dropoffs were less than 45%, dropoffs almost equal with pickups (that's dropoffs between 45 and 60%) and a third group where dropoffs were above 60%. From the result, a majority (76.5%) of all stations in all boroughs, (few in Manhattan) had a higher percentage of dropoffs. These stations had median dropoffs of less than 20 per hour. Stations with equal dropoffs and pickups (19.6%) alongside those with lower dropoffs (3.9%) had a median value of 50 dropoffs per hour. 84% (42) of those with equal dropoffs and pickups were in Manhattan, the rest 16% corresponds to 6 in Queens, 1 in Staten Island and 2 in Brooklyn. Only a few stations (10) had higher pickups than dropoffs, with 6 of them located in Manhattan, 3 in Queens and 1 in Bronx.
 
