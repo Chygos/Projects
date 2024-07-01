@@ -58,4 +58,4 @@ The findings can be found [here](EDA/README.md)
 
 ### Modelling
 
-In this part, we will predict the average number of taxis demanded by commuters per hour in all stations. Prediction was focused on high demand areas (areas with 100 and above demand per hour). This was aimed at accurately predicting taxi demand in these areas to make ready enough taxis to meet up with the growing demand.
+In this part, we will predict the average number of taxis demanded by commuters per hour in all stations. During the exploratory data analysis, a demand group criteria was created where demand at pickup stations was classified into low, medium and high. As a result, this predictive modelling task aims to accurately predict taxi demand in these areas to provide adequate taxis to meet the demand.
