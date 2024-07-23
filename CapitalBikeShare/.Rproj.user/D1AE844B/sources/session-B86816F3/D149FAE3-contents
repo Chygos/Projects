@@ -1,0 +1,129 @@
+---
+title: "your title"
+subtitle: "DISCLAIMER: This is not an example solution! You must follow the instructions given in the coursework brief!" 
+author: "" # do not put your name or student ID anywhere in the coursework
+output:
+  html_document:
+    self_contained: true
+    highlight: textmate  # specifies the syntax highlighting style
+    toc: true # should a table of contents (TOC) be shown in the document?
+    toc_depth: 2 # the number of levels (e.g. section, subsection, subsubsection) shown in the TOC
+    number_sections: false # should the sections be numbered?
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+library("tidyverse")
+library("here")
+library("janitor")
+# more packages
+
+# you can set chunk options globally here, e.g. so that you don't have to 
+# suppress the code output in each chunk separately
+```
+
+# Introduction
+
+<!-- introduce the problem as discussed in the coursework brief -->
+
+# Data
+
+
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# This code cleans the data set and shortens some of the column names
+# to make these easier to work with.
+stop_search_1 <- read_csv(
+    here("data", "stop_and_search.csv"), 
+    na = "N/A"
+  ) %>% 
+  clean_names() %>%
+  select(-c(measure, time_type, geography_type, x14)) %>%
+  select(-10) %>%
+  filter(ethnicity %in% c("All", "Asian", "Black", "White", "Other")) %>%
+  rename(stops = number_of_stop_and_searches) %>%
+  rename(population = population_by_ethnicity) %>%
+  rename(rate = rate_per_1_000_population_by_ethnicity) %>%
+  mutate(rate = parse_number(rate)) %>%
+  mutate(time = ordered(time)) %>%
+  rename(year = time) %>%
+  select(-c(3, 7)) %>%
+  distinct()
+```
+
+<!-- describe the data as discussed in the coursework brief -->
+
+
+# Questions
+
+In this report, we will investigate the following questions.
+
+## Question 1
+
+Were Black people stopped disproportionately often by the Metropolitan Police compared to white people in the past two decades and if so, how has this discrepancy changed following the police shooting of Mark Duggan.
+    
+To operationalise this question, we consider whether the relative disparity has been above 1 between 2006/07 and 2019/20 and how it has evolved in the years following 2010/11. Here, relative disparity is defined as the stop-and-search rate for Black people divided by the stop-and-search rate for White people. 
+ 
+## Question 2     
+
+## Question 3 
+
+## Question 4 
+
+## Question 5  
+
+# Analysis
+
+## Answer to Question 1
+
+The figure below illustrates that Black people were stopped disproportionately often by the Metropolitan Police compared to white people in every year between 2006/07 and 2019/20. In addition, the disparity in the stop-and-search rate for Black people (relative to white people) decreased slightly following the 2011 police shooting of Mark Duggan but increased again starting from 2013/14 with the exception of 2019/20.
+
+```{r, echo = FALSE, fig.width = 4.5, fig.height = 3.5}
+# The following lines of code add a column relative_disparity to the data
+# set which calculated the relative disparity, i.e. the rate at which
+# Black people are stopped divided by the rate at which white people are 
+# stopped. This variable is also used in the second question.
+reference_rate <- stop_search_1 %>%
+  filter(ethnicity == "White") %>%
+  rename(rate_white = rate) %>%
+  select(year, legislation_type, geography, rate_white) %>%
+  distinct()
+stop_search_1 %>%
+  left_join(reference_rate, 
+            by = c("year", "legislation_type", "geography")) %>%
+  mutate(relative_disparity = rate / rate_white) %>%
+  distinct() -> stop_search_2
+
+stop_search_2 %>%
+  filter(geography == "Metropolitan Police") %>%
+  filter(ethnicity == "Black") %>%
+  ggplot(mapping = aes(x = year, y = relative_disparity, group = "Black")) +
+  geom_line() +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, # make labels vertical
+                                   hjust = 1, # right-adjust horizontally
+                                   vjust = 0.5) # center vertically
+  ) + 
+  coord_cartesian(ylim = c(0, 5)) +
+  labs(x = "Year", 
+       y = "Relative Disparity")
+```
+
+## Answer to Question 2
+
+## Answer to Question 3
+
+## Answer to Question 4
+
+## Answer to Question 5
+
+# Conclusion
+
+
+
+
+
+
+
+    
+

@@ -1,0 +1,5 @@
+"0","# categorical variables"
+"0","a = plot_frequency(bike_shares, 'member_casual', title='Frequency Distribution for User type')"
+"0","b = plot_frequency(bike_shares, 'rideable_type', title='Frequency Distribution for Bike Type')"
+"0",""
+"0","ggarrange(a, b, ncol=2)"

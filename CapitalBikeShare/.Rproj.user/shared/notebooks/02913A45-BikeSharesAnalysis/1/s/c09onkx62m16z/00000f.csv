@@ -1,0 +1,2 @@
+"0","# numerical variables"
+"0","plot_distribution(bike_shares, 'num_rides', title='Number of Bikes Distribution')"

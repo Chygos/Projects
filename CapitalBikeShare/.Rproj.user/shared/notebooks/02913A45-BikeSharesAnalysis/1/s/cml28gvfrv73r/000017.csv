@@ -1,0 +1,5 @@
+"0","# read dataset"
+"0","bike_shares = read_csv('../data/bike_shares.csv', show_col_types=FALSE)"
+"0",""
+"0","head(bike_shares) %>%"
+"0","    kableExtra::kable(digits=2, caption='Top 6 rows')"

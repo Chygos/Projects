@@ -1,0 +1,8 @@
+"0","# clean data"
+"0","bike_shares <- bike_shares |>"
+"0","    # binning"
+"0","    mutate(distance_km = ifelse(distance_km > 1500, 1500, distance_km),"
+"0","           duration_secs = ifelse(duration_secs > 24*3600, 24*3600, duration_secs),"
+"0","           duration_mins = ifelse(duration_mins > 24*60, 24*60, duration_mins)) |>"
+"0","    # convert to factor variables"
+"0","    mutate(across(where(is.character), as.factor))"

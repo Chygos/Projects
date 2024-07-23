@@ -1,0 +1,32 @@
+{
+    "id": "D85D5BAA",
+    "path": "D:/data/Bike_sharing_rentals/CapitalBikeShare/BikeSharesAnalysis.qmd",
+    "project_path": "BikeSharesAnalysis.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1721743116564.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "last_setup_crc32": "",
+        "cursorPosition": "136,3",
+        "scrollLine": "0",
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1",
+        "rmdVisualModeLocation": "77:0",
+        "rmdVisualCollapsedChunks": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1721772771,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1721772771676,
+    "read_only": false,
+    "read_only_alternatives": []
+}

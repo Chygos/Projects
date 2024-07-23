@@ -1,0 +1,375 @@
+---
+title: "__CABI Bike Sharing Analysis (2019-2020)__"
+output: 
+  html_document:
+    number_sections: false # should the sections be numbered?
+    self_contained: true
+    highlight: textmate  # specifies the syntax highlighting style
+    toc: true # should a table of contents (TOC) be shown in the document?
+    toc_depth: 2 # the number of levels (e.g. section, subsection, subsubsection) shown in the TOC
+---
+
+<style>
+body{
+  text-align:justify;
+  font-size : 15px;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.align = 'center')
+```
+
+```{r message=FALSE, warning=FALSE}
+library(here)
+library(janitor)
+library(tidyverse)
+library(readxl)
+library(lubridate)
+```
+
+
+# __Introduction__
+
+Bike sharing involves the temporary use of bikes for short trips at low or free costs. It provides an alternative and fast means of transport for individuals in a city to commute to work, school, run errands, get to appointments, social engagements and so on. This system presents an avenue where residents, visitors, and students can hire a bike to save time, money, have fun, exercise and as well go green by reducing the amount of carbon-footprints emitted into the environment.
+
+In this analysis, we will investigate and analyse the bike riding service provided by Capital Bikeshare (CABi), a publicly owned bike-sharing system that provide bike rentals in and around Washington DC, United States, between 2019 and 2020. CaBi has over 5,000 bikes available at about 600 stations across seven locations: Washington DC; Arlington, Virginia; Alexandria, Virginia; Montgomery County, Maryland; Prince George's County, Maryland; Fairfax County, Virginia; and the City of Falls Church, Virginia. Their services are available for 24hours of the day, 7days of the week and 365 days in a year. To use the bikes, users are restricted to unlimited rides of 45 minutes, but during the 2020 Pandemic, restriction was reduced to 30 minutes ride. CABi also provides various pricing systems for users: A single trip, day pass, 30-day membership and an annual membership subscriptions with various price rates and discounts for classic bike and E-bike types.
+
+This project is important for the management to know the performance of the bike rental service provided by them (if the citizens are making use of this service for the intended goal that it was established). It will also enable CABi management to understand bike usage and availability across stations- to know stations where bikes are needed the most and to come up with strategies of improving bike logistics in such stations. In addition to understanding bike usage and availability across stations, the management may want to further investigate the bike rides by hour of the day, day of the week, and month and season of the year.
+
+
+# __Data__
+
+Data contains over 2.8 million bike rides made by users of Capital Bikeshare service between January 2019 and December 2020. It contains about 16 variables that provide information about the ride. Information such as the duration of the trip, the date and time the trip started and ended, the start and end stations, the bike number, membership of user, ride ID, the ride type, and the locations of the start and end stations. A second data is also used which provides information about 596/600 bike stations. It contains about 17 variables that describe them. Variables like the station's terminal number (ID), address, location coordinates (longitude and latitude), the number of bikes and docks in the station and so on. To make the analysis simple, analyses was restricted to the 596 stations that we have data about their locations.
+
+Various preprocessing steps were taken to clean and tidy data for analyses. These preprocessing steps are important for accurate analysis. 
+
+They include:-
+
+- Converting the variable names to a consistent format (lowercased).
+- Selecting relevant variables and dropping irrelevant ones. 
+- Merging both data into one using an inner join to select only the 596 stations: More than 73,000 observations were removed in this process.
+- Checking for duplicate rides and missing rows and remove them where appropriate: 170 rows were found to be duplicates and removed. Two variables, the end stations ID and name had missing values. These were not removed because the focus was on the start stations since the analysis was restricted to the start stations, which are in the 600 stations owned by CABi.
+- Converting variables to their appropriate data types: Manual_Casual variable was converted to a factor data type.
+- Extracting features from existing variables: New variables such as the year, month, day, day of the week, hour of ride and duration of ride were extracted from the original features and used for analysis.
+- Data exploration of variables, such as summary statistics of numerical and categorical variables: During this stage, it was discovered that the ride duration had some anomalous values. As a result, the values were restricted to durations that were within the unlimited time of 45 minutes plus an additional 15 minutes to give room for users who may not mind to pay some amount per minute since it is also allowed. Hence a duration lasting a total of 60 minutes was selected for analysis.
+
+After preprocessing, about 2.59 million observations (213,755 removed) and 19 variables were used for analyses.
+
+```{r}
+# loading dataset
+bike_rides <- read_csv(here('data', 'rides_2019_2020_extract.csv'), show_col_types = F) %>%
+  clean_names()
+
+stations <- read_excel(here('data', 'bikeshare_locations.xlsx')) %>%
+  clean_names()
+```
+
+
+```{r eval=FALSE}
+# number of dimensions
+dim(bike_rides) # bike rides
+dim(stations) # station locations
+```
+
+
+```{r}
+# selecting relevant variables
+bike_rides <- bike_rides %>%
+  dplyr::select(start_date, end_date, start_station_id, start_station_name, 
+                end_station_id, end_station_name, member_casual)
+
+stations <- stations %>%
+  dplyr::select(address, terminal_number, latitude, longitude, 
+                number_of_bikes, number_of_empty_docks)
+
+```
+
+
+```{r}
+# merging data
+bike_rides <- bike_rides %>%
+  # start station data
+  inner_join(select(stations, address, terminal_number, latitude, longitude, 
+                    number_of_bikes, number_of_empty_docks),
+             by=c('start_station_name' = 'address')) %>%
+  # rename to start latitude and longitude
+  rename(start_lat = latitude, start_long = longitude)
+```
+
+
+```{r}
+# dropping duplicate rides
+bike_rides <- bike_rides %>% distinct()
+```
+
+
+```{r eval=FALSE}
+# number of missing values in each variables
+bike_rides %>%
+  apply(2, function(x) sum(is.na(x)))
+```
+
+
+```{r}
+# Data type conversion and Feature Extraction
+bike_rides <- bike_rides %>%
+  mutate(member_casual = as_factor(member_casual), 
+         hire_date = date(start_date),
+         duration = time_length(end_date - start_date, unit = 'second'), # in seconds
+         hire_hour = hour(start_date),
+         hire_year = year(start_date),
+         hire_week = week(start_date),
+         hire_month = month(start_date, label = T), 
+         hire_wkday = wday(start_date, label=T, week_start = 1))
+```
+
+```{r}
+# filtering data with duration from 0 and 45 + 15 minutes
+bike_rides <- bike_rides %>%
+  filter(duration >= 0*60 & duration <= 60*60) %>%
+  mutate(member_casual = str_to_lower(member_casual))
+```
+
+__Summary Table__
+
+```{r}
+# summary of numerical variables after filtering duration
+bike_rides %>%
+  select(duration, number_of_bikes, number_of_empty_docks, 
+         hire_date, start_lat, start_long) %>%
+  map(., summary)
+
+
+table(bike_rides$member_casual)
+
+
+paste0('Number of Stations: ', n_distinct(bike_rides$start_station_name))
+```
+
+
+# __Questions__
+
+In this report, we will investigate the following questions
+
+### Question 1
+How does the demand for bikes vary hourly? What hour of the day do we need to prioritise more bikes? 
+
+To operationalise this, we will find the average demand of bikes per hour by counting the number of bikes hired at all start stations per hour of the day and find the average. 
+
+### Question 2
+How did bike demand fair throughout the months from 2019 to 2020? Are there months where demands are high? Do we need to strategise to make available more bikes in these months of the year? 
+
+To operationalise this, we will count the total number of hires per month of the year, from 2019 to 2020 and plot the total number of hires made in all stations. Also, to deep further into the monthly demands, we will plot the average 
+
+### Question 3
+Are there stations we need to provide more bikes? If yes, what is the difference between the hourly demand of bikes across stations and the number of bikes provided in each station?
+
+To be able to answer this, we need to know the hourly bike demand across stations and subtract them from the number of bikes available in each of the stations. In this way CABi will determine the number of bikes they need to provide in order to meet up with the hourly demand.
+
+### Question 4
+
+How does the duration by members and non-members vary between themselves in 2019 and 2020? What is the average duration of time taken by non-members and members? 
+
+To operationalise this, we will plot a boxplot showing the duration distribution between member and non-members for 2019 and 2020. 
+
+### Question 5
+How does the hourly demand vary across the days of the week? Are there any days of the week where bike usage is high? 
+
+To operationalise this, we will find the average bike demand per day of the week across all stations. This will enable us to determine the day of the week when demand for bikes is high and thereafter, plot a heatmap of the average hourly bike demand across the days of the week. 
+
+
+# __Analysis__
+
+### Answer to Question 1
+```{r fig.cap='Figure 1: Average Hourly Bike Rides Across Stations', fig.align='center', fig.height=5, fig.width=8}
+bike_rides %>%
+  group_by(hire_hour, hire_date) %>%
+  summarise(total=n()) %>%
+  group_by(hire_hour) %>%
+  summarise(Hourly_rides = mean(total)) %>%
+  ggplot(aes(x=hire_hour, y=Hourly_rides)) +
+  geom_col(fill='steelblue',color='black') +
+  theme_light() +
+  theme(panel.grid = element_blank()) +
+  scale_x_continuous(breaks = seq(0,23,1)) +
+  scale_y_continuous(breaks=seq(0,500,50)) +
+  labs(title='Average Hourly Bike Rides', x='Hour', y='Average Ride')
+```
+
+The figure above describes the average demand for bikes per hour of the day. From the figure, we see that the demand for bikes peaks at two times of the day (8am and 5pm), which can be regarded as rush hours. The demand for bikes first increases from around 4am and first peaks at 8am. The demand begins to decline to about 10am and begins to increase again and peaks at 5pm. After 5pm, the demand for bikes begins to decline till about 4am.
+
+
+### Answer for Question 2
+```{r fig.cap='Figure 2: Total Monthly Bike Rides From Jan. 2019 to Dec. 2020', fig.width=8, fig.height=5}
+# total monthly rides per month of the year
+total_monthly_rides <- bike_rides %>%
+  group_by(month_year=floor_date(hire_date, 'month')) %>%
+  summarise(total_rides=n()) 
+
+# plot
+total_monthly_rides %>%
+  ggplot(aes(month_year, total_rides/1000)) + 
+  geom_col(fill='steelblue', color='black') +
+  geom_text(aes(month_year, total_rides/1000, label=paste0(total_rides %/% 1000,'k'), vjust=-0.5), size=3) + 
+  geom_hline(yintercept = mean(total_monthly_rides$total_rides)%/%1000, lty='dashed', color='red') + 
+  theme_light() +
+  theme(axis.text.x = element_text(angle=90), 
+        panel.grid = element_blank(), 
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  labs(title='Total Monthly Rides (Jan. 2019 - Dec. 2020)', 
+       x='Date', y='Total Rides (in Thousands)') + 
+  scale_x_continuous(breaks = seq.Date(as.Date('2019-01-01'), as.Date('2020-12-01'), by = 'month'))
+```
+
+Figure 2 shows the total rides across all stations per month of every year. From the plot, we see that there more rides taken in 2019 than in 2019. The decline in 2020 (from March 2020) was caused by the 2020 pandemic which disrupted movements. Also from the plot, there are more rides in the summer months than in other seasons. It increases from the beginning of the year and peaks towards the middle of the year before it declines till the end of the year. On average, the monthly number of rides across all stations from 2019 to 2020 is about 108,000 (indicated by the red dashed line), which is higher than the total number of rides in all months of 2020.
+
+
+```{r fig.cap='Figure 3: Average Monthly Bike Rides', fig.align='center', fig.width=8, fig.height=5}
+# average bike rides per month of the year
+bike_rides %>%
+  # total hires per day of a month
+  group_by(hire_month, hire_date) %>%
+  summarise(total=n()) %>%
+  # average rides per month
+  group_by(hire_month) %>%
+  summarise(monthly_average = mean(total)) %>%
+  # plot
+  ggplot(aes(hire_month, monthly_average/1000)) + 
+  geom_col(fill='steelblue', color='black') +
+  geom_text(aes(x=hire_month, y=monthly_average/1000, 
+                label=paste0(round(monthly_average/1000,2),'k'), 
+                vjust=-0.4), size=3.2, color='black') + 
+  theme_light() +
+  theme(axis.text.x = element_text(angle=0), 
+        panel.grid = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y=element_blank()) +
+  labs(title='Average Monthly Rides (In Thousands)', x='Month', y='Monthly Demand')
+```
+As seen in figure 2, the number of rides increases from the beginning of the year and declines towards the end of the year. This plot reveals that most people hire bikes for fun during the summer months whereas during winters, the patronage declines (figure 3).
+
+
+### Answer to Question 3
+```{r fig.cap='Figure 4: Average Weekly Rides by Start Stations vs number of bikes in station', fig.height=5, fig.width=8, fig.align='center'}
+# Average Bike rides per week by station
+
+station_weekly_rides <- bike_rides %>%
+  # total rides per week
+  group_by(hire_week=floor_date(hire_date,'week'), terminal_number, start_station_name, start_lat, start_long) %>%
+  summarise(total=n()) %>%
+  # average demand by station per week
+  group_by(terminal_number, start_station_name, start_lat, start_long) %>%
+  summarise(weekly_rides= as.integer(mean(total))) %>%
+  inner_join(select(stations, terminal_number, number_of_bikes), by='terminal_number') %>%
+  # bin by number of bikes in each station
+  mutate(num_bike_bin=cut(number_of_bikes, breaks=c(-1,10,16,40), labels=c('<10', '10-15', '16+'), 
+                          right=FALSE, ordered_result=T)) %>%
+  ungroup()
+
+
+# plot
+station_weekly_rides %>%
+  ggplot() +
+  geom_point(aes(x=start_long, y=start_lat, color=num_bike_bin, size=weekly_rides),alpha=0.5) +
+  theme_light() +
+  theme(panel.grid = element_blank(),
+        legend.key.size = unit(0.8, 'cm'),
+        legend.position = 'top') +
+  labs(title='Start Stations Average Weekly Rides vs number of bikes', x='Longitude', y='Latitude') +
+  scale_color_manual(values=c('<10'='darkblue', '10-15'='orange', '16+'='red')) +
+  guides(size='none', color=guide_legend(title='NumBikes Group'))
+
+```
+
+```{r}
+# Weekly rides by station (Top 10)
+station_weekly_rides %>%
+  slice_max(order_by = weekly_rides, n=10) %>%
+  select(start_station_name, terminal_number, weekly_rides, number_of_bikes) %>%
+  kableExtra::kable(caption = 'Table 1: Weekly rides by Station (Top 10)')
+
+
+
+# Hourly demand by station (Least 10)
+station_weekly_rides %>%
+  slice_min(order_by = weekly_rides, n=10) %>%
+  select(start_station_name, terminal_number, weekly_rides, number_of_bikes) %>%
+  tail(10) %>%
+  kableExtra::kable(caption = 'Table 2: Weekly rides by Station (Least 10)')
+```
+
+<br>
+To investigate bike patronage across stations (start stations) per week, the total weekly rides for each station was aggregated and averaged. The figure above shows a scatterplot showing the locations of the stations, the average weekly bike patronage in each station, and finally grouped by the number of bikes allocated to each station. From figure 4, most of the stations are clustered toward the center. These stations as well have higher patronage than those located outside or far-away from the center. Another insight here is that the stations with higher patronage are mostly stations with more allocated bikes (from 10 bikes and above). 
+
+Narrowing down stations with higher patronage per week, some stations had little amount of bikes allocated to them (Table1). The demand for bikes in these stations seems to be higher and this could overburden the bikes and may lead to wear and tear due to constant usage. CABi may consider providing more bikes in these areas or put in-place maintenance measures to monitor usage. On the other hand, there are bike terminals where patronage is low (Table 2), proactive measures may need to be put in place by CABi management to encourage patronage. This could be in form of incentives for people living in poor communities who may not have the funds for monthly subscription. Likewise, they may consider merging stations that are close to each other, to save cost. 
+
+
+### Answer to Question 4
+```{r warning=FALSE, message=FALSE}
+# average duration
+summary(bike_rides$duration/60) # in minutes
+
+bike_rides %>%
+  select(member_casual, duration, hire_year) %>% 
+  group_by(member_casual, hire_year) %>%
+  summarise(av_duration_sec = mean(duration), 
+            av_duration_min= mean(duration/60)) %>%
+  ungroup() %>%
+  kableExtra::kable(caption = 'Table 3: Average Duration by Membership Type by Year')
+```
+
+
+```{r  fig.cap='Figure 5: Bike Duration Distribution vs Membership Type', fig.align='center', fig.width=8, fig.height=4}
+# Distribution of duration by user membership
+bike_rides %>%
+  select(member_casual, hire_year, duration) %>% 
+  ggplot(aes(x=factor(member_casual), y=duration/60, fill=factor(hire_year))) +
+  geom_boxplot() +
+  facet_grid(~hire_year,) + 
+  theme_light() +
+  theme(legend.position = 'none', panel.grid = element_blank()) + 
+  labs(title='Duration Distribution by Membership Type', x='Membership Type', y='Duration (Mins)') +
+  scale_x_discrete(labels=c('casual'='Casual', 'member'='Member')) +
+  scale_y_continuous(breaks = seq(0,60,10)) +
+  scale_fill_manual(values = c('2019' = 'coral', '2020'='steelblue')) + 
+  guides(fill=guide_legend(title='Year'))
+```
+
+<br>
+On average, casual members tend to spend more time using the bikes than those with a membership subscription in both 2019 and 2020 (figure 5). For both categories the average ride times in 2019 and 2020 are about the same (slight change). For casual users, the average ride time is about 22 mins while for users with a membership subscription, the average ride minute is about 12 minutes. It could be that riders are people who prefer a daily pass rather than a monthly or yearly membership or are visitors. Information about the pricing subscription type of users wasn't given in the data.
+
+
+### Answer to Question 5
+```{r fig.cap='Figure 6: Heatmap showing the average hourly rides per day', fig.align='center', fig.height=5, fig.width=8}
+# Hourly rides by day of the week 
+bike_rides %>%
+  group_by(hire_hour, hire_wkday, hire_date) %>%
+  summarise(total=n()) %>%
+  group_by(hire_hour, hire_wkday) %>%
+  summarise(hour_rides=as.integer(mean(total))) %>%
+  ggplot(aes(x=hire_hour, y=hire_wkday, fill=hour_rides)) +
+  geom_tile(alpha=0.9, linejoin = 'round') + 
+  geom_text(aes(label=hour_rides), lineheight=2, size=3.2) +
+  scale_fill_gradientn(colors = hcl.colors(5, 'Reds', rev=T)) +
+  scale_x_continuous(breaks = seq(0,23,1)) +
+  theme_light() +
+  theme(legend.position = 'none', panel.grid = element_blank(),
+        line = element_line(size=1)) +
+  labs(title='Average Hourly Rides per Day of the Week', x='Hour', y='Day of Week')
+```
+
+Figure 6 shows a heatmap of the average number of rides per hour in all CABi stations. From the chart, we can confirm that during the rush hours of the day (7-9am and 4-7pm) there are more rides than in other times of the day. Another thing is that in the mornings of weekends, between 7 and 9am, the number of rides is lower than on weekdays. It could be that riders at those times of the day are students, workers or individuals who have an appointment and are returning from work. 
+On the other hand, on weekends (Saturday and Sunday), there are more riders from 10am to about 6pm (more in the afternoons). It could be that riders on weekends are mostly users who use bikes for recreation (exercise and fun).
+
+
+# __Conclusion__
+
+From our analyses, we see that there are more bike usage increases from the start of the day and peaks at two points of the day before declining towards the evenings and nights. There are more users between 7am-9am and between 4-7pm on weekdays and weekends, where on weekends bikes are usually used in the afternoons. From this analysis, we think that users during weekdays usually consist of students or workers, while on weekends they are made up of users who rented the bikes for recreation. In addition, there were less number of bike rides in 2020 than in the previous year. This is as a result of the pandemic. Bike usage is also higher during Summer and Fall (between June and October) than in Spring or Winter. During Summer and Fall season, the total number of monthly rides is above 4000 while in other months it is less.
+
+A ride takes about 15 minutes on average. Grouping based on membership type, a casual user uses a bike for an average of 22minutes while a member uses for about 13 minutes on average. This poses a question of why members would have lower usage than casual users since members have unlimited usage of 45 minutes without charges while non-members do not. Are there members who give out their membership code to non-members? 
+
+In terms of patronage, there are stations with higher patronage than others but unfortunately, the number of bikes allocated to them versus the rate of weekly patronage is poor. There are some with more bikes but with lower patronage. Similarly, stations located far away the city center have lower patronage and as well, less bicycles available there.
+
+In conclusion, bike rental provides the best means of transport for residents and has great potential in reducing the emission of greenhouse gases to the environment, therefore, coming up with the best strategies to encourage its use is important to save the planet from the disastrous effect of climate change.

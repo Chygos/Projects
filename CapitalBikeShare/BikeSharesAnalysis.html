@@ -164,25 +164,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="loading-libraries-and-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="loading-libraries-and-dataset">Loading libraries and dataset</h3>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read dataset</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bike_shares <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">'../data/bike_shares.csv'</span>, <span class="at">show_col_types=</span><span class="cn">FALSE</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bike_shares) <span class="sc">%&gt;%</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption=</span><span class="st">'Top 6 rows'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Top 6 rows</caption>
@@ -269,34 +263,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-quality-checks" class="level3">
 <h3 class="anchored" data-anchor-id="data-quality-checks">Data Quality checks</h3>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checking for missing values and duplicate rows</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anyDuplicated</span>(bike_shares)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(bike_shares)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No duplicate rows or missing values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="descriptive-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="descriptive-statistics">Descriptive statistics</h3>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(bike_shares)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -510,10 +492,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">get_summary_stats</span>(bike_shares)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 13
   variable        n   min    max median    q1     q3    iqr    mad   mean     sd
@@ -526,17 +507,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bike_shares<span class="sc">$</span>rideable_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "classic"  "electric"</code></pre>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bike_shares<span class="sc">$</span>member_casual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "casual" "member"</code></pre>
 </div>
@@ -548,8 +523,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Here, we will look at the distribution of the variables. For the numerical variables, we will use the histogram, density plots and boxplots while the categorical variables we will use the frequency distribution</li>
 </ul>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plot_frequency <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">colname=</span><span class="cn">NULL</span>, <span class="at">title=</span><span class="cn">NULL</span>){</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(.data[[colname]]) <span class="sc">|&gt;</span></span>
@@ -593,31 +566,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggarrange</span>(box, hist_, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">common.legend=</span>T, <span class="at">legend=</span><span class="st">'right'</span>)</span>
 <span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># categorical variables</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">plot_frequency</span>(bike_shares, <span class="st">'member_casual'</span>, <span class="at">title=</span><span class="st">'Frequency Distribution for User type'</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">plot_frequency</span>(bike_shares, <span class="st">'rideable_type'</span>, <span class="at">title=</span><span class="st">'Frequency Distribution for Bike Type'</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(a, b, <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numerical variables</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="at">title=</span><span class="st">'Number of Bikes Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -625,37 +580,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'duration_secs'</span>, <span class="at">title=</span><span class="st">'Trip Duration Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
 </div>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'distance_km'</span>, <span class="at">title=</span><span class="st">'Trip Distance Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>There are some strange data points in the distance and duration variables. We will clean them.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bivariate</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="at">fill=</span><span class="st">'member_casual'</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title=</span><span class="st">'Bike demand by membership type'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numerical variables</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="at">title=</span><span class="st">'Number of Bikes Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -663,27 +591,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'distance_km'</span>, <span class="at">fill=</span><span class="st">'member_casual'</span>, </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title=</span><span class="st">'Trip Distance by membership type'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'duration_secs'</span>, <span class="at">title=</span><span class="st">'Trip Duration Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'duration_mins'</span>, <span class="at">fill=</span><span class="st">'member_casual'</span>, </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title=</span><span class="st">'Trip Duration by membership type'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'distance_km'</span>, <span class="at">title=</span><span class="st">'Trip Distance Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are some strange data points in the distance and duration variables. We will clean them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bivariate</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="at">fill=</span><span class="st">'member_casual'</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title=</span><span class="st">'Bike demand by membership type'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'distance_km'</span>, <span class="at">fill=</span><span class="st">'member_casual'</span>, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title=</span><span class="st">'Trip Distance by membership type'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distribution</span>(bike_shares, <span class="st">'duration_mins'</span>, <span class="at">fill=</span><span class="st">'member_casual'</span>, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title=</span><span class="st">'Trip Duration by membership type'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -693,8 +648,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="data-cleaning">Data cleaning</h3>
 <p>Here, we will remove the extreme values from the duration and distance variables. For the duration, we will bin values above 24 hours (1440 mins or 86400 secs) to 24 hours in minutes or seconds. For distance, we will replace values above 1500km to 1500km</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clean data</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>bike_shares <span class="ot">&lt;-</span> bike_shares <span class="sc">|&gt;</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># binning</span></span>
@@ -703,7 +656,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">duration_mins =</span> <span class="fu">ifelse</span>(duration_mins <span class="sc">&gt;</span> <span class="dv">24</span><span class="sc">*</span><span class="dv">60</span>, <span class="dv">24</span><span class="sc">*</span><span class="dv">60</span>, duration_mins)) <span class="sc">|&gt;</span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># convert to factor variables</span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 </section>
@@ -711,13 +663,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
-<ul>
-<li><p>What is the average number of bikes shared in all stations in an hour?</p></li>
-<li><p>What is the average distance and duration travelled by users?</p></li>
-</ul>
+<section id="what-is-the-average-number-of-bikes-shared-in-all-stations-in-an-hour-what-is-the-average-distance-and-duration-travelled-by-users" class="level5">
+<h5 class="anchored" data-anchor-id="what-is-the-average-number-of-bikes-shared-in-all-stations-in-an-hour-what-is-the-average-distance-and-duration-travelled-by-users">What is the average number of bikes shared in all stations in an hour? What is the average distance and duration travelled by users?</h5>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Total_Rides</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(bike_shares<span class="sc">$</span>num_rides),</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Average_Hourly_Demand</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(bike_shares<span class="sc">$</span>num_rides),</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Average_Distance_km</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(bike_shares<span class="sc">$</span>distance_km<span class="sc">/</span>bike_shares<span class="sc">$</span>num_rides),</span>
@@ -727,7 +675,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">'Name'</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption=</span><span class="st">'Bike Performance'</span>, <span class="at">align=</span><span class="st">'lr'</span>, <span class="at">digits=</span><span class="dv">2</span>, </span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">format.args=</span><span class="fu">list</span>(<span class="at">big.mark=</span><span class="st">","</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Bike Performance</caption>
@@ -758,21 +705,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<ul>
-<li><p>How do the metrics above compare by bike type and membership type?</p>
+</section>
+<section id="how-do-the-metrics-above-compare-by-bike-type-and-membership-type" class="level5">
+<h5 class="anchored" data-anchor-id="how-do-the-metrics-above-compare-by-bike-type-and-membership-type">How do the metrics above compare by bike type and membership type?</h5>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bike_shares <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reframe</span>(<span class="at">Average_Hourly_demand =</span> <span class="fu">mean</span>(num_rides), </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Distance_km =</span> <span class="fu">mean</span>(distance_km<span class="sc">/</span>num_rides),</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Duration_mins =</span> <span class="fu">mean</span>(duration_mins), </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by=</span>member_casual) <span class="sc">|&gt;</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>member_casual) <span class="sc">|&gt;</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> name, <span class="at">names_from=</span>member_casual, <span class="at">values_from=</span>value) <span class="sc">%&gt;%</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align=</span><span class="st">'lrr'</span>, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption=</span><span class="st">'Performance by Membership Type'</span>,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col.names=</span><span class="fu">c</span>(<span class="st">'Name'</span>, <span class="st">'Non-members'</span>, <span class="st">'Members'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># by membership type</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>bike_shares <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reframe</span>(<span class="at">Average_Hourly_demand =</span> <span class="fu">mean</span>(num_rides), </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Distance_km =</span> <span class="fu">mean</span>(distance_km<span class="sc">/</span>num_rides),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Duration_mins =</span> <span class="fu">mean</span>(duration_mins), </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by=</span>member_casual) <span class="sc">|&gt;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>member_casual) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> name, <span class="at">names_from=</span>member_casual, <span class="at">values_from=</span>value) <span class="sc">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align=</span><span class="st">'lrr'</span>, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption=</span><span class="st">'Performance by Membership Type'</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col.names=</span><span class="fu">c</span>(<span class="st">'Name'</span>, <span class="st">'Non-members'</span>, <span class="st">'Members'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Performance by Membership Type</caption>
@@ -804,18 +750,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>bike_shares <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reframe</span>(<span class="at">Average_Hourly_demand =</span> <span class="fu">mean</span>(num_rides), </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Distance_km =</span> <span class="fu">mean</span>(distance_km<span class="sc">/</span>num_rides),</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Duration_mins =</span> <span class="fu">mean</span>(duration_mins), </span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by=</span>rideable_type) <span class="sc">|&gt;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>rideable_type) <span class="sc">|&gt;</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> name, <span class="at">names_from=</span>rideable_type, <span class="at">values_from=</span>value) <span class="sc">%&gt;%</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption=</span><span class="st">'Performance by Bike Type'</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col.names=</span><span class="fu">c</span>(<span class="st">'Name'</span>, <span class="st">'Classic'</span>, <span class="st">'Electric'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># by bike type</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>bike_shares <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reframe</span>(<span class="at">Average_Hourly_demand =</span> <span class="fu">mean</span>(num_rides), </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Distance_km =</span> <span class="fu">mean</span>(distance_km<span class="sc">/</span>num_rides),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">Average_Duration_mins =</span> <span class="fu">mean</span>(duration_mins), </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by=</span>rideable_type) <span class="sc">|&gt;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>rideable_type) <span class="sc">|&gt;</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> name, <span class="at">names_from=</span>rideable_type, <span class="at">values_from=</span>value) <span class="sc">%&gt;%</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption=</span><span class="st">'Performance by Bike Type'</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col.names=</span><span class="fu">c</span>(<span class="st">'Name'</span>, <span class="st">'Classic'</span>, <span class="st">'Electric'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Performance by Bike Type</caption>
@@ -845,103 +789,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-</div></li>
-<li><p>What is the percentage of rides by membership type and bike type?</p>
+</div>
+</section>
+<section id="what-is-the-percentage-of-rides-by-membership-type-and-bike-type" class="level5">
+<h5 class="anchored" data-anchor-id="what-is-the-percentage-of-rides-by-membership-type-and-bike-type">What is the percentage of rides by membership type and bike type?</h5>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>aggregate_data <span class="ot">&lt;-</span> <span class="cf">function</span>(data, column, groups){</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    select_cols <span class="ot">=</span> <span class="fu">c</span>(column, groups)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(select_cols)</span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function that aggregates a numerical variable based on a given group</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>aggregate_data <span class="ot">&lt;-</span> <span class="cf">function</span>(data, column, groups){</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    select_cols <span class="ot">=</span> <span class="fu">c</span>(column, groups)</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> data[,select_cols] <span class="sc">|&gt;</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">group_by</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(groups))) <span class="sc">|&gt;</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">summarize</span>(<span class="at">val =</span> <span class="fu">sum</span>(.data[[column]])) <span class="sc">|&gt;</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">perc =</span> val<span class="sc">/</span><span class="fu">sum</span>(val))</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">summarize</span>(<span class="at">total =</span> <span class="fu">sum</span>(.data[[column]])) <span class="sc">|&gt;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">perc =</span> total<span class="sc">/</span><span class="fu">sum</span>(total))</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <ul>
 <li><p>Bike Type</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate_data</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="st">'rideable_type'</span>) <span class="sc">|&gt;</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>rideable_type, <span class="at">y=</span>perc)) <span class="sc">+</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">'steelblue'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste</span>(<span class="fu">round</span>(val<span class="sc">/</span><span class="fl">1e6</span>,<span class="dv">2</span>),<span class="st">'M'</span>)), <span class="at">vjust=</span><span class="dv">2</span>, </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste</span>(<span class="fu">round</span>(total<span class="sc">/</span><span class="fl">1e6</span>,<span class="dv">2</span>),<span class="st">'M'</span>)), <span class="at">vjust=</span><span class="dv">2</span>, </span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontface=</span><span class="st">'bold'</span>, <span class="at">color=</span><span class="st">'white'</span>) <span class="sc">+</span></span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_tufte</span>() <span class="sc">+</span></span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>) <span class="sc">+</span> </span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Percentage of rides by bike type'</span>, <span class="at">x=</span><span class="st">'Bike Type'</span>, <span class="at">y=</span><span class="st">'Percentage'</span>) <span class="sc">+</span></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">suffix=</span><span class="st">'%'</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Electric'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "num_rides"     "rideable_type"</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div></li>
 <li><p>Membership Type</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate_data</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="st">'member_casual'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>member_casual, <span class="at">y=</span>perc)) <span class="sc">+</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">'steelblue'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste</span>(<span class="fu">round</span>(val<span class="sc">/</span><span class="fl">1e6</span>,<span class="dv">2</span>),<span class="st">'M'</span>)), <span class="at">vjust=</span><span class="dv">2</span>, </span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontface=</span><span class="st">'bold'</span>, <span class="at">color=</span><span class="st">'white'</span>) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_tufte</span>() <span class="sc">+</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>) <span class="sc">+</span> </span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Percentage of rides by Membership status'</span>, </span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">'Membership type'</span>, <span class="at">y=</span><span class="st">'Percentage'</span>) <span class="sc">+</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">suffix=</span><span class="st">'%'</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Casual'</span>, <span class="st">'Member'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "num_rides"     "member_casual"</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate_data</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="st">'member_casual'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>member_casual, <span class="at">y=</span>perc)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">'steelblue'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste</span>(<span class="fu">round</span>(total<span class="sc">/</span><span class="fl">1e6</span>,<span class="dv">2</span>),<span class="st">'M'</span>)), <span class="at">vjust=</span><span class="dv">2</span>, </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontface=</span><span class="st">'bold'</span>, <span class="at">color=</span><span class="st">'white'</span>) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_tufte</span>() <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>) <span class="sc">+</span> </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Percentage of rides by Membership status'</span>, </span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">'Membership type'</span>, <span class="at">y=</span><span class="st">'Percentage'</span>) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">suffix=</span><span class="st">'%'</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Casual'</span>, <span class="st">'Member'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div></li>
-</ul></li>
-</ul>
+<li><p>Membership type vs Bike Type</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate_data</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="fu">c</span>(<span class="st">'member_casual'</span>, <span class="st">'rideable_type'</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aggregate_data</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="fu">c</span>(<span class="st">'rideable_type'</span>, <span class="st">'member_casual'</span>)), </span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">by=</span><span class="fu">c</span>(<span class="st">'rideable_type'</span>, <span class="st">'member_casual'</span>, <span class="st">'val'</span>), </span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">'_bike_vs_member_type'</span>, <span class="st">'_member_vs_bike_type'</span>)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">'perc'</span>), \(x) <span class="dv">100</span><span class="sc">*</span>x)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption=</span><span class="st">'Performance by Bike Type vs Membership Type'</span>, </span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">format.args=</span><span class="fu">list</span>(<span class="at">big.mark=</span><span class="st">','</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "num_rides"     "member_casual" "rideable_type"</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate_data</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="fu">c</span>(<span class="st">'member_casual'</span>, <span class="st">'rideable_type'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aggregate_data</span>(bike_shares, <span class="st">'num_rides'</span>, <span class="fu">c</span>(<span class="st">'rideable_type'</span>, <span class="st">'member_casual'</span>)), </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">by=</span><span class="fu">c</span>(<span class="st">'rideable_type'</span>, <span class="st">'member_casual'</span>, <span class="st">'total'</span>), </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">'_member_vs_bike_type'</span>, <span class="st">'_bike_vs_member_type'</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">'perc'</span>), \(x) <span class="dv">100</span><span class="sc">*</span>x)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption=</span><span class="st">'Performance by Bike Type vs Membership Type'</span>, </span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">format.args=</span><span class="fu">list</span>(<span class="at">big.mark=</span><span class="st">','</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'member_casual'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "num_rides"     "rideable_type" "member_casual"</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'rideable_type'. You can override using the
+`.groups` argument.
+`summarise()` has grouped output by 'rideable_type'. You can override using the
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output-display">
@@ -958,9 +877,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th style="text-align: left;">member_casual</th>
 <th style="text-align: left;">rideable_type</th>
-<th style="text-align: right;">val</th>
-<th style="text-align: right;">perc_bike_vs_member_type</th>
+<th style="text-align: right;">total</th>
 <th style="text-align: right;">perc_member_vs_bike_type</th>
+<th style="text-align: right;">perc_bike_vs_member_type</th>
 </tr>
 </thead>
 <tbody>
@@ -995,8 +914,208 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
+</div></li>
+</ul>
+<p>From the results above, we see that classic bikes are the most rented bike types than electric bikes while most of the rents came from registered users than unregistered users. Out of the over 10 million rides between January 2022 and June 2024, about 69% of them were rides from classic bikes while 31% of them were rides from an electric bike. On the other hand, 64% of all the rides were made by registered users while about 36% by casual users.</p>
+<p>Drilling down, 35.4% of all rides from a classic bike and 36% from an electric bike were made by non-members. This means that about 64.6% and 64% of all the rides from a classic or electric bike were made by registered members of Capital Bikeshare. Similarly, out of all the unregistered users, 68.4% of them rented classic bikes against the about 69% of registered users, indicating that 31.6% and 31% of unregistered and registered users rented electric bikes, respectively.</p>
+</section>
+<section id="what-is-the-acceptance-rate-of-bike-sharing-system-washington-dc-residents" class="level5">
+<h5 class="anchored" data-anchor-id="what-is-the-acceptance-rate-of-bike-sharing-system-washington-dc-residents">What is the acceptance rate of bike sharing system Washington DC residents?</h5>
+<p>To determine the acceptance rate of bike sharing system, we will look at the percentage change of demand per day, week, month and year. This is enable us determine the growth rate at these timeframes</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># adding time features</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>bike_shares <span class="ot">&lt;-</span> bike_shares <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">year</span>(pickup_hour), </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">month =</span> <span class="fu">month</span>(pickup_hour),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">hour =</span> <span class="fu">hour</span>(pickup_hour),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">week =</span> <span class="fu">week</span>(pickup_hour),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">day =</span> <span class="fu">day</span>(pickup_hour))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A total of about 2.5 million classic rides were</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># acceptance of bike rides</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>pct_change <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'hour'</span>, <span class="st">'week'</span>, <span class="st">'month'</span>, <span class="st">'day'</span>)){</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">aggregate_data</span>(bike_shares <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date=</span><span class="fu">floor_date</span>(pickup_hour, i[<span class="dv">1</span>])), </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'num_rides'</span>, <span class="st">'date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="dv">100</span><span class="sc">*</span>(total<span class="sc">-</span><span class="fu">lag</span>(total))<span class="sc">/</span><span class="fu">lag</span>(total)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reframe</span>(<span class="at">avg_change =</span> <span class="fu">mean</span>(pct, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(avg_change)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  pct_change <span class="ot">&lt;-</span> <span class="fu">append</span>(pct_change, res)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pct_change) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'hour'</span>, <span class="st">'week'</span>, <span class="st">'month'</span>, <span class="st">'day'</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># visualise</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(pct_change) <span class="sc">|&gt;</span> </span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames_to_column</span>(<span class="st">'name'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(name, pct_change)) <span class="sc">+</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">'cornflowerblue'</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste</span>(<span class="fu">round</span>(pct_change,<span class="dv">2</span>),<span class="st">'%'</span>)), <span class="at">vjust=</span><span class="fl">1.5</span>, </span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">'white'</span>, <span class="at">fontface=</span><span class="st">'bold'</span>) <span class="sc">+</span> </span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_tufte</span>() <span class="sc">+</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), </span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">'bold'</span>)) <span class="sc">+</span> </span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Bike Aceeptance Rate by Residents'</span>, </span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="st">'Timeframe'</span>, <span class="at">y=</span><span class="st">'Percentage Change'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>There’s a positive acceptance of bike sharing by residents of Washington DC. By investigating the percentage change in bike demand at different time frames, we see that per hour of the day, the demand rate for bike sharing increases by about 18.7% on average, about 5.7% per day, 6.3% per week and about 8.1% per month of the year.</li>
+</ul>
+<p>Next, we want to look at the rate each bike type is demanded by residents per hour, day, week and month</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># acceptance by bike type</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names=</span><span class="fu">c</span>(<span class="st">'hour'</span>, <span class="st">'week'</span>, <span class="st">'month'</span>, <span class="st">'day'</span>),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">classic=</span><span class="fu">numeric</span>(<span class="dv">4</span>), <span class="at">ebikes=</span><span class="fu">numeric</span>(<span class="dv">4</span>))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>){</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    bike_type <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'classic'</span>, <span class="st">'electric'</span>)[i]</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    pct_change <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">rownames</span>(results)){</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>        res <span class="ot">&lt;-</span> <span class="fu">aggregate_data</span>(bike_shares <span class="sc">%&gt;%</span> </span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">filter</span>(rideable_type <span class="sc">==</span> bike_type) <span class="sc">%&gt;%</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">mutate</span>(<span class="at">date=</span><span class="fu">floor_date</span>(pickup_hour, j[<span class="dv">1</span>])), </span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'num_rides'</span>, <span class="st">'date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="dv">100</span><span class="sc">*</span>(total<span class="sc">-</span><span class="fu">lag</span>(total))<span class="sc">/</span><span class="fu">lag</span>(total)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">reframe</span>(<span class="at">avg_change =</span> <span class="fu">mean</span>(pct, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">pull</span>(avg_change)</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>        pct_change <span class="ot">&lt;-</span> <span class="fu">append</span>(pct_change, res)</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    results[i] <span class="ot">=</span> pct_change</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="co"># visualise</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>results <span class="sc">|&gt;</span> </span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames_to_column</span>(<span class="st">'name'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="sc">-</span>name, <span class="at">names_to=</span><span class="st">'bike_type'</span>, <span class="at">values_to=</span><span class="st">'pct_change'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(name, pct_change, <span class="at">fill=</span>bike_type)) <span class="sc">+</span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">position=</span><span class="fu">position_stack</span>(<span class="at">vjust=</span><span class="fl">0.7</span>)) <span class="sc">+</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste</span>(<span class="fu">round</span>(pct_change,<span class="dv">2</span>),<span class="st">'%'</span>)), <span class="at">vjust=</span><span class="fl">1.5</span>, </span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">'white'</span>, <span class="at">fontface=</span><span class="st">'bold'</span>, <span class="at">position=</span><span class="fu">position_stack</span>(<span class="at">vjust=</span><span class="fl">0.7</span>)) <span class="sc">+</span> </span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_tufte</span>() <span class="sc">+</span></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), </span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">'bold'</span>)) <span class="sc">+</span> </span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Bike Type Aceptance Rate by Residents'</span>, </span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="st">'Timeframe'</span>, <span class="at">y=</span><span class="st">'Percentage Change'</span>, <span class="at">fill=</span><span class="st">'Bike Type'</span>) <span class="sc">+</span></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'coral'</span>, <span class="st">'cornflowerblue'</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Electric'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>When we look at bike demands by bike types, we see that the classic bike type is demanded more than electric bikes per hour and per day. The percentage change in demand per is slightly the same but per month, the demand for electric bikes is higher than classic bikes. This could indicate that there are some parts of the month that the demand for electric bikes are higher than classic bikes.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># acceptance by bike type</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names=</span><span class="fu">c</span>(<span class="st">'hour'</span>, <span class="st">'week'</span>, <span class="st">'month'</span>, <span class="st">'day'</span>),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">casual=</span><span class="fu">numeric</span>(<span class="dv">4</span>), <span class="at">members=</span><span class="fu">numeric</span>(<span class="dv">4</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>){</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    member_type <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'casual'</span>, <span class="st">'member'</span>)[i]</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    pct_change <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">rownames</span>(results)){</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>        res <span class="ot">&lt;-</span> <span class="fu">aggregate_data</span>(bike_shares <span class="sc">%&gt;%</span> </span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">filter</span>(member_casual <span class="sc">==</span> member_type) <span class="sc">%&gt;%</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">mutate</span>(<span class="at">date=</span><span class="fu">floor_date</span>(pickup_hour, j[<span class="dv">1</span>])), </span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'num_rides'</span>, <span class="st">'date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="dv">100</span><span class="sc">*</span>(total<span class="sc">-</span><span class="fu">lag</span>(total))<span class="sc">/</span><span class="fu">lag</span>(total)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">reframe</span>(<span class="at">avg_change =</span> <span class="fu">mean</span>(pct, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">pull</span>(avg_change)</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>        pct_change <span class="ot">&lt;-</span> <span class="fu">append</span>(pct_change, res)</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>    results[i] <span class="ot">=</span> pct_change</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="co"># visualise</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>results <span class="sc">|&gt;</span> </span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames_to_column</span>(<span class="st">'name'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="sc">-</span>name, <span class="at">names_to=</span><span class="st">'member_type'</span>, <span class="at">values_to=</span><span class="st">'pct_change'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(name, pct_change, <span class="at">fill=</span>member_type)) <span class="sc">+</span></span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">position=</span><span class="fu">position_stack</span>(<span class="at">vjust=</span><span class="fl">0.7</span>)) <span class="sc">+</span></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste</span>(<span class="fu">round</span>(pct_change,<span class="dv">2</span>),<span class="st">'%'</span>)), <span class="at">vjust=</span><span class="fl">1.5</span>, </span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">color=</span><span class="st">'white'</span>, <span class="at">fontface=</span><span class="st">'bold'</span>, <span class="at">position=</span><span class="fu">position_stack</span>(<span class="at">vjust=</span><span class="fl">0.7</span>)) <span class="sc">+</span> </span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_tufte</span>() <span class="sc">+</span></span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), </span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">'bold'</span>)) <span class="sc">+</span> </span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Aceptance Rate by non-members and members'</span>, </span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="st">'Timeframe'</span>, <span class="at">y=</span><span class="st">'Percentage Change'</span>, <span class="at">fill=</span><span class="st">'Membership Type'</span>) <span class="sc">+</span></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'coral'</span>, <span class="st">'cornflowerblue'</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Casual'</span>, <span class="st">'Member'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>){</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    member_type <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'casual'</span>, <span class="st">'member'</span>)[i]</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    pct_change <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'hour'</span>, <span class="st">'week'</span>, <span class="st">'month'</span>, <span class="st">'day'</span>)){</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>        res <span class="ot">&lt;-</span> <span class="fu">aggregate_data</span>(bike_shares <span class="sc">%&gt;%</span> </span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">filter</span>(member_casual <span class="sc">==</span> member_type) <span class="sc">%&gt;%</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">mutate</span>(<span class="at">date=</span><span class="fu">floor_date</span>(pickup_hour, j[<span class="dv">1</span>])), </span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'num_rides'</span>, <span class="fu">c</span>(<span class="st">'date'</span>, <span class="st">'rideable_type'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> date, <span class="at">names_from=</span>rideable_type, <span class="at">values_from=</span>total) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="cf">function</span>(x) <span class="dv">100</span><span class="sc">*</span>(x<span class="sc">-</span><span class="fu">lag</span>(x))<span class="sc">/</span><span class="fu">lag</span>(x))) <span class="sc">%&gt;%</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">reframe</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">mean</span>(x, <span class="at">na.rm=</span>T))) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>        pct_change <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pct_change, <span class="fu">c</span>(j, member_type, res))</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">names</span>(pct_change) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'name'</span>, <span class="st">'member_type'</span>, <span class="st">'classic'</span>, <span class="st">'electric'</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>        pct_change[, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(pct_change[, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)], as.numeric)</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(results, pct_change)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>results <span class="sc">|&gt;</span> </span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">where</span>(is.numeric), <span class="at">names_to =</span> <span class="st">'bike_type'</span>, <span class="at">values_to=</span><span class="st">'pct_change'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(name, pct_change, <span class="at">fill=</span>member_type)) <span class="sc">+</span></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">position=</span><span class="fu">position_stack</span>(<span class="at">vjust=</span><span class="fl">0.7</span>), <span class="at">width=</span><span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>bike_type, <span class="at">ncol=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste0</span>(<span class="fu">round</span>(pct_change,<span class="dv">2</span>),<span class="st">'%'</span>)), <span class="at">vjust=</span><span class="fl">1.5</span>, </span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">'white'</span>, <span class="at">fontface=</span><span class="st">'bold'</span>, <span class="at">position=</span><span class="fu">position_stack</span>(<span class="at">vjust=</span><span class="fl">0.7</span>)) <span class="sc">+</span> </span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_tufte</span>() <span class="sc">+</span></span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), </span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>          <span class="at">strip.background=</span><span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'gray'</span>),</span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.position=</span><span class="st">'top'</span>,</span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">'bold'</span>)) <span class="sc">+</span> </span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Aceptance Rate by non-members and members'</span>, </span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>         <span class="at">x=</span><span class="st">'Timeframe'</span>, <span class="at">y=</span><span class="st">'Percentage Change'</span>, <span class="at">fill=</span><span class="st">'Membership Type'</span>) <span class="sc">+</span></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'coral'</span>, <span class="st">'cornflowerblue'</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Casual'</span>, <span class="st">'Member'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BikeSharesAnalysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
