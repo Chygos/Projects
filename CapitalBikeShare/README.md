@@ -90,12 +90,12 @@ On the other hand, classic bikes are rented more than electric bikes. About 162 
 ### B. Bike preference and user patronage
 Out of the 10 million rides from January 2022 to June 2024, classic bikes are the most used compared to e-bikes. About 69% of all rides were made using a classic bike (about 7.01 million) while 31% (3.2 million) were with an electric bike (Figure 1). On the other hand, most bike users are registered users who have an existing subscription with CapitalBikeShare. About 64.4% of all rides were made by members while about 35.6% by casual users (Figure 2). 
 
-<img alt="Percentage of rides by bike type" src="BikeSharesAnalysis/output_36_0.png" height="200" height="200"/>
+<img alt="Percentage of rides by bike type" src="BikeSharesAnalysis/output_36_0.png" height="400" width="600"/>
 
 ___Figure 1: Percentage of rides by bike type___
 
-![Percentage of rides by membership type](BikeSharesAnalysis/output_38_0.png)
 
+<img alt="Percentage of rides by membership type" src="BikeSharesAnalysis/output_38_0.png" height="400" width="600"/>
 ___Figure 2: Percentage of rides by membership status___
 
 Out of the about 3.6 million rides made by casual users, 68.4% used classic bikes while about 32% used e-bikes. This is similar to rides made by CapitalBikeShare members (69% used classic bikes while 31 used e-bikes). On the other hand, of all the rented classic bikes or e-bikes, about 64-65% of them were rented by registered members while about 35-36% were by unregistered users.
