@@ -90,11 +90,11 @@ On the other hand, classic bikes are rented more than electric bikes. About 162 
 ### B. Bike preference and user patronage
 Out of the 10 million rides from January 2022 to June 2024, classic bikes are the most used compared to e-bikes. About 69% of all rides were made using a classic bike (about 7.01 million) while 31% (3.2 million) were with an electric bike (Figure 1). On the other hand, most bike users are registered users who have an existing subscription with CapitalBikeShare. About 64.4% of all rides were made by members while about 35.6% by casual users (Figure 2). 
 
-<img alt="Percentage of rides by bike type" src="BikeSharesAnalysis/output_36_0.png" height="400" width="600"/>
+<img alt="Percentage of rides by bike type" src="BikeSharesAnalysis/output_36_0.png" height="600" width="900"/>
 
 ___Figure 1: Percentage of rides by bike type___
 
-<img alt="Percentage of rides by membership type" src="BikeSharesAnalysis/output_38_0.png" height="400" width="600"/>
+<img alt="Percentage of rides by membership type" src="BikeSharesAnalysis/output_38_0.png" height="600" width="900"/>
 
 ___Figure 2: Percentage of rides by membership status___
 
@@ -115,22 +115,22 @@ To understand resident patronage and acceptance of bike sharing, we looked at th
 
 There's a high change in demand for bikes by residents per hour. On average, the hourly demand for bikes is about 18.7%, 5.7% per day, 6.3% per week and 8.14% per month. The high hourly demand rate indicates that there are times of the day when the demand is high and other times when it is low. This can be seen in the monthly demand rate (Figure 3). In terms of bike types, there's a high demand for both classic (~26%) and electric (~17%) bikes per hour and 6.7% and 4% per day, respectively, on average. The demand for either bike type is relatively the same per week (~6% respectively) while the demand for electric bikes (11.7%) increases monthly more than classic (7%) bikes. This change in monthly demand for electric bikes may be attributed to the use of electric bikes for long trips or summer vacations (Figure 4).
 
-<img alt="overall demand rate at different time frames" src="BikeSharesAnalysis/output_45_0.png" width="600" height="400"/>
+<img alt="overall demand rate at different time frames" src="BikeSharesAnalysis/output_45_0.png" width="900" height="600"/>
 
 ___Figure 3: Average demand rate per hour, month, day and week___
 
 
-<img alt="overall demand rate by bike type at different time frames" src="BikeSharesAnalysis/output_48_0.png" width="600" height="400"/>
+<img alt="overall demand rate by bike type at different time frames" src="BikeSharesAnalysis/output_48_0.png" width="900" height="600"/>
 
 ___Figure 4: Average demand rate per hour, month, day and week by bike type___
 
 On the other hand, when we examine user acceptance by membership, we see that the hourly and weekly demands for bikes by non-members and members are relatively the same (Figure 5). However, the demand is more for casual users than members on a daily and monthly basis (10-12% for casual users and 4-7% for members). Also, by examining the demand rates for classic and electric bikes by registered and casual users, we see that the daily and monthly demand rates for classic bikes by casual users are twice that of registered users, while for other time frames, the demand rates are relatively the same (Figure 6). 
 
-<img alt="overall demand rate by membership type at different time frames" src="BikeSharesAnalysis/output_51_0.png" width="600" height="400"/>
+<img alt="overall demand rate by membership type at different time frames" src="BikeSharesAnalysis/output_51_0.png" width="900" height="600"/>
 
 ___Figure 5: Average demand rate per hour, month, day and week by membership type___
 
-<img alt="overall demand rate by bike type and membership type at different time frames" src="BikeSharesAnalysis/output_54_0.png" width="600" height="400"/>
+<img alt="overall demand rate by bike type and membership type at different time frames" src="BikeSharesAnalysis/output_54_0.png" width="900" height="600"/>
 
 ___Figure 6: Average demand rate per hour, month, day and week by bike type and membership type___
 
@@ -151,7 +151,7 @@ __Table 4: Year-over-year percentage change in bike type demands by membership t
 
 By examining the hourly and daily bike rides (smoothened by a 28-day moving average), we see that there's a linear trend in the number of bike rides from January 2022 to June 2024. Similarly, bike rides are affected by seasons and months. There's higher patronage during summer than in winter periods. Bike rides rise from the beginning of every year, peaks in the summer and then declines towards the end of the year (Figure 7).
 
-<img alt="bike rides over time" src="BikeSharesAnalysis/output_75_0.png" width="600" height="400"/>
+<img alt="bike rides over time" src="BikeSharesAnalysis/output_75_0.png" width="900" height="600"/>
 
 ___Figure 7: Bike rides over time (28-day moving average)___
 
@@ -159,13 +159,13 @@ ___Figure 7: Bike rides over time (28-day moving average)___
 
 Apart from seasonal and monthly effects, the demand for bikes depends on the hour of the day. Bike rides peak in the morning (8-9 AM) and evening (5-6 PM) rush hours. Firstly, bike demand starts to increase at around 4 AM, peaks first at about 8 AM, declines slightly till about 11 AM before increasing a second time and peaking a second time at about 5 PM before a final decline till midnight and till 3 AM (Figure 8). This is the same for each bike type (figure not shown).
 
-<img alt="hourly demands" src="BikeSharesAnalysis/output_80_0.png" width="600" height="400"/>
+<img alt="hourly demands" src="BikeSharesAnalysis/output_80_0.png" width="900" height="600"/>
 
 ___Figure 8: Average hourly bike demand___
 
 In as much as bike rides increase from the beginning of the year, peak in summer and decline towards the end of the year, there's an early decline for electric bikes in July unlike for classic bikes which declines a month after (August) for casual users and two months after (October) for members (Figure 9). Members mostly use bikes for their weekday activities either to commute to work or school etc while the demand for bikes by casual users is usually on weekends, probably, they use it for recreational activities or exercises (Figure 10).
 
-<img alt="monthly demand by bike type by membership type" src="BikeSharesAnalysis/output_87_1.png" width="600" height="400"/>
+<img alt="monthly demand by bike type by membership type" src="BikeSharesAnalysis/output_87_1.png" width="900" height="600"/>
 
 ___Figure 9: Average monthly demand by bike and membership types___
 
