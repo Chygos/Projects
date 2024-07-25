@@ -165,7 +165,7 @@ ___Figure 8: Average hourly bike demand___
 
 In as much as bike rides increase from the beginning of the year, peak in summer and decline towards the end of the year, there's an early decline for electric bikes in July unlike for classic bikes which declines a month after (August) for casual users and two months after (October) for members (Figure 9). Members mostly use bikes for their weekday activities either to commute to work or school etc while the demand for bikes by casual users is usually on weekends, probably, they use it for recreational activities or exercises (Figure 10).
 
-![monthly demand by bike type by membership type](BikeSharesAnalysis/output_70_0.png)
+![monthly demand by bike type by membership type](BikeSharesAnalysis/output_70_1.png)
 
 ___Figure 9: Average monthly demand by bike and membership types___
 
