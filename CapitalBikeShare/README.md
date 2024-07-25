@@ -141,6 +141,7 @@ ___Figure 5: Average demand rate per hour, month, day and week by membership typ
 <div style="text-align:center">
   <img alt="overall demand rate by bike type and membership type at different time frames" src="BikeSharesAnalysis/output_54_0.png" width="800" height="500"/>
 </div>
+
 ___Figure 6: Average demand rate per hour, month, day and week by bike type and membership type___
 
 The use of electric bikes comes with benefits such as convenience, fast speed and efficiency, but it also comes with high costs from maintenance. To examine the rate of electric bike usage by residents we compared the year-over-year usage for both classic and electric bikes for each membership type. Our findings show that the usage of electric bikes increased by over 100% (136% for casual users and 192% for members) from 2022 to 2023 while classic bikes increased by 4-10% for casual and registered users, respectively. This shows that residents are now shifting to electric bikes for their day-to-day commute. In 2024, more than 80% of electric bike rides recorded in 2023 have been achieved in just 6 months and are expected to surpass the number recorded in 2023. However, for classic bikes, less than 50% of the rides recorded in 2023 have been achieved (Table 4).
