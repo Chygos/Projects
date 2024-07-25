@@ -151,7 +151,7 @@ __Table 4: Year-over-year percentage change in bike type demands by membership t
 
 By examining the hourly and daily bike rides (smoothened by a 28-day moving average), we see that there's a linear trend in the number of bike rides from January 2022 to June 2024. Similarly, bike rides are affected by seasons and months. There's higher patronage during summer than in winter periods. Bike rides rise from the beginning of every year, peaks in the summer and then declines towards the end of the year (Figure 7).
 
-![bike rides over time](BikeSharesAnalysis/output_59_0.png)
+![bike rides over time](BikeSharesAnalysis/output_75_0.png)
 
 ___Figure 7: Bike rides over time (28-day moving average)___
 
@@ -159,13 +159,13 @@ ___Figure 7: Bike rides over time (28-day moving average)___
 
 Apart from seasonal and monthly effects, the demand for bikes depends on the hour of the day. Bike rides peak in the morning (8-9 AM) and evening (5-6 PM) rush hours. Firstly, bike demand starts to increase at around 4 AM, peaks first at about 8 AM, declines slightly till about 11 AM before increasing a second time and peaking a second time at about 5 PM before a final decline till midnight and till 3 AM (Figure 8). This is the same for each bike type (figure not shown).
 
-![hourly demands](BikeSharesAnalysis/output_64_0.png)
+![hourly demands](BikeSharesAnalysis/output_80_0.png)
 
 ___Figure 8: Average hourly bike demand___
 
 In as much as bike rides increase from the beginning of the year, peak in summer and decline towards the end of the year, there's an early decline for electric bikes in July unlike for classic bikes which declines a month after (August) for casual users and two months after (October) for members (Figure 9). Members mostly use bikes for their weekday activities either to commute to work or school etc while the demand for bikes by casual users is usually on weekends, probably, they use it for recreational activities or exercises (Figure 10).
 
-![monthly demand by bike type by membership type](BikeSharesAnalysis/output_71_1.png)
+![monthly demand by bike type by membership type](BikeSharesAnalysis/output_87_1.png)
 
 ___Figure 9: Average monthly demand by bike and membership types___
 
