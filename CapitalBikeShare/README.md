@@ -90,13 +90,13 @@ On the other hand, classic bikes are rented more than electric bikes. About 162 
 ### B. Bike preference and user patronage
 Out of the 10 million rides from January 2022 to June 2024, classic bikes are the most used compared to e-bikes. About 69% of all rides were made using a classic bike (about 7.01 million) while 31% (3.2 million) were with an electric bike (Figure 1). On the other hand, most bike users are registered users who have an existing subscription with CapitalBikeShare. About 64.4% of all rides were made by members while about 35.6% by casual users (Figure 2). 
 <div style="text-align:center">
-<img alt="Percentage of rides by bike type" src="BikeSharesAnalysis/output_36_0.png" height="500" width="800"/>
+  <img alt="Percentage of rides by bike type" src="BikeSharesAnalysis/output_36_0.png" height="500" width="800"/>
 </div>
 
 ___Figure 1: Percentage of rides by bike type___
 
 <div style="text-align:center">
-<img alt="Percentage of rides by membership type" src="BikeSharesAnalysis/output_38_0.png" height="500" width="800"/>
+  <img alt="Percentage of rides by membership type" src="BikeSharesAnalysis/output_38_0.png" height="500" width="800"/>
 </div>
 
 ___Figure 2: Percentage of rides by membership status___
@@ -139,7 +139,7 @@ On the other hand, when we examine user acceptance by membership, we see that th
 ___Figure 5: Average demand rate per hour, month, day and week by membership type___
 
 <div style="text-align:center">
-<img alt="overall demand rate by bike type and membership type at different time frames" src="BikeSharesAnalysis/output_54_0.png" width="800" height="500"/>
+  <img alt="overall demand rate by bike type and membership type at different time frames" src="BikeSharesAnalysis/output_54_0.png" width="800" height="500"/>
 </div>
 ___Figure 6: Average demand rate per hour, month, day and week by bike type and membership type___
 
@@ -159,24 +159,29 @@ __Table 4: Year-over-year percentage change in bike type demands by membership t
 #### Bike ride over time
 
 By examining the hourly and daily bike rides (smoothened by a 28-day moving average), we see that there's a linear trend in the number of bike rides from January 2022 to June 2024. Similarly, bike rides are affected by seasons and months. There's higher patronage during summer than in winter periods. Bike rides rise from the beginning of every year, peaks in the summer and then declines towards the end of the year (Figure 7).
+
 <div style="text-align:center">
-<img alt="bike rides over time" src="BikeSharesAnalysis/output_75_0.png" width="800" height="500"/>
+  <img alt="bike rides over time" src="BikeSharesAnalysis/output_75_0.png" width="800" height="500"/>
 </div>
+
 ___Figure 7: Bike rides over time (28-day moving average)___
 
 #### Hourly, monthly, and weekday effects
 
 Apart from seasonal and monthly effects, the demand for bikes depends on the hour of the day. Bike rides peak in the morning (8-9 AM) and evening (5-6 PM) rush hours. Firstly, bike demand starts to increase at around 4 AM, peaks first at about 8 AM, declines slightly till about 11 AM before increasing a second time and peaking a second time at about 5 PM before a final decline till midnight and till 3 AM (Figure 8). This is the same for each bike type (figure not shown).
+
 <div style="text-align:center">
-<img alt="hourly demands" src="BikeSharesAnalysis/output_80_0.png" width="800" height="500"/>
+  <img alt="hourly demands" src="BikeSharesAnalysis/output_80_0.png" width="800" height="500"/>
 </div>
 
 ___Figure 8: Average hourly bike demand___
 
 In as much as bike rides increase from the beginning of the year, peak in summer and decline towards the end of the year, there's an early decline for electric bikes in July unlike for classic bikes which declines a month after (August) for casual users and two months after (October) for members (Figure 9). Members mostly use bikes for their weekday activities either to commute to work or school etc while the demand for bikes by casual users is usually on weekends, probably, they use it for recreational activities or exercises (Figure 10).
+
 <div style="text-align:center">
-<img alt="monthly demand by bike type by membership type" src="BikeSharesAnalysis/output_87_1.png" width="800" height="500"/>
+  <img alt="monthly demand by bike type by membership type" src="BikeSharesAnalysis/output_87_1.png" width="800" height="500"/>
 </div>
+
 ___Figure 9: Average monthly demand by bike and membership types___
 
 ### D. User trip purpose (short or long trips)
