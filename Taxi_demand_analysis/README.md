@@ -76,7 +76,7 @@ Model    | RMSE   | MAE
 :--------|-------:|------:
 Naive    |25.4509 | 18.0859
 CatBoost |13.2474 | 7.3250
-LightBGM |13.3635 | 7.4841
+LightGBM |13.3635 | 7.4841
 
 
 ![Actual vs Predictions_validation_set](modelling/modelling_images/output_96_0.png "Model Predictions on Validation data")
@@ -89,7 +89,7 @@ __Figure 1: Daily actual and predictions on validation data__
 Model    | RMSE   | MAE
 :--------|-------:|------:
 CatBoost |9.5740	| 6.8133
-LightBGM |10.3520	| 7.5352
+LightGBM |10.3520	| 7.5352
 
 
 ![Actual vs Predictions_test_set](modelling/modelling_images/output_108_0.png "Model Predictions on Test data")
