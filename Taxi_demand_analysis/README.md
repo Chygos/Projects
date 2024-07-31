@@ -68,6 +68,8 @@ For modelling, the dataset was split into training and validation sets where dem
 
 Two evaluation metrics: root mean squared error and mean absolute errors were used to evaluate the model's performance. To understand, the model's performance on the validation set, a 5-fold cross-validation method was used where data at each iteration was split in a time-series fashion, where the heldout data contains 3 months of data. After evaluating performance on the validation set, the whole historical data were then used to fit a model and the model's performance was evaluated on the test data (April 2024).
 
+[Notebook link](modelling/new_york_yellow_taxi_demand.ipynb)
+
 #### Modelling Results
 
 **Table 1: Validation data metrics**
