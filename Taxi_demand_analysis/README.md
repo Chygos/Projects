@@ -40,7 +40,7 @@ Here, we compared ride volume and revenue on holidays and special events with re
 
 **D. Station popularity**
 
-Here, we analysed the number of rides originating from each pickup and dropoff station. We looked at the top and least 10 pickup and dropoff terminals. The goal was to understand customer concentrated areas and ways to optimise service availability.
+Here, we analysed the number of rides originating from each pickup and dropoff station. We looked at the top and at least 10 pickup and dropoff terminals. The goal was to understand customer-concentrated areas and ways to optimise service availability.
 
 **E. Short vs Long trips**
 
@@ -58,4 +58,9 @@ The findings can be found [here](EDA/README.md)
 
 ### Modelling
 
-In this part, we will predict the average number of taxis demanded by commuters per hour in all stations. During the exploratory data analysis, a demand group criteria was created where demand at pickup stations was classified into low, medium and high. As a result, this predictive modelling task aims to accurately predict taxi demand in these areas to provide adequate taxis to meet the demand.
+In this part, we will predict the average number of taxis demanded by commuters per hour in all stations. During the exploratory data analysis, demand group criteria were created, and demand at pickup stations was classified into low, medium, and high. As a result, this predictive modelling task aims to accurately predict taxi demand in medium and high areas to provide adequate taxis to meet the demand.
+
+For the task, hourly demands between Jan 2019 and April 2021 were dropped due to the disruption caused by COVID-19 (only hourly rides from May 2021 and March 2024 were selected for modelling). Feature engineering and data transformations were performed to prepare the dataset for modelling. Feature engineering techniques included converting categorical variables to numeric variables using one-hot encoding or binary encoding. Others include extracting date features such as hour, month, season, day of year, weekday, etc, categorising precipitation from the weather data and creating lagged and rolling features of the demand variable. In addition, the test dataset (Taxi demands for April 2024) were preprocessed to match historical dataset.
+
+For modelling, the dataset was split into training and validation sets where demands before Jan 2024 were in the training data while the validation data contains demands between Jan 2024 and March 2024. The training set was used to fit a model and performance evaluated on the validation data. Two evaluation metrics: root mean squared error and mean absolute errors were used to evaluate model's performance. To understand, model's performance on the validation set, a 5-fold crossvalidation method was used where data at each iteration was split in a time-series fashion, were the heldout data contains 3 months data. After evaluating performance on the validation set, the whole historical data were then used to fit a model and the model's performance was evaluated on the test data (April 2024).
+
