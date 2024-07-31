@@ -48,19 +48,51 @@ Here, we examined pickup stations associated with shorter or longer trips. Longe
 
 **F. Station Pricing**
 
-We examined the average cost a trip costs in a pickup station and the average amount incurred in charges. This was investigated based on the top 10 cheap and expensive stations across New York. The goal was to understand pricing strategies and how various ways to increase revenue.
+We examined the average cost a trip costs in a pickup station and the average amount incurred in charges. This was investigated based on the top 10 cheap and expensive stations across New York. The goal was to understand pricing strategies and various ways to increase revenue.
 
 **G. Borough and pickup station performance**
 
-The performance of pickup stations and all pickup stations in all the boroughs of New York were examined. This was visualised in a map that showed the average revenue and taxi demand in all the pickup stations. This map was had information about the total revenue generated and taxi rides demanded in each borough.
+The performance of pickup stations and all pickup stations in all the boroughs of New York were examined. This was visualised in a map that showed the average revenue and taxi demand in all the pickup stations. This map had information about the total revenue generated and taxi rides demanded in each borough.
 
 The findings can be found [here](EDA/README.md)
+[Notebook Link](Taxi_demand_analysis/EDA/Yellow_taxi_analysis.ipynb) 
 
 ### Modelling
 
 In this part, we will predict the average number of taxis demanded by commuters per hour in all stations. During the exploratory data analysis, demand group criteria were created, and demand at pickup stations was classified into low, medium, and high. As a result, this predictive modelling task aims to accurately predict taxi demand in medium and high areas to provide adequate taxis to meet the demand.
 
-For the task, hourly demands between Jan 2019 and April 2021 were dropped due to the disruption caused by COVID-19 (only hourly rides from May 2021 and March 2024 were selected for modelling). Feature engineering and data transformations were performed to prepare the dataset for modelling. Feature engineering techniques included converting categorical variables to numeric variables using one-hot encoding or binary encoding. Others include extracting date features such as hour, month, season, day of year, weekday, etc, categorising precipitation from the weather data and creating lagged and rolling features of the demand variable. In addition, the test dataset (Taxi demands for April 2024) were preprocessed to match historical dataset.
+For the task, hourly demands between Jan 2019 and April 2021 were dropped due to the disruption caused by COVID-19 (only hourly rides from May 2021 and March 2024 were selected for modelling). Feature engineering and data transformations were performed to prepare the dataset for modelling. Feature engineering techniques included converting categorical variables to numeric variables using one-hot encoding or binary encoding. Others include extracting date features such as hour, month, season, day of the year, weekday, etc, categorising precipitation from the weather data and creating lagged and rolling features of the demand variable. In addition, the test dataset (Taxi demands for April 2024) was preprocessed to match the historical dataset.
 
-For modelling, the dataset was split into training and validation sets where demands before Jan 2024 were in the training data while the validation data contains demands between Jan 2024 and March 2024. The training set was used to fit a model and performance evaluated on the validation data. Two evaluation metrics: root mean squared error and mean absolute errors were used to evaluate model's performance. To understand, model's performance on the validation set, a 5-fold crossvalidation method was used where data at each iteration was split in a time-series fashion, were the heldout data contains 3 months data. After evaluating performance on the validation set, the whole historical data were then used to fit a model and the model's performance was evaluated on the test data (April 2024).
+For modelling, the dataset was split into training and validation sets where demands before Jan 2024 were in the training data while the validation data contains demands between Jan 2024 and March 2024. The training set was used to fit a model and performance was evaluated on the validation data. A baseline model which predicts the average hourly rides for each demand group was used. 
 
+Two evaluation metrics: root mean squared error and mean absolute errors were used to evaluate the model's performance. To understand, the model's performance on the validation set, a 5-fold cross-validation method was used where data at each iteration was split in a time-series fashion, where the heldout data contains 3 months of data. After evaluating performance on the validation set, the whole historical data were then used to fit a model and the model's performance was evaluated on the test data (April 2024).
+
+#### Modelling Results
+
+**Table 1: Validation data metrics**
+
+Model    | RMSE   | MAE
+:--------|-------:|------:
+Naive    |25.4509 | 18.0859
+CatBoost |13.2474 | 7.3250
+LightBGM |13.3635 | 7.4841
+
+![Actual vs Predictions_validation_set](modelling/modelling_images/output_96_0.png "Model Predictions on Validation data")
+
+__Figure 1: Daily actual and predictions on validation data__
+
+**Table 2: Test data metrics**
+
+Model    | RMSE   | MAE
+:--------|-------:|------:
+CatBoost |9.5740	| 6.8133
+LightBGM |10.3520	| 7.5352
+
+
+![Actual vs Predictions_test_set](modelling/modelling_images/output_108_0.png "Model Predictions on Test data")
+
+__Figure 2: Daily actual and predictions on Test data__
+
+![scatterplot_model_vs_actual](modelling/modelling_images/output_110_0.png "Relationship between Actual and model predictions")
+
+__Figure 3: Relationship between actual and predicted taxi demands by catboost and lightgbm models__
