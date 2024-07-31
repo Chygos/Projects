@@ -55,6 +55,7 @@ We examined the average cost a trip costs in a pickup station and the average am
 The performance of pickup stations and all pickup stations in all the boroughs of New York were examined. This was visualised in a map that showed the average revenue and taxi demand in all the pickup stations. This map had information about the total revenue generated and taxi rides demanded in each borough.
 
 The findings can be found [here](EDA/README.md)
+
 [Notebook Link](Taxi_demand_analysis/EDA/Yellow_taxi_analysis.ipynb) 
 
 ### Modelling
@@ -77,9 +78,11 @@ Naive    |25.4509 | 18.0859
 CatBoost |13.2474 | 7.3250
 LightBGM |13.3635 | 7.4841
 
+
 ![Actual vs Predictions_validation_set](modelling/modelling_images/output_96_0.png "Model Predictions on Validation data")
 
 __Figure 1: Daily actual and predictions on validation data__
+
 
 **Table 2: Test data metrics**
 
@@ -92,6 +95,7 @@ LightBGM |10.3520	| 7.5352
 ![Actual vs Predictions_test_set](modelling/modelling_images/output_108_0.png "Model Predictions on Test data")
 
 __Figure 2: Daily actual and predictions on Test data__
+
 
 ![scatterplot_model_vs_actual](modelling/modelling_images/output_110_0.png "Relationship between Actual and model predictions")
 
