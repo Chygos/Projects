@@ -14,7 +14,7 @@ Taxi trips paid by credit cards or cards were filtered, aggregated and stored in
 
 ## __Analysis workflow__
 
-Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA) & Modelling
+Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA) & Modelling ([Notebook Link](Taxi_demand_analysis/EDA/Yellow_taxi_analysis.ipynb))
 
 ### Exploratory Data Analysis
 
@@ -55,8 +55,6 @@ We examined the average cost a trip costs in a pickup station and the average am
 The performance of pickup stations and all pickup stations in all the boroughs of New York were examined. This was visualised in a map that showed the average revenue and taxi demand in all the pickup stations. This map had information about the total revenue generated and taxi rides demanded in each borough.
 
 The findings can be found [here](EDA/README.md)
-
-[Notebook Link](Taxi_demand_analysis/EDA/Yellow_taxi_analysis.ipynb) 
 
 ### Modelling
 
