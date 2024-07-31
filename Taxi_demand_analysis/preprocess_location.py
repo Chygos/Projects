@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 import geopandas as gpd
-from tqdm import tqdm
-from glob import glob
-import gc
 import os
 
 
@@ -69,7 +66,8 @@ taxi_shp['latitude'] = taxi_shp['centroid'].y
 # location information
 location_info = taxi_shp.groupby('locationid').agg(
     {
-        'area_km2':'mean', 
+        'area_km2':'mean',
+        'n_cities' :'sum',
         'length_km':'mean', 
         'latitude':'mean', 
         'longitude':'mean'
@@ -77,7 +75,9 @@ location_info = taxi_shp.groupby('locationid').agg(
 
 
 
-location_info = location_info.merge(taxi_shp[['locationid', 'borough', 'zone', 'n_cities']], on='locationid')
+location_info = location_info.merge(taxi_shp[['locationid', 'borough', 'zone']], on='locationid')
+
+location_info = location_info.drop_duplicates()
 
 cols_to_select = ['locationid', 'zone', 'borough', 'area_km2', 'length_km', 'n_cities', 'latitude', 'longitude']
 
