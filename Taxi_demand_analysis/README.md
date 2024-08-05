@@ -83,6 +83,7 @@ LightGBM |13.3635 | 7.4841
 
 __Figure 1: Daily actual and predictions on validation data__
 
+Table 1 shows model's performance on validation data. Validation data contains data from January to March 2024. From the results, both gradient models perform better than the baseline model (a naive model that predicts the average taxi demand per hour. Based on the RMSE, the values rediced from 25.45 for tha baseline model to less than 13.5 for both carboost and loghtgbm models. Similarly, the mean absolute error value was rediced from over 18 fpr the baseline model to less than 7.5 for both boosting models. By visualizing the predocted and actual values for both catboost and logjtgbm models, it is observed that both models follow a similar pattern as the actual demand with small and huge deviations at some perts of the year, mostly the month of March. This could indicate that in March the demand for taxis increased unl
 
 **Table 2: Test data metrics**
 
