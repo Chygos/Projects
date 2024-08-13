@@ -1,0 +1,83 @@
+tissue,tumor status,patient id,pathology,class,sample_id
+Brain,Normal,Case_1,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Healthy,GSM5044697
+Brain,Tumor,Case_1,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Tumor,GSM5044698
+Brain,Normal,Case_2,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Healthy,GSM5044699
+Brain,Tumor,Case_2,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Tumor,GSM5044700
+Brain,Normal,Case_3,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Healthy,GSM5044701
+Brain,Tumor,Case_3,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Tumor,GSM5044702
+Brain,Normal,Case_44,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Healthy,GSM5044703
+Brain,Tumor,Case_44,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Tumor,GSM5044704
+Brain,Normal,Case_45,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Healthy,GSM5044705
+Brain,Tumor,Case_45,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Tumor,GSM5044706
+Brain,Normal,Case_46,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Healthy,GSM5044707
+Brain,Tumor,Case_46,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 2,Tumor,GSM5044708
+Brain,Normal,Case_35,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044709
+Brain,Tumor,Case_35,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044710
+Brain,Normal,Case_36,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044711
+Brain,Tumor,Case_36,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044712
+Brain,Normal,Case_37,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044713
+Brain,Tumor,Case_37,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044714
+Brain,Normal,Case_38,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044715
+Brain,Tumor,Case_38,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044716
+Brain,Normal,Case_39,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044717
+Brain,Tumor,Case_39,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044718
+Brain,Normal,Case_4,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044719
+Brain,Tumor,Case_4,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044720
+Brain,Normal,Case_41,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044721
+Brain,Tumor,Case_41,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044722
+Brain,Normal,Case_5,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044723
+Brain,Tumor,Case_5,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044724
+Brain,Normal,Case_6,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Healthy,GSM5044725
+Brain,Tumor,Case_6,Oligodendroglioma idh mutant and 1p/19q-codeleted grade 3,Tumor,GSM5044726
+Brain,Normal,Case_42,Idh mutant astrocytoma grade 2,Healthy,GSM5044727
+Brain,Tumor,Case_42,Idh mutant astrocytoma grade 2,Tumor,GSM5044728
+Brain,Normal,Case_43,Idh mutant astrocytoma grade 2,Healthy,GSM5044729
+Brain,Tumor,Case_43,Idh mutant astrocytoma grade 2,Tumor,GSM5044730
+Brain,Normal,Case_7,Idh mutant astrocytoma grade 2,Healthy,GSM5044731
+Brain,Tumor,Case_7,Idh mutant astrocytoma grade 2,Tumor,GSM5044732
+Brain,Normal,Case_8,Idh mutant astrocytoma grade 2,Healthy,GSM5044733
+Brain,Tumor,Case_8,Idh mutant astrocytoma grade 2,Tumor,GSM5044734
+Brain,Normal,Case_11,Idh mutant astrocytoma grade 3,Healthy,GSM5044735
+Brain,Tumor,Case_11,Idh mutant astrocytoma grade 3,Tumor,GSM5044736
+Brain,Normal,Case_13,Idh mutant astrocytoma grade 3,Healthy,GSM5044737
+Brain,Tumor,Case_13,Idh mutant astrocytoma grade 3,Tumor,GSM5044738
+Brain,Normal,Case_19,Idh mutant astrocytoma grade 3,Healthy,GSM5044739
+Brain,Tumor,Case_19,Idh mutant astrocytoma grade 3,Tumor,GSM5044740
+Brain,Normal,Case_31,Idh mutant astrocytoma grade 3,Healthy,GSM5044741
+Brain,Tumor,Case_31,Idh mutant astrocytoma grade 3,Tumor,GSM5044742
+Brain,Normal,Case_33,Idh mutant astrocytoma grade 3,Healthy,GSM5044743
+Brain,Tumor,Case_33,Idh mutant astrocytoma grade 3,Tumor,GSM5044744
+Brain,Normal,Case_26,Idh mutant astrocytoma grade 4,Healthy,GSM5044745
+Brain,Tumor,Case_26,Idh mutant astrocytoma grade 4,Tumor,GSM5044746
+Brain,Normal,Case_27,Idh mutant astrocytoma grade 4,Healthy,GSM5044747
+Brain,Tumor,Case_27,Idh mutant astrocytoma grade 4,Tumor,GSM5044748
+Brain,Normal,Case_10,Glioblastoma,Healthy,GSM5044749
+Brain,Tumor,Case_10,Glioblastoma,Tumor,GSM5044750
+Brain,Normal,Case_17,Glioblastoma,Healthy,GSM5044751
+Brain,Tumor,Case_17,Glioblastoma,Tumor,GSM5044752
+Brain,Normal,Case_18,Glioblastoma,Healthy,GSM5044753
+Brain,Tumor,Case_18,Glioblastoma,Tumor,GSM5044754
+Brain,Normal,Case_20,Glioblastoma,Healthy,GSM5044755
+Brain,Tumor,Case_20,Glioblastoma,Tumor,GSM5044756
+Brain,Normal,Case_21,Glioblastoma,Healthy,GSM5044757
+Brain,Tumor,Case_21,Glioblastoma,Tumor,GSM5044758
+Brain,Normal,Case_22,Glioblastoma,Healthy,GSM5044759
+Brain,Tumor,Case_22,Glioblastoma,Tumor,GSM5044760
+Brain,Normal,Case_23,Glioblastoma,Healthy,GSM5044761
+Brain,Tumor,Case_23,Glioblastoma,Tumor,GSM5044762
+Brain,Normal,Case_24,Glioblastoma,Healthy,GSM5044763
+Brain,Tumor,Case_24,Glioblastoma,Tumor,GSM5044764
+Brain,Normal,Case_25,Glioblastoma,Healthy,GSM5044765
+Brain,Tumor,Case_25,Glioblastoma,Tumor,GSM5044766
+Brain,Normal,Case_28,Glioblastoma,Healthy,GSM5044767
+Brain,Tumor,Case_28,Glioblastoma,Tumor,GSM5044768
+Brain,Normal,Case_29,Glioblastoma,Healthy,GSM5044769
+Brain,Tumor,Case_29,Glioblastoma,Tumor,GSM5044770
+Brain,Normal,Case_30,Glioblastoma,Healthy,GSM5044771
+Brain,Tumor,Case_30,Glioblastoma,Tumor,GSM5044772
+Brain,Normal,Case_32,Glioblastoma,Healthy,GSM5044773
+Brain,Tumor,Case_32,Glioblastoma,Tumor,GSM5044774
+Brain,Normal,Case_34,Glioblastoma,Healthy,GSM5044775
+Brain,Tumor,Case_34,Glioblastoma,Tumor,GSM5044776
+Brain,Normal,Case_9,Glioblastoma,Healthy,GSM5044777
+Brain,Tumor,Case_9,Glioblastoma,Tumor,GSM5044778
