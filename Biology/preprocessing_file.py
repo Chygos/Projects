@@ -59,9 +59,8 @@ def get_target_class(filename:str,
             elif line.startswith('!series_matrix_table_begin'):
                 ids = lines[i+1]
                 sample_ids.extend(ids.replace('"', '').split()[1:])
-        metadata = pd.DataFrame(
-            np.c_[np.column_stack(sample_characteristics), target_class], 
-            columns=sample_xter_id+['class'])
+        metadata = pd.DataFrame(np.column_stack(sample_characteristics), columns=sample_xter_id)
+        metadata['class'] = target_class
         metadata = metadata.apply(lambda x: x.str.capitalize())
         
         # sample IDs may contain Gene ID reference, if it does, remove the first in the list
@@ -77,6 +76,7 @@ def get_target_class(filename:str,
 def get_data(filename:str, 
              data_line_identifier:str='!series_matrix_table_begin', 
              has_data_identifier=True)-> pd.DataFrame:
+
     """
     Extracts data from a microarray or RNA-seq text file based on a line identifier if present
     :param filename: Filename/filepath
@@ -107,6 +107,7 @@ def get_data(filename:str,
                 headers.insert(0, 'GeneID')
         data = pd.DataFrame(data, columns=headers)
         data = data.set_index(headers[0])
+        data.index = data.index.astype(str)
         return data
     except Exception as err: print(err)
 
@@ -139,10 +140,13 @@ GSE165595_metadata = get_target_class(get_files('GSE165595')[1],
                                       disease_identifier='tumou?r status: .+', 
                                       disease_name='Tumor')
 
+print(f'\nGEO Accession Number: {filename}\nData: {GSE165595_data.shape}\tMetadata: {GSE165595_metadata.shape}\n')
+
 GSE165595_data.to_csv(os.path.join(path, 'rna', filename+'_counts.csv'))
 GSE165595_metadata.to_csv(os.path.join(path, 'rna', filename+'_metadata.csv'), index=False)
 
 # 2
+filename = 'GSE228512'
 GSE228512_hiseq_metadata = get_target_class(get_files('GSE228512-GPL16791')[0], 
                                             disease_identifier='disease: .+', 
                                             disease_name='Glioblastoma') # hiseq
@@ -159,12 +163,13 @@ GSE228512_novoseq_data = get_data(get_files('GSE228512_novaseq')[0],
                                   has_data_identifier=False) # novoseq
 
 # merge both nova and hiseq data
-filename = 'GSE228512'
 GSE228512_data = pd.concat([GSE228512_hiseq_data, GSE228512_novoseq_data], axis=1)
 GSE228512_metadata = pd.concat([
     GSE228512_hiseq_metadata, 
     GSE228512_novoseq_metadata
     ], axis=0, ignore_index=True)
+
+print(f'GEO Accession Number: {filename}\nData: {GSE228512_data.shape}\tMetadata: {GSE228512_metadata.shape}\n')
 
 GSE228512_data.to_csv(os.path.join(path, 'rna', filename+'_counts.csv'))
 GSE228512_metadata.to_csv(os.path.join(path, 'rna', filename+'_metadata.csv'), index=False)
@@ -185,10 +190,14 @@ GSE116520_data = get_data(get_files('GSE116520')[0],
                           '!series_matrix_table_begin', 
                           True)
 
+print(f'GEO Accession Number: {filename}\nData: {GSE116520_data.shape}\tMetadata: {GSE116520_metadata.shape}\n')
+
 GSE116520_data.to_csv(os.path.join(path, 'microarray', filename+'_counts.csv'))
 GSE116520_metadata.to_csv(os.path.join(path, 'microarray', filename+'_metadata.csv'), index=False)
 
+
 # 2
+filename = 'GSE90604_rna'
 GSE90604_rna_metadata = get_target_class(get_files('GSE90604-GPL17692')[0], 
                                          '!Sample_characteristics', 'sample type: .+', 
                                          'tumor')
@@ -197,11 +206,16 @@ GSE90604_rna_data = get_data(get_files('GSE90604-GPL17692')[0],
                              '!series_matrix_table_begin', 
                              True)
 
-filename = 'GSE90604_rna'
+
+
+print(f'GEO Accession Number: {filename}\nData: {GSE90604_rna_data.shape}\tMetadata: {GSE90604_rna_metadata.shape}\n')
+
 GSE90604_rna_data.to_csv(os.path.join(path, 'microarray', filename+'_counts.csv'))
 GSE90604_rna_metadata.to_csv(os.path.join(path, 'microarray', filename+'_metadata.csv'), index=False)
 
+
 # 3
+filename = 'GSE90604_mirna'
 GSE90604_mirna_metadata = get_target_class(get_files('GSE90604-GPL21572')[0], 
                                            '!Sample_characteristics', 
                                            'sample type: .+', 
@@ -211,19 +225,16 @@ GSE90604_mirna_data = get_data(get_files('GSE90604-GPL21572')[0],
                                '!series_matrix_table_begin', 
                                True)
 
-filename = 'GSE90604_mirna'
+print(f'Filename: {filename}\nData: {GSE90604_mirna_data.shape}\tMetadata: {GSE90604_mirna_metadata.shape}\n')
+
 GSE90604_mirna_data.to_csv(os.path.join(path, 'microarray', filename+'_counts.csv'))
 GSE90604_mirna_metadata.to_csv(os.path.join(path, 'microarray', filename+'_metadata.csv'), index=False)
 
+
 # show files
-print()
-print(GSE90604_rna_data.iloc[:, :5].head())
-print('-'*80)
-print(GSE90604_mirna_data.iloc[:, :5].head())
-print('-'*80)
-print(GSE116520_data.iloc[:, :5].head())
-print('-'*80)
-print(GSE165595_data.iloc[:, :5].head())
-print('-'*80)
-print(GSE228512_data.iloc[:, :5].head())
-print('-'*80)
+print('='*80) print('Dataset Preview\n-----------------\n') print
+(GSE90604_rna_data.iloc[:, :5].head()) print('-'*80, end='\n\n') print
+(GSE90604_mirna_data.iloc[:, :5].head()) print('-'*80, end='\n\n') print
+(GSE116520_data.iloc[:, :5].head()) print('-'*80, end='\n\n') print
+(GSE165595_data.iloc[:, :5].head()) print('-'*80, end='\n\n') print
+(GSE228512_data.iloc[:, :5].head()) print('-'*80, end='\n\n')
