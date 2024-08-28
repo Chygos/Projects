@@ -13,7 +13,8 @@ A). Microarray datasets: GSE116520 and GSE90604 which has both gene expressed (G
 B). RNA seq datasets: GSE165595 and GSE228512 with the latter having both GPL16791 (Hiseq) and GPL24676 (novoseq) sequencing types (both will be merged)
 
 **Data Analysis**
+
 In the data analysis part differentially expressed genes in the diseased state were identified using a statistical method. This can be found in the (analysis_file.ipynb)[analysis file]. Exploratory data analysis and preprocessing techniques were performed before analysis.
 
-NB: > This is a work in progress and can be updated.
+NB: >This is a work in progress and can be updated.
 
