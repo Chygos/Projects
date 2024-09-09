@@ -1,6 +1,6 @@
 # **Projects**
 
-This repository contains jupyter notebooks of personal projects and internship tasks. Each notebook contains a top-to-bottom data science workflow, from data ingestion, preparation, visualisation, and preprocessing, to modelling.
+This repository contains jupyter notebooks (and other files) of personal, school projects and internship tasks. Each notebook includes a top-to-bottom data science workflow, from data ingestion, preparation, visualisation, and preprocessing, to modelling.
 
 ## [**Sunspot forecasting**](./sunspot_forecasting/)
 
