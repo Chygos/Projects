@@ -15,7 +15,7 @@ This is aimed at analysing yellow taxi cab demand by commuters in all the pickup
 This is aimed at analysing the performance of city bike sharing in Washington DC, United States. Performance indicators were aimed at investigating the acceptance of bike sharing by Washington DC residents from Jan 2022 to Jun 2024. The dataset was downloaded from [Capital Bike share website](https://s3.amazonaws.com/capitalbikeshare-data/index.html). The original dataset contained bike rides made by members and non-members of the platform at all bike stations at different times of the day. More information can be found [here](https://capitalbikeshare.com/system-data). 
 Bike rides within a certain hour by registered and casual members with either classic or electric bikes were aggregated. The total distance and the average duration of rides were extracted and stored in a comma-separated values file. Data exploration, preprocessing and analysis were done on a Jupyter notebook with an R kernel.
 
-## [**BCG job simulation**]("./BCG job simulation/")
+## [**BCG job simulation**](./BCG_job_simulation/)
 
 Repository for BCG Job simulation 2024
 
