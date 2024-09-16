@@ -7,7 +7,7 @@ The datasets that will be used are RNA transcript data generated from microarray
 
 **Data Extraction**
 
-The datasets (in RNA and microarray folders) were downloaded from the [NCBI Geo dataset website](https://www.ncbi.nlm.nih.gov/geo/) based on their accession numbers. Two sets (microarray and bulk RNA seq) of data were downloaded, and the data and metadata were extracted using the [preprocessing file](preprocessing_file.py) and saved in their respective folders.
+The datasets (in RNA and microarray folders) were downloaded from the [NCBI Geo dataset website](https://www.ncbi.nlm.nih.gov/geo/) based on their accession numbers. Two sets (microarray and bulk RNA seq) of data were downloaded, and the data and metadata were extracted using the [preprocessing file](preprocessing_file.py) and saved in their respective folders. The [get_illumina_gene_ids.R](get_illumina_gene_ids.R) downloads Gene IDs for probesets based on a given GPL platform.
 
 A). Microarray datasets: GSE116520 and GSE90604 which has both gene expressed (GPL17692) and miRNA expressed (GPL21572) datasets
 B). RNA seq datasets: GSE165595 and GSE228512 with the latter having both GPL16791 (Hiseq) and GPL24676 (novoseq) sequencing types (both will be merged)
