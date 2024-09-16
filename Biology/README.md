@@ -1,7 +1,7 @@
 ## **Introduction**
 This contains Jupyter notebooks and Python and R codes for analysing biological datasets.
 
-The datasets that will be used are RNA transcript data generated from microarray or RNA-seq (single-cell or bulk). Techniques that will be used to analyse them include the application of differential gene expression analysis to determine differentially expressed genes in a diseased state. 
+The datasets that will be used are RNA transcript data generated from microarray or RNA-seq (single-cell or bulk). Techniques that will be used to analyse them include the application of differential gene expression analysis to determine differentially expressed genes in a diseased state and functional annotation of differential genes. 
 
 ## **Data Extraction and Analysis**
 
@@ -14,7 +14,7 @@ B). RNA seq datasets: GSE165595 and GSE228512 with the latter having both GPL167
 
 **Data Analysis**
 
-In the data analysis part differentially expressed genes in the diseased state were identified using a statistical method. This can be found in the [analysis file](analysis_file.ipynb). Exploratory data analysis and preprocessing techniques were performed before analysis.
+In the data analysis part differentially expressed genes in the diseased state were identified using a statistical method. This can be found in the [analysis file](analysis_file.ipynb). Exploratory data analysis and preprocessing techniques were performed before analysis. Pathway Enrichment Analysis was done to determine biological processes, molecular functions, cellular localisation and biological pathways these differentially expressed genes and their gene products are involved.
 
 NB: >This is a work in progress and can be updated.
 
