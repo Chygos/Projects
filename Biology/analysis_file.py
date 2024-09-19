@@ -459,7 +459,7 @@ cluster_genes(gene_counts, plot=True)
 
 ## Differential Gene Analysis
 
-def plot_volacano(deg_res:pd.DataFrame):
+def plot_volcano(deg_res:pd.DataFrame):
     if not isinstance(deg_res, pd.DataFrame):
         raise TypeError ('deg_res must be a Pandas DataFrame')
     
@@ -607,7 +607,7 @@ upregulated_genes.shape, downregulated_genes.shape
 
 
 # visualise DEGs
-plot_volacano(results_lm)
+plot_volcano(results_lm)
 upregulated = upregulated_genes.index.tolist()
 downregulated = downregulated_genes.index.tolist()
 
@@ -640,7 +640,7 @@ results_tt
 print('Upregulated Genes: ', sum((results_tt.padj < 0.05) & (results_tt.Log2FC > 2)))
 print('Downregulated Genes: ', sum((results_tt.padj < 0.05) & (results_tt.Log2FC < -2)))
 
-plot_volacano(results_tt)
+plot_volcano(results_tt)
 
 
 # Clustering genes to find similarities and differences
