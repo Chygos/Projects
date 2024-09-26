@@ -1,4 +1,9 @@
 
+"""
+Author: Chigozie Nkwocha
+Date: 13.08.2024
+"""
+
 from pathlib import os
 from glob import glob
 import re
@@ -18,12 +23,6 @@ zip_files
 
 
 ## Helper functions
-def get_files(text:str='GSE116520|GSE90604') -> list: 
-    files = list(map(lambda file: re.search(text, file), zip_files))
-    index = [True if x else False for x in files]
-    return (zip_files[index]).tolist()
-
-
 def get_target_class(filename:str, 
                      line_identifier:str='!Sample_characteristics'
                      ) -> pd.DataFrame:
@@ -104,37 +103,17 @@ def get_data(filename:str,
         return data
     except ValueError as err: print(err)
 
-"""
-Extracting files
------------------
-
-Gene data were downloaded from NCBI Geodataset website based on their accession numbers. 
-
-Two sets (microarray and bulk RNA seq) of data were downloaded, the data and metadata were extracted and saved.
-
-A). Micro array datasets: GSE116520 and GSE90604 which has both gene expressed (GPL17692) and miRNA expressed (GPL21572) datasets
-B). RNA seq datasets: GSE165595 and GSE228512 with the later having both GPL16791 (Hiseq) and GPL24676 (novoseq) sequencing types (both will be merged)
-
-"""
-
-# # create directory
-# os.makedirs('rna', exist_ok=True)
-# os.makedirs('microarray', exist_ok=True)
-
 
 def main(args = sys.argv[1:]):
-
     parser = argparse.ArgumentParser(prog='Gene Expression Extractor', 
                                     description='Extract Gene Expression Datasets')
-
+    
     parser.add_argument('-f', '--filename', nargs='+', help='Gene expression files to extract', 
                         type=str, required=True)
-
-
+    
     parser.add_argument('--merge', required=False, choices=['T', 'F'], 
                         default='F', help='Valid inputs are T|F')
-
-
+    
     parser.add_argument('-li', '--line_identifier', required=False, type=str, default='!Sample_characteristics',
                         help='Character used to identify line that maps the target class')
 
@@ -146,18 +125,17 @@ def main(args = sys.argv[1:]):
 
     parser.add_argument('-o', '--out', metavar='path/to/outfile.txt', help='Path to write data to')
 
-
+    # parse arguments
     args = parser.parse_args()
 
+    # variable to store expression data and metadata
     exprs = None
     metadata = None
 
     # raise error if file is not given
     if args.filename is None:
         raise ValueError('Must pass a filename or list of filenames')
-
-    # if filetype is metadata, check if other arguments are provided
-
+        
     # provided filename, line identifier, disease name and identifier
     # check if merge
     if args.filename and all([args.line_identifier, 
@@ -166,9 +144,7 @@ def main(args = sys.argv[1:]):
         if args.merge == 'T' and len(args.filename) > 1:
             metadata = pd.concat(
                 [
-                    get_target_class(file, 
-                                     line_identifier=args.line_identifier
-                                     )
+                    get_target_class(file, line_identifier=args.line_identifier)
                     for file in args.filename
                 ], axis=0)
             
@@ -215,7 +191,7 @@ def main(args = sys.argv[1:]):
                 metadata.to_csv(outfile + '_metadata.csv', index=False)
                 exprs.to_csv(outfile + '_exprs.csv', index=True)
                 
-            
+    # print head of datasets
     if exprs is not None and metadata is not None:
         print('Metadata')
         print("=="*50)
