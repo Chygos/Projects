@@ -1,0 +1,59 @@
+sample_xter1,sample_xter2,sample_xter3,sample_xter4,sample_xter5,sample_xter6,sample_id
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 21,gender: Male,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: None identified,GSM1094814
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 9,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094815
+tissue: Pilocytic astrocytoma,brain location: Cerebral hemisphere,age at diagnosis (years): 17,gender: Male,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: None identified,GSM1094816
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 4,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094817
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 5,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094818
+tissue: Pilocytic astrocytoma,brain location: Cerebral hemisphere,age at diagnosis (years): 16,gender: Male,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: FAM131B:BRAF fusion,GSM1094819
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 2,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_15:9,GSM1094820
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 11,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_15:9,GSM1094821
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 4,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094822
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 16,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094823
+tissue: Pilocytic astrocytoma,brain location: Cerebral hemisphere,age at diagnosis (years): 14,gender: Male,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: BRAF V600E,GSM1094824
+tissue: Pilocytic astrocytoma,brain location: Diencephalon,age at diagnosis (years): 2,gender: Female,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_breakpoint not determined,GSM1094825
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 10,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_15:9,GSM1094826
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 13,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094827
+tissue: Pilocytic astrocytoma,brain location: Diencephalon,age at diagnosis (years): 3,gender: Male,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: NF1; KIAA1549:BRAF fusion_breakpoint not determined,GSM1094828
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 19,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_15:9,GSM1094829
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 11,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:11,GSM1094830
+tissue: Pilocytic astrocytoma,brain location: Diencephalon,age at diagnosis (years): 3,gender: Female,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: NF1; KIAA1549:BRAF fusion_15:9; BRAF V600E,GSM1094831
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 17,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: BRAF ins598T,GSM1094832
+tissue: Pilocytic astrocytoma,brain location: Diencephalon,age at diagnosis (years): 12,gender: Female,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094833
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 22,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094834
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 11,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KRAS E63K,GSM1094835
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 10,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094836
+tissue: Pilocytic astrocytoma,brain location: Diencephalon,age at diagnosis (years): 3,gender: Female,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: BRAF V600E,GSM1094837
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 2,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094838
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 4,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094839
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 6,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094840
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 5,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094841
+tissue: Pilocytic astrocytoma,brain location: Brainstem,age at diagnosis (years): 7,gender: Male,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_15:9,GSM1094842
+tissue: Pilocytic astrocytoma,brain location: Cerebral hemisphere,age at diagnosis (years): 8,gender: Female,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_15:9,GSM1094843
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 4,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094844
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 6,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094845
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 20,gender: Female,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094846
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 14,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: None identified,GSM1094847
+tissue: Pilocytic astrocytoma,brain location: Fourth Ventricle,age at diagnosis (years): 9,gender: Male,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094848
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 25,gender: Male,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:11,GSM1094849
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 26,gender: Female,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094850
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 4,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094851
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 20,gender: Female,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094852
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 16,gender: Male,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094853
+tissue: Pilocytic astrocytoma,brain location: Left frontal lobe,age at diagnosis (years): 12,gender: Female,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: NF1,GSM1094854
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 3,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094855
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 11,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094856
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 9,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094857
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 26,gender: Female,dna methylation subgroup: NA,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_15:9,GSM1094858
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 3,gender: Male,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094859
+tissue: Pilocytic astrocytoma,brain location: Optic nerve,age at diagnosis (years): 3,gender: Female,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: BRAF V600E,GSM1094860
+tissue: Pilocytic astrocytoma,brain location: Cerebellum,age at diagnosis (years): 8,gender: Female,dna methylation subgroup: 2,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094861
+tissue: Pilocytic astrocytoma,brain location: Diencephalon,age at diagnosis (years): 12,gender: Male,dna methylation subgroup: 1,mapk hit: Pilocytic astrocytoma: KIAA1549:BRAF fusion_16:9,GSM1094862
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): Fetal,gender: Female,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094863
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): Fetal,gender: Female,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094864
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): Fetal,gender: Male,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094865
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): Fetal,gender: Male,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094866
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): Fetal,gender: Female,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094867
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): 24,gender: Male,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094868
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): Adult,gender: Male,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094869
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): Adult,gender: Male,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094870
+tissue: Normal cerebellum control,brain location: Cerebellum,age at diagnosis (years): 26,gender: Male,dna methylation subgroup: N/A,mapk hit: Pilocytic astrocytoma: N/A,GSM1094871

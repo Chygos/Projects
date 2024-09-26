@@ -1,0 +1,51 @@
+sample_xter1,sample_xter2,sample_xter3,sample_xter4,sample_xter5,sample_xter6,sample_xter7,sample_xter8,sample_id
+disease state: glioma,gender: Male,age (years): 42,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 1300,GSM1061661
+disease state: glioma,gender: Male,age (years): 69,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 352,GSM1061662
+disease state: glioma,gender: Male,age (years): 47,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 988,GSM1061663
+disease state: glioma,gender: Male,age (years): 72,kps: 90,pathological diagnosis: Anaplastic oligodendroglioma,who grade: 3,outcome: DEAD,survival time (days): 305,GSM1061664
+disease state: glioma,gender: Female,age (years): 20,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 417,GSM1061665
+disease state: glioma,gender: Male,age (years): 73,kps: 70,pathological diagnosis: Anaplastic astrocytoma,who grade: 3,outcome: DEAD,survival time (days): 617,GSM1061666
+disease state: glioma,gender: Male,age (years): 33,kps: 100,pathological diagnosis: Astrocytoma,who grade: 2,outcome: ALIVE,survival time (days): 3020,GSM1061667
+disease state: glioma,gender: Male,age (years): 56,kps: 80,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 506,GSM1061668
+disease state: glioma,gender: Male,age (years): 67,kps: 50,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 396,GSM1061669
+disease state: glioma,gender: Male,age (years): 59,kps: 80,pathological diagnosis: Anaplastic oligoastrocytoma,who grade: 3,outcome: DEAD,survival time (days): 263,GSM1061670
+disease state: glioma,gender: Male,age (years): 45,kps: 60,pathological diagnosis: Anaplastic astrocytoma,who grade: 3,outcome: DEAD,survival time (days): 698,GSM1061671
+disease state: glioma,gender: Male,age (years): 68,kps: 80,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 286,GSM1061672
+disease state: glioma,gender: Female,age (years): 42,kps: 70,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 1189,GSM1061673
+disease state: glioma,gender: Female,age (years): 52,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 641,GSM1061674
+disease state: glioma,gender: Male,age (years): 55,kps: 80,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 630,GSM1061675
+disease state: glioma,gender: Male,age (years): 63,kps: 60,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 405,GSM1061676
+disease state: glioma,gender: Male,age (years): 65,kps: 90,pathological diagnosis: Anaplastic astrocytoma,who grade: 3,outcome: DEAD,survival time (days): 1082,GSM1061677
+disease state: glioma,gender: Female,age (years): 27,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 2034,GSM1061678
+disease state: glioma,gender: Female,age (years): 18,kps: 60,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 111,GSM1061679
+disease state: glioma,gender: Male,age (years): 45,kps: 60,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 261,GSM1061680
+disease state: glioma,gender: Male,age (years): 62,kps: 70,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 347,GSM1061681
+disease state: glioma,gender: Male,age (years): 54,kps: 40,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 268,GSM1061682
+disease state: glioma,gender: Female,age (years): 78,kps: 60,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 350,GSM1061683
+disease state: glioma,gender: Male,age (years): 31,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 525,GSM1061684
+disease state: glioma,gender: Female,age (years): 32,kps: 100,pathological diagnosis: Astrocytoma,who grade: 2,outcome: ALIVE,survival time (days): 1922,GSM1061685
+disease state: glioma,gender: Male,age (years): 71,kps: 40,pathological diagnosis: Astrocytoma,who grade: 2,outcome: DEAD,survival time (days): 1411,GSM1061686
+disease state: glioma,gender: Male,age (years): 71,kps: 80,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 436,GSM1061687
+disease state: glioma,gender: Female,age (years): 64,kps: 50,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 154,GSM1061688
+disease state: glioma,gender: Male,age (years): 60,kps: 90,pathological diagnosis: Anaplastic oligodendroglioma,who grade: 3,outcome: DEAD,survival time (days): 427,GSM1061689
+disease state: glioma,gender: Male,age (years): 32,kps: 100,pathological diagnosis: Anaplastic astrocytoma,who grade: 3,outcome: ALIVE,survival time (days): 2134,GSM1061690
+disease state: glioma,gender: Male,age (years): 80,kps: 80,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 432,GSM1061691
+disease state: glioma,gender: Male,age (years): 62,kps: 100,pathological diagnosis: Astrocytoma,who grade: 2,outcome: DEAD,survival time (days): 653,GSM1061692
+disease state: glioma,gender: Male,age (years): 28,kps: 100,pathological diagnosis: Astrocytoma,who grade: 2,outcome: DEAD,survival time (days): 1737,GSM1061693
+disease state: glioma,gender: Male,age (years): 28,kps: 70,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 358,GSM1061694
+disease state: glioma,gender: Female,age (years): 67,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 565,GSM1061695
+disease state: glioma,gender: Female,age (years): 58,kps: 70,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 20,GSM1061696
+disease state: glioma,gender: Female,age (years): 24,kps: 100,pathological diagnosis: Anaplastic astrocytoma,who grade: 3,outcome: ALIVE,survival time (days): 1519,GSM1061697
+disease state: glioma,gender: Male,age (years): 26,kps: 100,pathological diagnosis: GBM,who grade: 4,outcome: ALIVE,survival time (days): 1427,GSM1061698
+disease state: glioma,gender: Female,age (years): 52,kps: 70,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 33,GSM1061699
+disease state: glioma,gender: Female,age (years): 52,kps: 100,pathological diagnosis: Anaplastic oligoastrocytoma,who grade: 3,outcome: DEAD,survival time (days): 900,GSM1061700
+disease state: glioma,gender: Female,age (years): 49,kps: 70,pathological diagnosis: Anaplastic oligodendroglioma,who grade: 3,outcome: ALIVE,survival time (days): 1356,GSM1061701
+disease state: glioma,gender: Female,age (years): 67,kps: 80,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 323,GSM1061702
+disease state: glioma,gender: Male,age (years): 69,kps: 100,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 811,GSM1061703
+disease state: glioma,gender: Male,age (years): 31,kps: 90,pathological diagnosis: Anaplastic astrocytoma,who grade: 3,outcome: DEAD,survival time (days): 827,GSM1061704
+disease state: glioma,gender: Male,age (years): 74,kps: 80,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 474,GSM1061705
+disease state: glioma,gender: Male,age (years): 45,kps: 100,pathological diagnosis: Anaplastic astrocytoma,who grade: 3,outcome: ALIVE,survival time (days): 1768,GSM1061706
+disease state: glioma,gender: Male,age (years): 57,kps: 100,pathological diagnosis: Anaplastic oligodendroglioma,who grade: 3,outcome: ALIVE,survival time (days): 1710,GSM1061707
+disease state: glioma,gender: Male,age (years): 54,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 587,GSM1061708
+disease state: glioma,gender: Male,age (years): 77,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 308,GSM1061709
+disease state: glioma,gender: Female,age (years): 63,kps: 90,pathological diagnosis: GBM,who grade: 4,outcome: DEAD,survival time (days): 144,GSM1061710

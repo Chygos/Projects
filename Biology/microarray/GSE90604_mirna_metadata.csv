@@ -1,26 +1,26 @@
-location,gender,sample type,class,sample_id
-Frontal neocortex,M,Fresh frozen gbm tumor,Tumor,GSM2407549
-Frontal neocortex,M,Fresh frozen gbm tumor,Tumor,GSM2407550
-Nucleus (talamus),M,Fresh frozen gbm tumor,Tumor,GSM2407551
-Frontal neocortex,F,Fresh frozen gbm tumor,Tumor,GSM2407552
-Temporal neocortex,F,Fresh frozen gbm tumor,Tumor,GSM2407553
-Frontal neocortex,M,Fresh frozen gbm tumor,Tumor,GSM2407554
-Corpus callosum (splenium),M,Fresh frozen gbm tumor,Tumor,GSM2407555
-İnsular (limbik),F,Fresh frozen gbm tumor,Tumor,GSM2407556
-Temporal neocortex,M,Fresh frozen gbm tumor,Tumor,GSM2407557
-Frontal neocortex,M,Fresh frozen gbm tumor,Tumor,GSM2407558
-Parietal neocortex,M,Fresh frozen gbm tumor,Tumor,GSM2407559
-Occipital neocortex,F,Fresh frozen gbm tumor,Tumor,GSM2407560
-Hipokampus (limbik),F,Fresh frozen gbm tumor,Tumor,GSM2407561
-Temporal neocortex,M,Fresh frozen gbm tumor,Tumor,GSM2407562
-Corpus callosum (splenium),M,Fresh frozen gbm tumor,Tumor,GSM2407563
-Cingulate gyrus,F,Fresh frozen gbm tumor,Tumor,GSM2407564
-Not available,Not available,Fresh frozen healthy brain tissue,Healthy,GSM2407565
-Not available,Not available,Fresh frozen healthy brain tissue,Healthy,GSM2407566
-Not available,Not available,Fresh frozen healthy brain tissue,Healthy,GSM2407567
-Not available,Not available,Fresh frozen healthy brain tissue,Healthy,GSM2407568
-Not available,Not available,Fresh frozen healthy brain tissue,Healthy,GSM2407569
-Not available,Not available,Fresh frozen healthy brain tissue,Healthy,GSM2407570
-Not available,Not available,Normal human astrocyte cell line,Healthy,GSM2407571
-Not available,Not available,Fetal human astrocyte cell line,Healthy,GSM2407572
-Not available,Not available,Fresh frozen healthy brain tissue,Healthy,GSM2407573
+sample_xter1,sample_xter2,sample_xter3,sample_id
+location: Frontal neocortex,gender: M,sample type: fresh frozen GBM tumor,GSM2407549
+location: Frontal neocortex,gender: M,sample type: fresh frozen GBM tumor,GSM2407550
+location: Nucleus (Talamus),gender: M,sample type: fresh frozen GBM tumor,GSM2407551
+location: Frontal neocortex,gender: F,sample type: fresh frozen GBM tumor,GSM2407552
+location: Temporal neocortex,gender: F,sample type: fresh frozen GBM tumor,GSM2407553
+location: Frontal neocortex,gender: M,sample type: fresh frozen GBM tumor,GSM2407554
+location: Corpus Callosum (Splenium),gender: M,sample type: fresh frozen GBM tumor,GSM2407555
+location: İnsular (Limbik),gender: F,sample type: fresh frozen GBM tumor,GSM2407556
+location: Temporal neocortex,gender: M,sample type: fresh frozen GBM tumor,GSM2407557
+location: Frontal neocortex,gender: M,sample type: fresh frozen GBM tumor,GSM2407558
+location: Parietal Neocortex,gender: M,sample type: fresh frozen GBM tumor,GSM2407559
+location: Occipital Neocortex,gender: F,sample type: fresh frozen GBM tumor,GSM2407560
+location: Hipokampus (Limbik),gender: F,sample type: fresh frozen GBM tumor,GSM2407561
+location: Temporal neocortex,gender: M,sample type: fresh frozen GBM tumor,GSM2407562
+location: Corpus Callosum (Splenium),gender: M,sample type: fresh frozen GBM tumor,GSM2407563
+location: Cingulate Gyrus,gender: F,sample type: fresh frozen GBM tumor,GSM2407564
+location: not available,gender: not available,sample type: fresh frozen healthy brain tissue,GSM2407565
+location: not available,gender: not available,sample type: fresh frozen healthy brain tissue,GSM2407566
+location: not available,gender: not available,sample type: fresh frozen healthy brain tissue,GSM2407567
+location: not available,gender: not available,sample type: fresh frozen healthy brain tissue,GSM2407568
+location: not available,gender: not available,sample type: fresh frozen healthy brain tissue,GSM2407569
+location: not available,gender: not available,sample type: fresh frozen healthy brain tissue,GSM2407570
+location: not available,gender: not available,sample type: normal human astrocyte cell line,GSM2407571
+location: not available,gender: not available,sample type: fetal human astrocyte cell line,GSM2407572
+location: not available,gender: not available,sample type: fresh frozen healthy brain tissue,GSM2407573

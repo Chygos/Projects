@@ -1,0 +1,41 @@
+sample_xter1,sample_xter2,sample_xter3,sample_xter4,sample_xter5,sample_id
+gender: female,age: 21,histology: Pilocytic Astrocytoma,who grade: I,karnofsky index(%): 80,GSM1060025
+gender: female,age: 50,histology: Pilocytic Astrocytoma,who grade: I,karnofsky index(%): 90,GSM1060026
+gender: female,age: 34,histology: Pilocytic Astrocytoma,who grade: I,karnofsky index(%): 90,GSM1060027
+gender: female,age: 67,histology: Diffuse Astrocytoma,who grade: II,karnofsky index(%): 70,GSM1060028
+gender: male,age: 38,histology: Diffuse Astrocytoma,who grade: II,karnofsky index(%): 90,GSM1060029
+gender: male,age: 30,histology: Anaplastic Astrocytoma,who grade: III,karnofsky index(%): 80,GSM1060030
+gender: male,age: 27,histology: Anaplastic Astrocytoma,who grade: III,karnofsky index(%): 90,GSM1060031
+gender: female,age: 67,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060032
+gender: female,age: 50,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060033
+gender: female,age: 71,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060034
+gender: male,age: 70,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060035
+gender: female,age: 70,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 70,GSM1060036
+gender: female,age: 45,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060037
+gender: male,age: 48,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 90,GSM1060038
+gender: male,age: 74,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060039
+gender: female,age: 69,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060040
+gender: male,age: 79,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060041
+gender: male,age: 62,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060042
+gender: male,age: 67,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060043
+gender: female,age: 70,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060044
+gender: female,age: 35,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060045
+gender: female,age: 39,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060046
+gender: female,age: 30,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060047
+gender: male,age: 69,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060048
+gender: female,age: 67,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 70,GSM1060049
+gender: female,age: 50,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 50,GSM1060050
+gender: male,age: 73,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 70,GSM1060051
+gender: male,age: 66,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060052
+gender: male,age: 74,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 70,GSM1060053
+gender: male,age: 84,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 70,GSM1060054
+gender: male,age: 56,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 80,GSM1060055
+gender: female,age: 76,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060056
+gender: male,age: 60,histology: Glioblastoma multiforme,who grade: IV,karnofsky index(%): 60,GSM1060057
+gender: male,age: 59,histology: Gliosarcoma,who grade: IV,karnofsky index(%): 70,GSM1060058
+gender: male,age: 39,histology: Gliosarcoma,who grade: IV,karnofsky index(%): 80,GSM1060059
+gender: male,age: 37,histology: Oligodendroglioma,who grade: II,karnofsky index(%): 90,GSM1060060
+gender: male,age: 64,histology: Anaplastic Oligodendroglioma,who grade: III,karnofsky index(%): 70,GSM1060061
+gender: male,age: 53,histology: Anaplastic Oligodendroglioma,who grade: III,karnofsky index(%): 70,GSM1060062
+gender: female,age: 81,histology: Mixed Anaplastic Oligoastrocytoma,who grade: III,karnofsky index(%): 70,GSM1060063
+gender: male,age: 65,histology: Mixed Anaplastic Oligoastrocytoma,who grade: III,karnofsky index(%): 70,GSM1060064

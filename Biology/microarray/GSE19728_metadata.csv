@@ -1,0 +1,22 @@
+sample_xter1,sample_xter2,sample_xter3,sample_xter4,sample_id
+sex: M,age: 34,tissue: pooled normal brain tissue,,GSM492649
+sex: M,age: 8,"tissue: Apilocytic astrocytoma, juvenile pilocytic astrocytoma, or cystic cerebellar astrocytoma",grade: WHO grade Ⅰ,GSM492650
+sex: M,age: 10,"tissue: Apilocytic astrocytoma, juvenile pilocytic astrocytoma, or cystic cerebellar astrocytoma",grade: WHO grade Ⅰ,GSM492651
+sex: M,age: 72,tissue: diffusely infiltrating astrocytic gliomas,grade: WHO grade Ⅱ,GSM492652
+sex: M,age: 32,tissue: diffusely infiltrating astrocytic gliomas,grade: WHO grade Ⅱ,GSM492653
+sex: M,age: 73,tissue: diffusely infiltrating astrocytic gliomas,grade: WHO grade Ⅱ,GSM492654
+sex: M,age: 45,tissue: diffusely infiltrating astrocytic gliomas,grade: WHO grade Ⅱ,GSM492655
+sex: M,age: 65,tissue: diffusely infiltrating astrocytic gliomas,grade: WHO grade Ⅱ,GSM492656
+sex: F,age: 18,tissue: anaplastic astrocytomas,grade: WHO grade Ⅲ,GSM492657
+sex: F,age: 64,tissue: anaplastic astrocytomas,grade: WHO grade Ⅲ,GSM492658
+sex: M,age: 28,tissue: anaplastic astrocytomas,grade: WHO grade Ⅲ,GSM492659
+sex: M,age: 45,tissue: anaplastic astrocytomas,grade: WHO grade Ⅲ,GSM492660
+sex: M,age: 54,tissue: anaplastic astrocytomas,grade: WHO grade Ⅲ,GSM492661
+sex: M,age: 68,tissue: Glioblastoma multiforme (GBM glioblastomas),grade: WHO grade Ⅳ,GSM492662
+sex: M,age: 62,tissue: Glioblastoma multiforme (GBM glioblastomas),grade: WHO grade Ⅳ,GSM492663
+sex: M,age: 80,tissue: Glioblastoma multiforme (GBM glioblastomas),grade: WHO grade Ⅳ,GSM492664
+sex: F,age: 78,tissue: Glioblastoma multiforme (GBM glioblastomas),grade: WHO grade Ⅳ,GSM492665
+sex: M,age: 69,tissue: Glioblastoma multiforme (GBM glioblastomas),grade: WHO grade Ⅳ,GSM492666
+tissue: normal brain sample,sex: F,age: 40,,GSM525014
+tissue: normal brain sample,sex: F,age: 60,,GSM525015
+tissue: normal brain sample,sex: M,age: 43,,GSM525016
