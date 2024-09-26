@@ -31,8 +31,6 @@ def get_target_class(filename:str,
     Extracts target class from a microarray or RNA-seq text file based on a line and disease identifier
     :param filename: Filename/filepath
     :param line_identifier: Character used to identify line that maps the target class
-    :param disease_identifier: Regular expression pattern to identify disease and healthy samples
-    :param disease_name: Name of the disease. All other are assumed to be healthy tissues
     """
     try:
         sample_characteristics = []
