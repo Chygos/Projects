@@ -2,10 +2,8 @@
 import re
 from glob import glob
 import pandas as pd
-import numpy as np
 from pathlib import os
-from io import StringIO
-import csv
+from tqdm import tqdm
 
 
 def read_gene_file(file, columns=None):
@@ -17,74 +15,70 @@ def read_gene_file(file, columns=None):
 
 
 
-files = glob('*gene_ids*.csv')
+files = glob('gpl_gene_ids/*gene_ids*.csv')
 
-print(files)
+# print(files)
+
+# dict to get genes in each dataset
+data_genes = {}
+file_gpls = {} #get GPL IDs for each dataset
+
+# matched genes in all datasets
+matched_genes = set()
+
+for file in tqdm(files, desc='Extracting Gene Names and getting genes in all datasets'):
+    df = read_gene_file(file)
+    df_cols = df.columns
+    select_cols = ['ID'] + [col for col in df_cols if col.lower().replace('_', ' ') in ['gene symbol', 'gene assignment']]
+    if len(select_cols) == 2:
+        # get GPL platform ID
+        gpl = re.search('GPL[0-9]+', file).group()
+        gse = re.search('GSE[0-9]+', file).group()
+        if 'gene_assignment' in select_cols:
+            temp = df[select_cols]
+            temp = temp.assign(Gene_symbol = temp[select_cols[-1]].str.strip().str.split('//').str[1].str.strip())
+            temp = temp.rename({'Gene_symbol':'Gene symbol'}, axis=1)
+            temp = temp[['ID', 'Gene symbol']].dropna().drop_duplicates()
+            temp = temp.set_index('ID')
+            temp.index.name = None
+            temp = temp.to_dict()['Gene symbol']
+
+            file_gpls[gse] = gpl
+            data_genes[gse] = temp
+
+            if len(matched_genes) == 0:
+                matched_genes.update(set(list(temp.values())))
+            else:
+                matched_genes.intersection_update(set(list(temp.values())))
+        else:
+            temp = df[select_cols].dropna().drop_duplicates()
+            temp = temp.rename({select_cols[-1]: 'Gene symbol'}, axis=1)
+            temp = temp.set_index('ID')
+            temp.index.name = None
+            temp = temp.to_dict()['Gene symbol']
+            file_gpls[gse] = gpl
+            data_genes[gse] = temp
+
+            if len(matched_genes) == 0:
+                matched_genes.update(set(list(temp.values())))
+            else:
+                matched_genes.intersection_update(set(list(temp.values())))
 
 
+# save matched probes with their respective gene names
+os.makedirs('microarray_genes_ids', exist_ok=True)
 
-# GSE116520_GPL10558
+# create dataframe to match probe in each GPL platform with gene symbol
+matched_genes_df = pd.DataFrame({'Genes' : sorted(list(matched_genes))})
+print(len(matched_genes_df))
 
-gse116520_10558 = read_gene_file(files[0], ['ID', 'Gene symbol', 'Gene ID', 'Platform_SEQUENCE'])
-gse116520_10558.head()
+for gse in tqdm(file_gpls.keys(), desc='Merging Genes in all datasets with their respective Probe IDs'):
+    gse_data = pd.DataFrame({
+        'ID':data_genes[gse].keys(), 
+        'Genes':data_genes[gse].values()
+        })
+    gse_data = gse_data[gse_data['Genes'].isin(matched_genes_df.Genes)]
 
-
-# GSE90604_GPL17692
-gse90604_17692 = read_gene_file(files[1], ['ID', 'gene_assignment', 'mrna_assignment'])
-gse90604_17692.head()
-
-
-# extract gene names from GPL 17692
-gse90604_17692['Gene symbol'] = gse90604_17692.gene_assignment.str.split(' // ').str[1].str.strip()
-
-# get gene symbol and their ID and create a map
-gene_maps = gse116520_10558[['Gene symbol', 'Gene ID']].dropna()\
-    .drop_duplicates()\
-        .set_index('Gene symbol')\
-            .to_dict()['Gene ID']
-
-
-
-# merge genes from both platforms alongside their probe IDs and save
-g1 = sorted(gse116520_10558['Gene symbol'].dropna().unique().tolist())
-g2 = gse90604_17692['Gene symbol'].dropna().unique().tolist()
-
-matched_genes = sorted(set(g1).intersection(set(g2)))
-print('Number of genes matched in both datasets is {}'.format(len(matched_genes)))
-
-
-genes = pd.DataFrame([(i, gene_maps[i]) for i in matched_genes], columns=['Gene symbol', 'Gene ID'])
-
-# merge probe IDs from both data
-genes = genes\
-    .merge(gse116520_10558.drop('Gene ID', axis=1), on='Gene symbol', how='inner')\
-        .merge(gse90604_17692[['ID', 'Gene symbol']], suffixes=['_GPL10558', '_GPL17692'],  on='Gene symbol')
-
-genes.to_csv('microarray_genes.csv', index=False)
-
-
-
-print(genes.head())
-
-
-# GSE90604_GPL21572
-# data = read_gene_file(files[2], ['ID', 'Accession_ID', 'Accession', 
-#                                  'Transcript ID(Array Design)', 
-#                                  'Sequence Type', 'Target Genes']
-#                     )
-# print(data.head())
-# f = (
-#     data['Target Genes']
-#      .str.replace('^(MTI) // --- //', '', regex=True)
-#      .apply(lambda x:np.nan if re.search(r'\w+ ///', x) is None else re.findall(r'[a-zA-Z0-9\._]+ ///', x))
-#      .apply(lambda x: ''.join(x).replace('///', '').strip() if isinstance(x, list) else x)
-#      #.apply(lambda x: len(x.split()) if isinstance(x, str) else 0)
-#     )
-
-# print(f.dropna())
-# print(data['Transcript ID(Array Design)'].dropna().nunique())
-# print(data[data['Transcript ID(Array Design)'].str.contains('^(?!^(hsa))', regex=True)])
-# print(data[data['Transcript ID(Array Design)'].str.contains('^(hsa)', regex=True)])
-# print(data[data['Sequence Type'].str.contains('miRNA')])
-# print(data.shape)
-
+    temp_df = matched_genes_df.merge(gse_data, on='Genes', how='inner')
+    filename = os.path.join('microarray_genes_ids', gse+ '_' + file_gpls[gse]+'.csv')
+    temp_df.to_csv(filename, index=False)

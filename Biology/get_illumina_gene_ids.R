@@ -1,8 +1,12 @@
 ## R code obtains GPL data (annotated or not) of given platform ID for
+
+############# Title #####################
+
 ## each Geo ID and Writes to a file
 
 library(GEOquery)
 library(stringr)
+
 
 
 # load series and platform data from GEO
@@ -18,27 +22,34 @@ fetch_gene_ids <- function(gpl_id, probe_ids) {
 }
 
 files <- list.files(path = "./microarray",
-                    pattern = "*counts*.csv",
+                    pattern = "*exprs*.csv",
                     full.names = TRUE)
 
 
 # GPL IDs for the datasets
-gpl_ids <- c("GPL10558", "GPL21572", "GPL17692")
+gpls <- read.csv("microarray_gpl_ids.csv")
 
-print(files)
+gpl_ids <- gpls$GPL_ID
+gpl_files <- gpls$file
 
 
-for (i in seq(1, length(gpl_ids))){
+for (i in seq(1, length(gpl_ids))) {
   # get file, GPL_ID and file basename
-  file <- files[i]
+  gpl_file <- gpl_files[i]
   gpl_id <- gpl_ids[i]
-  file_id <- stringr::str_extract(basename(file), "^GSE\\d+")
+  file <- files[grepl(gpl_file, files)]
 
-  # read file and fetch gene IDs of illumina probeset IDs
-  df <- read.csv(file)
-  illumina_ids <- as.vector(df[, 1])
-  gene_ids <- fetch_gene_ids(gpl_id, illumina_ids)
+  file_id <- stringr::str_extract(basename(gpl_file), "^GSE\\d+")
 
-  write.csv(gene_ids, paste0(file_id, "_", gpl_id, "_gene_ids.csv"),
-            row.names = FALSE)
+  # check if file containing gene id names exisits
+  gene_id_name <- paste0(file_id, "_", gpl_id, "_gene_ids.csv")
+  if (!file.exists(gene_id_name)) {
+    # read file and fetch gene IDs of illumina probeset IDs
+    df <- read.csv(file)
+    illumina_ids <- as.vector(df[, 1])
+    gene_ids <- fetch_gene_ids(gpl_id, illumina_ids)
+    write.csv(gene_ids,
+              paste0(file_id, "_", gpl_id, "_gene_ids.csv"),
+              row.names = FALSE)
+  }
 }
