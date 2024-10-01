@@ -34,6 +34,8 @@ for file in tqdm(files, desc='Extracting Gene Names and getting genes in all dat
         # get GPL platform ID
         gpl = re.search('GPL[0-9]+', file).group()
         gse = re.search('GSE[0-9]+', file).group()
+        
+        # mostly for unannotated data
         if 'gene_assignment' in select_cols:
             temp = df[select_cols]
             temp = temp.assign(Gene_symbol = temp[select_cols[-1]].str.strip().str.split('//').str[1].str.strip())
@@ -42,10 +44,12 @@ for file in tqdm(files, desc='Extracting Gene Names and getting genes in all dat
             temp = temp.set_index('ID')
             temp.index.name = None
             temp = temp.to_dict()['Gene symbol']
-
+            
+            # add gpl and probe IDs of GEO GSE dataset
             file_gpls[gse] = gpl
             data_genes[gse] = temp
 
+            # check for genes present in all dataset
             if len(matched_genes) == 0:
                 matched_genes.update(set(list(temp.values())))
             else:
