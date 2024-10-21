@@ -1,0 +1,619 @@
+---
+title: "Glioma Cancer Differential Gene Analysis"
+author: "Chigozie Nkwocha"
+date: "2024-10-18"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Overview
+
+In this notebook, we will perform differential gene expression (DGE) analysis on our already preprocessed glioma cancer datasets. At the preprocessing stage, we performed the winsorised outlier handling method to clip values below 5th and above 95th percentiles to values at the 5th & 95th percentiles (90% winsorisation). We also performed batch effect correction to remove any variability that comes from different experimental conditions since our datasets come from different sources. So here, we will perform DGE analysis on our dataset. DGE analysis will be based on the following
+
+a. Find differentially expressed genes in non-tumour and tumour conditions
+b. Finding differential genes at tumour grades: G1-G2, G2-G3, G3-G4. We want to find genes whose differences are statistically significant at each tumour stage. Because our dataset has cancers from different glioma cell types, we will focus on the astrocytes which include Pilocytic astrocytoma (G1), Low-grade astrocytoma (G2), anaplastic astrocytoma (G3) and Glioblastoma multoforme (G4). This will help us determine prognostic biomarkers.
+c. Finding differential genes at each cancer cell type of glioma cancer: Astrocytes, ependymomas, oligodendrogliomas/oligodendrocytes and mixed gliomas (oligoastrocytes and astrocytes). We want to determine genes that different each cell-type glioma cancers.
+
+## Loading libraries and datasets
+```{r}
+suppressMessages(library(tidyverse))
+suppressMessages(library(limma))
+suppressMessages(library(tidyheatmaps))
+library(enrichR)
+suppressMessages(library(clusterProfiler))
+```
+
+```{r}
+expr_data <- read.csv('glioma_cancer_exprs.csv', row.names = 1)
+metadata <- read.csv('glioma_cancer_metadata.csv')
+```
+
+
+```{r}
+head(expr_data[, 1:5])
+```
+```{r}
+head(metadata)
+```
+
+```{r}
+# Adding new features to our metadata
+metadata <- metadata |>
+  mutate(across(-sample_id, \(x) factor(x)),
+         is_tumour = factor(ifelse(tumor_grade == 'Normal', 'Normal', 'Tumor'), 
+                            labels = c('Normal', 'Tumor')),
+         cell_type = str_replace(tumor_class, 'glioblastoma|astrocytoma|oligoastrocytoma', 'astrocyte'),
+         cell_type = str_replace(cell_type, 'olig.+glioma$', 'oligodendrocyte') |> as.factor())
+```
+
+
+```{r}
+table(metadata$is_tumour)
+table(metadata$cell_type)
+```
+
+
+```{r}
+plot_volcano <- function(model.fit, lfc_cutoff=2, p.value=0.05,
+                         coef.pos=NULL, title='Volcano plot'){
+  res <- topTable(model.fit, n=Inf, coef = coef.pos)
+  res <- res |>
+    mutate(status = ifelse(logFC > lfc_cutoff & adj.P.Val < p.value, 'Up', 
+                           ifelse(logFC < -lfc_cutoff & adj.P.Val < p.value, 'Down', 
+                                  'NS')) |> factor(levels=c('NS','Down','Up'))) |>
+    mutate(genes = rownames(res))
+  
+  fig <- res |>
+    ggplot(aes(logFC, -log10(adj.P.Val), color=status)) + 
+    geom_point(alpha=0.7) +
+    geom_vline(xintercept = c(-lfc_cutoff, lfc_cutoff), linetype='dashed') +
+    geom_hline(yintercept = -log10(p.value), linetype='dashed') +
+    theme_minimal() +
+    theme(legend.position = 'top', 
+          legend.key = element_blank(),
+          panel.grid = element_blank(),
+          legend.title = element_text(face='bold', size=10),
+          plot.title = element_text(face='bold')) +
+    labs(title=title, x='Log2 Fold change', y='Log 10 pvalue', 
+         color='Regulation') +
+    scale_color_manual(values=c('dimgray', 'forestgreen', 'firebrick'))
+  
+  top_up <- res |> filter(status == 'Up') |> slice_min(adj.P.Val, n=5)
+  top_down <- res |> filter(status == 'Down') |> slice_min(adj.P.Val, n=5)
+  
+  fig +
+    ggrepel::geom_text_repel(data = top_up, mapping=aes(logFC, -log10(adj.P.Val), 
+                                                        label=genes), 
+              size=3, color='black', fontface='bold',
+              arrow = arrow(length = unit(0.02, "npc")), box.padding = 1) +
+    ggrepel::geom_text_repel(data=top_down, mapping=aes(logFC, -log10(adj.P.Val), 
+                                                        label=genes), 
+              size=3, color='black', fontface='bold',
+              arrow = arrow(length = unit(0.02, "npc")), box.padding = 1)
+}
+```
+
+
+## Differential Gene Expression Analysis
+
+a. Non-tumour vs Tumour
+
+```{r}
+design <- model.matrix(~0 + metadata$is_tumour)
+colnames(design) <- c('Normal', 'Tumour')
+```
+
+```{r}
+# instantiate a contrast matrix
+const.matrix <- makeContrasts(NormalvsCancer = Normal-Tumour, 
+                              levels = colnames(design))
+```
+
+
+
+```{r}
+model_fit <- lmFit(expr_data, design)
+model_fit <- contrasts.fit(model_fit, const.matrix)
+```
+
+```{r}
+ebfit <- eBayes(model_fit, robust=T)
+```
+
+# ne
+
+```{r}
+# number of differential genes at |lfc| > 2
+summary(decideTests(ebfit, lfc=2))
+```
+
+```{r}
+# differentially expressed genes by LFC of 2
+normal_vs_tumour_DED <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=2, p.value=0.05)
+```
+
+
+
+```{r}
+plot_volcano(ebfit, title='Normal vs Tumour tissues')
+```
+
+b. By cell type
+
+What genes are significantly expressed as you move from one grade to another? We will use the astrocyte cell type and compare tumour progression
+
+```{r}
+astrocytes <- which(metadata$cell_type == 'astrocyte')
+```
+
+
+
+```{r}
+design <- model.matrix(~ 0 + factor(metadata[astrocytes, 'tumor_grade']))
+colnames(design) <- str_extract(colnames(design), 'G[0-9]$')
+```
+
+
+```{r}
+# instantiate a contrast matrix
+const.matrix <- makeContrasts(G1vsG2 = G1-G2,
+                              G2vsG3 = G2-G3,
+                              G3vsG4 = G3-G4,
+                              levels = design)
+```
+
+
+```{r}
+astrocyte_df <- expr_data[, astrocytes]
+```
+
+
+```{r}
+model_fit <- lmFit(astrocyte_df, design)
+model_fit <- contrasts.fit(model_fit, const.matrix)
+```
+
+```{r}
+ebfit <- eBayes(model_fit, robust=T)
+```
+
+# ne
+
+```{r}
+# number of differential genes at |lfc| > 2
+summary(decideTests(ebfit, lfc=1.5))
+```
+
+
+```{r}
+# differentially expressed genes by LFC of 2
+
+G1_vs_G2 <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='G1vsG2')
+
+G2_vs_G3 <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='G2vsG3')
+
+G3_vs_G4 <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='G3vsG4')
+```
+
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Grade1 vs Grade2', coef='G1vsG2')
+```
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Grade2 vs Grade3', 
+             coef='G2vsG3',lfc_cutoff = 1.5)
+```
+
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Grade3 vs Grade4', 
+             coef='G3vsG4', lfc_cutoff = 1.5)
+```
+
+```{r}
+# getting differential gene in all grades
+
+sig.genes <- list(G1_vs_G2, G2_vs_G3, G3_vs_G4) |>
+  map(.f = function(x) filter(x, adj.P.Val < 0.05, abs(logFC) > 1.5) |> 
+        rownames_to_column(var='gene') |>
+        pull(gene))
+
+
+genes <- rownames(expr_data) 
+similar.genes = genes
+for (i in 1:length(sig.genes)) similar.genes <- intersect(similar.genes, sig.genes[[i]])
+
+print(similar.genes)
+```
+
+The CHI3L1 gene is found in all cancer grades for astrocytoma. This could mean that it could act as a prognostic biomarker to detect cancer progression for astrocytoma.
+
+
+c. Cell types
+
+```{r}
+cell_types <- which(!metadata$cell_type %in% c('normal', 'high grade glioma'))
+```
+
+
+
+```{r}
+design <- model.matrix(~ 0 + factor(metadata[cell_types, 'cell_type']))
+colnames(design) <- c('AC', 'EC', 'MGC', 'OGC')
+  
+# AC -> Astrocytoma, EC -> Ependymoma, MG -> mixed glioma,  OGC -> oligodendrocytoma/oligodendroglioma
+```
+
+
+```{r}
+# instantiate a contrast matrix
+const.matrix <- makeContrasts(ACvsEC = AC-EC,
+                              ACvsMGC = AC-MGC,
+                              ACvsOGC = AC-OGC,
+                              ECvsMGC = EC-MGC,
+                              ECvsOGC = EC-OGC,
+                              MGCvsOGC = MGC-OGC,
+                              levels = design)
+```
+
+
+```{r}
+model_fit <- lmFit(expr_data[, cell_types], design)
+model_fit <- contrasts.fit(model_fit, const.matrix)
+```
+
+```{r}
+ebfit <- eBayes(model_fit, robust=F)
+```
+
+# ne
+
+```{r}
+# number of differential genes at |lfc| > 2
+summary(decideTests(ebfit, lfc=1.5))
+```
+
+- No significant genes between mixed gliomas and oligodendrogliomas
+
+```{r}
+# differentially expressed genes by LFC of 2
+
+AC_vs_EC <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='ACvsEC')
+
+AC_vs_MGC <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='ACvsMGC')
+
+AC_vs_OGC <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='ACvsOGC')
+
+EC_vs_MGC <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='ECvsMGC')
+
+EC_vs_OGC <- topTable(ebfit, sort.by = 'P', n=Inf, lfc=1.5, 
+                     p.value=0.05, coef='ECvsOGC')
+
+```
+
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Astrocytoma vs Ependymoma', 
+             coef=1, lfc_cutoff = 2)
+```
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Astrocytoma vs Mixed Gliomas', 
+             coef=2, lfc_cutoff = 1.5)
+```
+
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Astrocytoma vs Oligodendroglioma', 
+             coef=3, lfc_cutoff = 1.5)
+```
+
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Ependymoma vs Mixed glioma', 
+             coef=4, lfc_cutoff = 2)
+```
+
+```{r}
+plot_volcano(ebfit, title='Differential Genes in Ependymoma vs Oligodendroglioma', 
+             coef=5, lfc_cutoff = 1.5)
+```
+
+
+```{r}
+# getting differential gene in all grades
+
+sig.genes <- list(AC_vs_EC, AC_vs_MGC, AC_vs_OGC,
+                  EC_vs_OGC, EC_vs_MGC) |>
+  map(.f = function(x) filter(x, adj.P.Val < 0.05, abs(logFC) > 1.5) |> 
+        rownames_to_column(var='gene') |>
+        pull(gene))
+
+
+similar.genes = genes
+for (i in 1:length(sig.genes)) similar.genes <- intersect(similar.genes, sig.genes[[i]])
+
+print(similar.genes)
+```
+
+## Functional Enrichment Analysis
+
+For functional analysis we will perform Gene Ontology (GO) analysis and the Pathway analysis. The GO analysis will contain the biological processes of these differential genes, molecular function of their gene product and cell compartment localisation. For the pathway analysis, we will perform the KEGG and reactome pathways.
+
+```{r}
+# databases
+dbs <- enrichR::listEnrichrDbs()
+```
+
+```{r}
+# head(dbs)
+
+# dbs$libraryName[grep('(^GO|KEGG|Reac|Wiki)', dbs$libraryName)]
+```
+
+
+```{r}
+db_GO <- c("GO_Biological_Process_2023", "GO_Cellular_Component_2023", "GO_Molecular_Function_2023")
+db_pw <- c("Reactome_2022", "KEGG_2021_Human")
+```
+
+```{r}
+get_FEA <- function(genes.list, selected_database){
+  res <- enrichR::enrichr(genes.list, selected_database)
+  res <- res |> 
+    map(function(x) x |> 
+          dplyr::filter(Adjusted.P.value < 0.05) |> 
+    mutate(Term=str_remove_all(Term, '\\(GO:.+\\)$|R-HSA-\\d+$|'))
+  )
+  
+  return(res)
+}
+```
+
+
+```{r}
+# GO for normal vs tumour samples
+GO_results_nt_up <- get_FEA(row.names(
+  normal_vs_tumour_DED |> 
+    filter(logFC > 2)), selected_database = db_GO)
+```
+
+```{r}
+# GO for normal vs tumour samples
+GO_results_nt_down <- get_FEA(row.names(
+  normal_vs_tumour_DED |> 
+    filter(logFC < -2)), selected_database = db_GO)
+```
+
+
+
+```{r}
+plotEnrich(GO_results_nt_up$GO_Biological_Process_2023, numChar = 70) +
+  theme_bw() +
+  theme(panel.grid = element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=12)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='Biological Process (Normal vs Tumour)', x='')
+```
+
+```{r}
+plotEnrich(GO_results_nt_down$GO_Biological_Process_2023, numChar = 70) +
+  theme_bw() +
+  theme(panel.grid = element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=11)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='Biological Process for Down (Normal vs Tumour)', x='')
+```
+
+
+```{r}
+plotEnrich(GO_results_nt_up$GO_Cellular_Component_2023, numChar = 70) +
+  theme_minimal() +
+  theme(panel.grid=element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=12)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='Cellular Component (Normal vs Tumour)', x='')
+```
+
+```{r}
+plotEnrich(GO_results_nt_down$GO_Cellular_Component_2023, numChar = 70) +
+  theme_bw() +
+  theme(panel.grid = element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=11)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='Cellular Component for Down (Normal vs Tumour)', x='')
+```
+
+
+```{r}
+plotEnrich(GO_results_nt_up$GO_Molecular_Function_2023, numChar = 70) +
+  theme_minimal() +
+  theme(panel.grid=element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=12)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='Molecular Function (Normal vs Tumour)', x='')
+```
+
+
+
+```{r}
+plotEnrich(GO_results_nt_down$GO_Molecular_Function_2023, 
+           numChar = 70, showTerms = 4) +
+  theme_bw() +
+  theme(panel.grid=element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=12)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='Molecular Function Down (Normal vs Tumour)', x='')
+```
+
+```{r}
+# Pathway for normal vs tumour samples
+PW_results_nt_up <- get_FEA(row.names(
+  normal_vs_tumour_DED |> 
+    filter(logFC > 2)), selected_database = db_pw)
+
+PW_results_nt_down <- get_FEA(row.names(
+  normal_vs_tumour_DED |> 
+    filter(logFC < -2)), selected_database = db_pw)
+```
+
+```{r}
+plotEnrich(PW_results_nt_up$KEGG_2021_Human, 
+           numChar = 70) +
+  theme_bw() +
+  theme(panel.grid=element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=12)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='KEGG Pathway Up (Normal vs Tumour)', x='')
+```
+
+```{r}
+plotEnrich(PW_results_nt_down$KEGG_2021_Human, 
+           numChar = 70) +
+  theme_bw() +
+  theme(panel.grid=element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=12)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='KEGG Pathway Down (Normal vs Tumour)', x='')
+```
+
+
+- Similar Genes for Astrocytoma tumour progression and cell-type tumours
+
+```{r}
+res <- get_FEA("CHI3L1", db_GO)
+
+plotEnrich(res$GO_Biological_Process_2023, y = 'Ratio') +
+  theme_bw() +
+  theme(panel.grid=element_blank(), 
+        axis.text = element_text(size=8),
+        axis.title.x = element_text(size=8),
+        legend.title = element_text(size=9),
+        plot.title=element_text(face='bold', size=12)) +
+  scale_fill_gradient(low='indianred', high='steelblue', 
+                      guide = guide_colorbar(reverse = T)) +
+  labs(title='Biological Processes (tumour grade)', x='')
+
+res$GO_Molecular_Function_2023
+
+res$GO_Cellular_Component_2023
+```
+
+```{r}
+get_FEA("CHI3L1", 'Reactome_2013')
+```
+
+
+```{r}
+similar.genes.celltype <- c("C9orf24", "CITED1", "CNR1", "CRLF1", "DACH1", 
+                            "EFCAB1", "GABRG1", "LRP2BP", "MKX", "PPP1R1B", 
+                            "RELN", "RSPH1", "SPAG6", "SRPX", "VIPR2") 
+
+
+# Pathway for normal vs tumour samples
+GO_results <- get_FEA(similar.genes.celltype, selected_database = db_pw)
+
+PW_results <- get_FEA(similar.genes.celltype, selected_database = db_pw)
+
+```
+
+```{r}
+GO_results
+PW_results
+```
+## Clustering
+
+```{r}
+t <- expr_data[rownames(normal_vs_tumour_DED |> filter(logFC < -2.5)), ] |>
+  rownames_to_column(var='Gene') |>
+  pivot_longer(-Gene, names_to = 'samples') |>
+  inner_join(metadata, by=c('samples' = 'sample_id')) |>
+  arrange(tumor_grade)
+```
+
+
+```{r}
+select_genes <- (t |> distinct(Gene) |> pull(Gene))
+
+tidyheatmaps::tidy_heatmap(t, rows = 'Gene', width = 8,
+                           colors = c("#145afc","#ffffff","#ee4445"),
+                           height = 20, columns='samples', 
+                           annotation_col = c('tumor_grade', 'tumor_type'),
+                           values='value',show_colnames = T,
+                           gaps_row ='tumor_type',
+                           show_selected_col_labels = metadata$sample_id[seq(1,500,25)],
+                           show_selected_row_labels = select_genes[seq(1, length(select_genes), 5)],
+                           fontsize_row = 5, main = 'Downregulated genes',
+                           scale='row', cluster_rows = TRUE, cluster_cols = T)
+```
+
+
+```{r}
+t <- expr_data[rownames(normal_vs_tumour_DED |> filter(logFC > 2.)), ] |>
+  rownames_to_column(var='Gene') |>
+  pivot_longer(-Gene, names_to = 'samples') |>
+  inner_join(metadata, by=c('samples' = 'sample_id')) |>
+  arrange(tumor_grade)
+
+```
+
+
+```{r}
+select_genes <- (t |> distinct(Gene) |> pull(Gene))
+
+tidyheatmaps::tidy_heatmap(t, rows = 'Gene', width = 8,
+                           colors = c("#145afc","#ffffff","#ee4445"),
+                           height = 15, columns='samples', 
+                           annotation_col = c('tumor_grade', 'tumor_type'),
+                           values='value',show_colnames = T, 
+                           show_selected_col_labels = metadata$sample_id[seq(1,500,50)],
+                           show_selected_row_labels = select_genes[seq(1, length(select_genes), 20)],
+                           fontsize_row = 5, main = 'Upregulated genes',
+                           scale='row', cluster_rows = F, cluster_cols = F)
+```
