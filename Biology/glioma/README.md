@@ -42,7 +42,7 @@ Additionally, the `CHI3L1` gene which expresses the non-enzymatic Chitinase-3 li
 
 ![CHI3L1_gene_plot](imgs/CHI3L1_expr_levels_by_tumor_grades.png)
 
-___Fig 2: CHI3L1 expression level by astrocytoma cancer grades__
+___Fig 2: CHI3L1 expression level by astrocytoma cancer grades___
 
 ### Cancer cell type
 
