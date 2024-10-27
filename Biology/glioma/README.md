@@ -52,11 +52,11 @@ The expression levels of `CAPSL`, `EFCAB1` `ETV1` and `SPAG6` genes were found t
 
 ![common_genes_celltypes](imgs/common_genes_cell_type.png)
 
-___Fig 4: Venn diagram showing the number of common genes in each cell type___
+___Fig 3: Venn diagram showing the number of common genes in each cell type___
 
 ![cell_type_common_genes_expression_levels](imgs/cell_type_common_genes_expr_lvls_dge.png)
 
-___Fig 5: Expression levels of common genes in all cancer cell types___
+___Fig 4: Expression levels of common genes in all cancer cell types___
 
 
 
