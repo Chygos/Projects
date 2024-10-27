@@ -4,7 +4,7 @@ Gliomas are the most common central nervous system tumours (CNS). They account f
 
 Diagnosis and management of gliomas rely on tissue biopsy and treatment with radiotherapy and chemotherapy with genetic, transcriptomic and epigenetic alterations found to be key molecular signatures used in diagnosis and prognosis. Key biomarkers implicated in the pathogenesis of gliomas usually include genes involved in cell-cycle regulation. Some diagnostic and prognostic biomarkers implicated in glioma cancers include mutations in IDH, TP53, TERT, ATRX, and EGFR genes, 1p19q deletion, MGMT promoter methylation, etc [[4](https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2014.00047/full), [5](https://pmc.ncbi.nlm.nih.gov/articles/PMC5337853/)]. Others include the mutations in the MAPK pathway genes, CDKN2A, MYB and MN1 genes [[1](https://www.mdpi.com/1422-0067/22/19/10373)].
 
-Transcriptomics techniques, which use expression data generated from microarray and RNA sequencing methods, have been used to identify new biomarkers for glioma diagnosis and prognosis. This usually involves finding differential genes in normal and disease conditions. Similarly, machine learning models such as random forests, support vector machines, k-nearest neighbours, etc have been used to identify marker genes that can be used to predict disease outcomes or cancer subtypes [[6](https://www.sciencedirect.com/science/article/pii/S0888754319301740). Here, we apply transcriptomics data analysis to identify genes/RNA transcripts that can be used as potential biomarkers for glioma diagnosis. 
+Transcriptomics techniques, which use expression data generated from microarray and RNA sequencing methods, have been used to identify new biomarkers for glioma diagnosis and prognosis. This usually involves finding differential genes in normal and disease conditions. Similarly, machine learning models such as random forests, support vector machines, k-nearest neighbours, etc have been used to identify marker genes that can be used to predict disease outcomes or cancer subtypes [[6](https://www.sciencedirect.com/science/article/pii/S0888754319301740)]. Here, we apply transcriptomics data analysis to identify genes/RNA transcripts that can be used as potential biomarkers for glioma diagnosis. 
 
 # Methodology
 
@@ -29,7 +29,23 @@ Machine learning techniques were used to predict tumour and non-tumour condition
 ## Differential gene expression analysis (DGEA)
 
 ### Non-tumour vs Tumour conditions
-Genes with absolute logFC above 2 were used as a cutoff to identify differential genes in disease and healthy (reference) conditions. 485 and 166 genes were found to be downregulated and upregulated, respectively, in the disease state. Among these genes are SVOP, CYP4X1, FRMPD4, UHRF1, and PARP9.
+Genes with absolute logFC above 2 were used as a cutoff to identify differential genes in disease and healthy (reference) conditions. 485 and 166 genes were found to be downregulated and upregulated, respectively, in the disease state. Among these genes are `SVOP`, `CYP4X1`, `FRMPD4`, `UHRF1`, and `PARP9`.
+
+![volcano_plot_normal_vs_tumour](imgs/norm_vs_tumor_dge.png)
+
+___Fig 1: Volcano plot showing down and upregulated genes as well as the not significant genes___
+
+### Tumour Grades
+To identify biomarkers for tumour progression, DGEA was conducted on each grade of astrocytoma. Analysis was done by comparing the order of grade progression, that is, grade 1 and grade 2, grade 2 and 3, and grade 3 and 4, with the lower grade used as reference. The absolute logFC > 1.5 was used as the cutoff for finding differential genes. Between grades 1 and 2, 279 and 374 genes are up- and down-regulated as astrocytoma progresses from grade 1 to grade 2. Some of these genes include `SEMA3E`, `BLM`, `ETV5`, `CD24`, `SHANK2`, and `FBXO15`. From grade 2 to grade 3, 10 genes each were up and downregulated in both conditions while in grades 3 and 4, 4 and 12 genes were down and upregulated, respectively. One significant insight is that the number of differential genes decreases with cancer progression. These genes are `GJB6`, `MKX`, `LYVE1`, `KIF20A`, `IGFBP2`, `FOXM1`, for grades 2 and 3, `SMOC1`, `KLHL32`, `DPP10`, `BCAT1`, and `MEOX2`, etc, to mention just a few. These genes could act as diagnostic and prognostic markers and therapeutic targets for cancer-stage diagnosis and treatment. For instance, the `IGFBP2` gene which encodes the human insulin-like growth factor 2 (IGF2) mRNA binding proteins 2 is believed to be a prognostic marker for many cancer types especially lower-grade gliomas [[7](https://cancerci.biomedcentral.com/articles/10.1186/s12935-021-01799-x)].
+
+Additionally, the `CHI3L1` gene which expresses the non-enzymatic Chitinase-3 like-protein-1 was found to be a common gene in these tumour grades. Fig 2 shows the expression levels of this gene by cancer grades. The expression level of this gene was found to be higher in grades 1, 3 and 4 compared to grade 2, with its median log2 expression level slightly above 8. This gene has been implicated in so many diseases such as astrocyte-related cancers [[8](https://www.nature.com/articles/s41392-020-00303-7)].
+
+!CHI3L1_gene_plot](imgs/CHI3L1_expr_levels_by_tumor_grades.png)
+
+___Fig 2: CHI3L1 expression level by astrocytoma cancer grades__
+
+### Cancer cell type
+
 
 
 
