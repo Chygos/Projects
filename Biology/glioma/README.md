@@ -40,7 +40,7 @@ To identify biomarkers for tumour progression, DGEA was conducted on each grade 
 
 Additionally, the `CHI3L1` gene which expresses the non-enzymatic Chitinase-3 like-protein-1 was found to be a common gene in these tumour grades. Fig 2 shows the expression levels of this gene by cancer grades. The expression level of this gene was found to be higher in grades 1, 3 and 4 compared to grade 2, with its median log2 expression level slightly above 8. This gene has been implicated in so many diseases such as astrocyte-related cancers [[8](https://www.nature.com/articles/s41392-020-00303-7)].
 
-!CHI3L1_gene_plot](imgs/CHI3L1_expr_levels_by_tumor_grades.png)
+![CHI3L1_gene_plot](imgs/CHI3L1_expr_levels_by_tumor_grades.png)
 
 ___Fig 2: CHI3L1 expression level by astrocytoma cancer grades__
 
