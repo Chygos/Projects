@@ -40,10 +40,10 @@ for file in files:
         gene_ids = gene_data.iloc[:, 0].unique().tolist()
         gene_ids = list(map(str, gene_ids))
 
-        # pass gene_ids in chunksize of 2500
+        # pass gene_ids in chunksize of 3000
         gene_dfs = pd.DataFrame()
         chunk = 3000
-        for idx in tqdm(range(0, len(gene_ids), chunk), desc=f"Getting gene names and symbold for {file_id}"):
+        for idx in tqdm(range(0, len(gene_ids), chunk), desc=f"Getting gene names and symbols for {file_id}"):
             gene_id_set = gene_ids[idx:idx+chunk]
 
             gene_df = fetch_gene_names(gene_id_set, gene_id_type)
