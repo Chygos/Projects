@@ -12,7 +12,7 @@ B). RNA seq datasets: GSE165595 and GSE228512 with the latter having both GPL167
 
 The [analysis file](analysis_file.ipynb) contains a hands-on implementation of differential gene expression analysis in Python.
 
-**Projects**
+## **Projects**
 
 The [glioma folder](./glioma/) contains code scripts from a personal project to understand the molecular mechanisms in glioma cancers. This project focuses on 
 
