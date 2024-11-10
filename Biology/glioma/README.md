@@ -89,7 +89,7 @@ ___Fig 8: Molecular Function (Top 20) of common genes in all cancer cell types__
 
 ## Protein-Protein Interaction
 
-To understand the functional relationships between proteins and their impact on cellular processes, protein-protein interaction (PPIs) was performed on differentially expressed genes in normal versus cancer states. The number of connections by each gene was visualised in a word cloud. Cellular responses involving SLC (17A7, 32A1), GAD (1&2), DLG4, SYP, TP53, SNAP25, GRIN2A, NRXNI, and SYN1 genes are mostly impacted in glioma cancers (Fig 9).
+To understand the functional relationships between proteins and their impact on cellular processes, protein-protein interaction (PPIs) was performed on differentially expressed genes in normal versus cancer states. The number of connections by each gene was visualised in a word cloud. Cellular responses involving `SLC (17A7, 32A1)`, `GAD (1&2)`, `DLG4`, `SYP`, `TP53`, `SNAP25`, `GRIN2A`, `NRXNI`, and `SYN1` genes are mostly impacted in glioma cancers (Fig 9).
 
 ![PPI_result](imgs/func_annotation/ppi_degree_wordcloud.png)
 
