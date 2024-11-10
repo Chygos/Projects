@@ -14,7 +14,7 @@ The [analysis file](analysis_file.ipynb) contains a hands-on implementation of d
 
 **Projects**
 
-The [glioma folder](/glioma/) contains code scripts from a personal project to understand the molecular mechanisms in glioma cancers. This project focuses on 
+The [glioma folder](/glioma) contains code scripts from a personal project to understand the molecular mechanisms in glioma cancers. This project focuses on 
 
 - Identifying diagnostic biomarkers for detecting glioma cancer tissues.
 - Identifying diagnostic and prognostic genes in glioma cancer grade progression (from grade 1-4). This was limited to astrocytoma grades.
