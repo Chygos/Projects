@@ -20,9 +20,10 @@ def fetch_gene_names(gene_ids, gene_id_type):
         return results
     except Exception as err: print(err)
         
-
+# extract gene expression datasets
 files = glob('rna/*exprs*.csv')
 
+# gene ID type in GSE dataset
 gene_id_map = {'GSE228512':'ensembl.gene', 'GSE165595':'entrezgene'}
 
 
@@ -35,6 +36,7 @@ for file in files:
         print('No gene ID detected') 
         exit(1)
     
+    # read file with gene ID and get unique genes
     if gene_id_type:
         gene_data = pd.read_csv(file)
         gene_ids = gene_data.iloc[:, 0].unique().tolist()
@@ -46,6 +48,7 @@ for file in files:
         for idx in tqdm(range(0, len(gene_ids), chunk), desc=f"Getting gene names and symbols for {file_id}"):
             gene_id_set = gene_ids[idx:idx+chunk]
 
+            # fetch gene names of gene ID set
             gene_df = fetch_gene_names(gene_id_set, gene_id_type)
             gene_dfs = pd.concat([gene_dfs, gene_df])
 
