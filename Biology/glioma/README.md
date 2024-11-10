@@ -56,6 +56,7 @@ ___Fig 3: Number of common genes in each stage transition___
 Functional annotation result (Fig 4) shows that this gene, found in specific and secretory granule lumen of the cell is involved in eliciting cellular responses to immune cell activation, cellular regulation and tissue development. This gene also functions in hydrolase activities involving O-glycosyl compound hydrolysis.
 
 ![CHI3L1_gene](imgs/func_annotation/bp_chi3L1_grade.png)
+
 ___Fig 4: Number of common genes in each stage transition___
 
 ### Cancer cell type
@@ -88,7 +89,7 @@ To understand the functional relationships between proteins and their impact on 
 
 ![PPI_result](imgs/func_annotation/ppi_degree_wordcloud.png)
 
-___Fig 9: Molecular Function (Top 20) of common genes in all cancer cell types___
+___Fig 9: Protein-Protein Interactions___
 
 ## Machine Learning Results
 
