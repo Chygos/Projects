@@ -1,0 +1,381 @@
+
+## Load libraries
+suppressMessages(library(tidyverse))
+suppressMessages(library(limma))
+suppressMessages(library(tidyheatmaps))
+
+
+## Helper functions
+
+## Applies winsorization by class
+winsorize_within_class <- function(df, groups=NULL, percent=90){
+  df_copy <- df
+  
+  winsorized_df <- data.frame()
+  
+  cutoff <- round((1-percent/100)/2,3)
+  if (!is.null(groups)){
+    uniq_groups <- unique(groups)
+    for (cls in uniq_groups){
+      # get group indices
+      group_idx <- which(groups == cls)
+      
+      # subset group
+      group_df <- df_copy[, group_idx]
+      
+      # get quantiles of each gene
+      upper <- apply(group_df, 1, quantile, probs=1-cutoff)
+      lower <- apply(group_df, 1, quantile, probs=cutoff)
+      
+      # Winsorize
+      group_df <- apply(group_df, 2, function(x) ifelse(
+        x < lower, lower, ifelse(x > upper, upper, x)))
+      
+      group_df <- as.data.frame(group_df) 
+      # transpose to make genes as columns and samples as rows for easy appending to winsorised_df
+      winsorized_df <- rbind(winsorized_df, t(group_df) |> as.data.frame())
+    }
+    
+    # convert back with genes as rows and samples as columns
+    winsorized_df <- winsorized_df |> t() |> as.data.frame()
+    return(winsorized_df)
+  }
+  else{
+    # get quantiles of each gene
+    upper <- apply(df_copy, 1, quantile, probs=1-cutoff)
+    lower <- apply(df_copy, 1, quantile, probs=cutoff)
+    
+    # Winsorize
+    df_copy <- apply(df_copy, 2, function(x) ifelse(
+      x < lower, lower, ifelse(x > upper, upper, x)))
+    df_copy <- as.data.frame(df_copy)
+  }
+  return(df_copy)
+}
+
+
+## reads expression data and normalises by quantile normalisation
+read_expr_data <- function(file, gene_id_file){
+  expr_df <- read.csv(file, row.names = 1)
+  gene_df <- read.csv(paste0('../microarray_genes_ids/', gene_id_file))
+  
+  # transform data to log2
+  max_val <- max(expr_df)
+  
+  # if max_val above 20 (log), then it's probably not log2 transformed
+  if (max_val > 20){
+    expr_df <- log2(1+expr_df)
+  }
+  
+  # map probe IDs to gene symbols
+  expr_df <- expr_df |>
+    rownames_to_column('ID_REF') |>
+    merge(gene_df, by.x='ID_REF', by.y='ID') |>
+    select(Genes, everything(), -ID_REF)
+  
+  # get the max values of genes with more than one probes
+  expr_df <- expr_df |>
+    group_by(Genes) |> 
+    summarise(across(everything(), max)) |> 
+    column_to_rownames('Genes')
+  
+  # quantile normalize expression data
+  expr_df <- normalizeBetweenArrays(expr_df, method='quantile')
+  
+  # return with genes as rows and samples as columns
+  return(expr_df)
+}
+
+
+############################### Data Preprocessing #################################################
+
+# get gene expression and gene ids files and remove miRNA files
+expr_files <- list.files(pattern='*_exprs*.csv')
+metadata_files <- list.files(pattern='*_metadata*.csv')
+
+
+gene_id_files <- list.files('../microarray_genes_ids/', pattern = '^GSE.+.csv')
+
+# remove mirna data
+expr_files <- expr_files[str_detect(expr_files, '^(?!.+mirna).*')]
+metadata_files <- metadata_files[str_detect(metadata_files, '^(?!.+mirna).*')]
+gene_id_files <- gene_id_files[str_detect(gene_id_files, '^(?!GSE.+_GPL21572).*')]
+
+c(length(expr_files), length(gene_id_files), length(metadata_files))
+
+
+
+# merging expression and metadata from each batch experiment
+winsorize <- TRUE
+expr_data <- data.frame()
+meta_data <- data.frame()
+batches <- c()
+
+pb <- progress::progress_bar$new(
+  format = "[:bar] :percent :elapsed",
+  total = length(expr_files),
+  width = 60
+)
+
+for (i in 1:length(expr_files)){
+  expr_file <- expr_files[i]
+  gse_id <- str_extract(expr_file, 'GSE\\d+')
+  gene_file <- gene_id_files[grepl(gse_id, gene_id_files)]
+  metadata_file <- metadata_files[grepl(gse_id, metadata_files)]
+
+  
+  expr_df <- read_expr_data(expr_file, gene_file)
+  
+  meta_df <- read_csv(metadata_file, show_col_types = FALSE,
+                      col_select = c('sample_id', 'tumor_class', 'tumor_grade'))
+  meta_df['gse_id'] <- gse_id
+  
+  # treat outliers
+  # if winsorize, winsorize else move samples to rows and genes to columns 
+  # to append samples from other datasets
+  if (winsorize){
+    expr_df <- winsorize_within_class(expr_df, replace_na(meta_df$tumor_grade, 'Normal'))
+    expr_df <- t(expr_df) |> as.data.frame()
+  } else{
+    expr_df <- t(expr_df) |> as.data.frame()
+  }
+  
+  
+  batches <- c(batches, rep(gse_id, nrow(expr_df)))
+  expr_data <- rbind(expr_data, expr_df)
+  meta_data <- rbind(meta_data, meta_df)
+  
+  
+  pb$tick()
+}
+
+rm(meta_df, expr_df)
+expr_data <- t(expr_data) |> as.data.frame()
+
+
+## select only glioma related rows
+gliomas <-  'ependymoma|astrocytoma|glioblastoma|gbm|oligoastrocytoma|oligodendroglioma|oligodendrocytoma|high.+grade.+glioma|normal|non-tumor'
+
+# get rows of metadata that are glioma cells and update batches with it
+is_glioma <- str_detect(
+  str_to_lower(replace_na(meta_data$tumor_class, 'missing')), 
+  gliomas, negate=F)
+
+# update batches
+batches <- batches[is_glioma]
+
+
+## update metadata
+meta_data <- meta_data |>
+  filter(str_detect(
+    str_to_lower(tumor_class), 
+    gliomas, negate=F))
+
+
+## update expression data
+# select samples in metadata
+expr_data <- expr_data[, meta_data$sample_id]
+
+
+## get tumour class
+meta_data <- meta_data |>
+  mutate(tumor_grade = str_to_lower(tumor_grade),
+         tumor_class = str_to_lower(tumor_class)) |>
+  mutate(tumor_class = str_replace(tumor_class, '.*oligoastrocytoma', 'mixed gliomas'),
+         tumor_class = str_replace(tumor_class, '.*[aA]strocytoma', 'astrocytoma'),
+         tumor_class = str_replace(tumor_class, 'gbm|glioblas.+', 'glioblastoma'),
+         tumor_class = str_replace(tumor_class, 'non-tumor', 'normal'), 
+         tumor_class = str_replace(tumor_class, '.*[oO]ligodendrocytoma|anaplastic oligodendroglioma', 
+                                   'oligodendroglioma'))
+
+
+## Preprocess tumour grade
+meta_data <- meta_data |>
+  # convert to lower and rename
+  mutate(tumor_grade = case_match(tumor_grade,
+                                  'grade i' ~ 'G1', 'grade ii' ~ 'G2',
+                                  'grade iii' ~ 'G3', 'grade iv' ~ 'G4',
+                                  .default = tumor_grade),
+         tumor_grade = str_replace(tumor_grade, 'grade\\s', 'G'),
+         tumor_grade = replace_na(tumor_grade, 'Normal'),
+         tumor_class = str_replace(tumor_class, 'non-tumor', 'normal')) |>
+  # tumour type
+  mutate(tumor_type = case_when(
+    tumor_grade %in% c('G3', 'G4') ~ 'malignant', 
+    tumor_grade %in% c('G1', 'G2') ~ 'benign', 
+    TRUE ~ tumor_grade))
+
+
+## Frequency counts
+table(meta_data$tumor_grade)
+table(meta_data$tumor_type)
+table(meta_data$tumor_class)
+
+
+
+# get gene names
+genes <- rownames(expr_data)
+
+
+# let's check the minumum value of an expression level (some negative log expression values)
+min(expr_data); max(expr_data)
+
+
+## convert to original values and add 1 to make log values positive
+expr_data <- log2(1+2^expr_data)
+
+
+## check a second time
+min(expr_data); max(expr_data)
+
+
+## Run PCA to check for variability with batches
+
+pca <- prcomp(t(expr_data), scale. = T)
+
+exp.var  <- round(100*pca$sdev^2/sum(pca$sdev^2),1)
+
+ggplot(pca$x, aes(PC1, PC2, color=factor(meta_data$gse_id))) +
+  geom_point() +
+  theme_light() +
+  theme(plot.title = element_text(face='bold')) +
+  labs(title='PCA for microarray data (Before Batch correction)', 
+       x = paste0('PC1 (', exp.var[1], '%)'), 
+       y=paste0('PC2 (', exp.var[2], '%)'),
+       color='GSE ID')
+
+
+## Batch effect correction
+
+# remove batch effects
+expr_data <- removeBatchEffect(expr_data, batches, group=meta_data$tumor_grade) |>
+  as.data.frame()
+
+
+## Run PCA to confirm that batch variation is removed
+pca <- prcomp(t(expr_data), scale. = T)
+
+exp.var  <- round(100*pca$sdev^2/sum(pca$sdev^2),1)
+
+ggplot(pca$x, aes(PC1, PC2, color=factor(meta_data$gse_id))) +
+  geom_point() +
+  theme_light() +
+  theme(plot.title = element_text(face='bold')) +
+  labs(title='PCA for microarray data (After Batch correction)', 
+       x = paste0('PC1 (', exp.var[1], '%)'), 
+       y=paste0('PC2 (', exp.var[2], '%)'),
+       color='GSE ID')
+
+
+## save merged dataset
+write.csv(expr_data, 'glioma_cancer_exprs.csv', row.names = T)
+write.csv(meta_data, 'glioma_cancer_metadata.csv', row.names = F)
+
+
+## Data analysis
+
+# Highest and least expressing genes
+mean_expressions <- rowMeans(expr_data)
+
+top10 <- sort(mean_expressions, decreasing = T)[1:10]
+least10 <- sort(mean_expressions, decreasing = F)[1:10]
+
+
+top10
+least10
+
+
+## Data Visualisation
+
+# top 10 and bottom 10 expressed genes
+
+# top
+expr_data[names(top10),] |>
+  rownames_to_column('Genes') |>
+  pivot_longer(-Genes, names_to = 'samples', values_to = 'expression_levels') |>
+  merge(meta_data[c('sample_id', 'tumor_grade')], by.x='samples', by.y='sample_id') |>
+  mutate(tumor_grade = replace_na(tumor_grade, 'Normal')) |>
+  ggplot(aes(x=tumor_grade, y=expression_levels, fill=tumor_grade)) +
+  geom_boxplot(alpha=0.6) +
+  facet_wrap(~Genes, nrow=2, scales='free_y') +
+  theme_light() +
+  theme(legend.position = 'none', 
+        panel.grid = element_blank(),
+        axis.title = element_text(size=11),
+        axis.text = element_text(size=8),
+        strip.background = element_rect(fill='steelblue'),
+        strip.text = element_text(color='white', face='bold'),
+        plot.title = element_text(face='bold', size=13)) +
+  labs(title='Top 10 Genes by expression levels', 
+       y='Expression Levels', x='Tumor Grade')
+
+
+# bottom
+expr_data[names(least10),] |>
+  rownames_to_column('Genes') |>
+  pivot_longer(-Genes, names_to = 'samples', values_to = 'expression_levels') |>
+  merge(meta_data[c('sample_id', 'tumor_grade')], by.x='samples', by.y='sample_id') |>
+  mutate(tumor_grade = replace_na(tumor_grade, 'Normal')) |>
+  ggplot(aes(x=tumor_grade, y=expression_levels, fill=tumor_grade)) +
+  geom_boxplot(alpha=0.6) +
+  facet_wrap(~Genes, nrow=2, scales='free_y') +
+  theme_light() +
+  theme(legend.position = 'none', 
+        panel.grid = element_blank(),
+        axis.title = element_text(size=11),
+        axis.text = element_text(size=8),
+        strip.background = element_rect(fill='steelblue'),
+        strip.text = element_text(color='white', face='bold'),
+        plot.title = element_text(face='bold', size=13)) +
+  labs(title='Least 10 Genes by expression levels', 
+       y='Expression Levels', x='Tumor Grade')
+
+
+## Visualise PCA by groups
+
+# by tumour group
+ggplot(pca$x, aes(PC1, PC2, color=factor(meta_data$tumor_grade))) +
+  geom_point() +
+  theme_light() +
+  theme(plot.title = element_text(face='bold'),
+        legend.position = 'top') +
+  labs(title='PCA by Tumour grade', 
+       x = paste0('PC1 (', exp.var[1], '%)'), 
+       y=paste0('PC2 (', exp.var[2], '%)'),
+       color='Tumor Grade')
+
+
+# by tumour class
+ggplot(pca$x, aes(PC1, PC2, color=factor(meta_data$tumor_class))) +
+  geom_point() +
+  theme_light() +
+  theme(plot.title = element_text(face='bold'),
+        legend.position = 'right') +
+  labs(title='PCA by Tumour Type', 
+       x = paste0('PC1 (', exp.var[1], '%)'), 
+       y=paste0('PC2 (', exp.var[2], '%)'),
+       color='Tumor Type')
+
+
+## variance of gene expression
+var_expression <- apply(expr_data, 1, var)
+
+
+## visualize
+cbind(mean_expressions, var_expression) |>
+  as.data.frame() |>
+  pivot_longer(everything(), names_to = 'type', values_to = 'value') |>
+  ggplot(aes(value)) +
+  geom_density(color='steelblue') +
+  facet_wrap(~type, scales='free') +
+  theme_bw() +
+  theme(strip.background = element_rect(fill='steelblue'),
+        strip.text = element_text(color='white', face='bold'))
+
+
+summary(var_expression)
+
+
+## get gene expression variance less than 25th percentile
+sum(var_expression < quantile(var_expression, 0.25))
+
