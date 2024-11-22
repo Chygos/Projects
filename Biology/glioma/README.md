@@ -1,6 +1,6 @@
 # **Identifying glioma biomarkers using differential gene expression analysis and machine learning**
 
-# Glioma cancers
+## Glioma cancers
 
 Gliomas are the most common central nervous system tumours (CNS). They account for approximately 30% of all primary brain tumours and 80% of all malignant tumours, with primary brain tumours causing a vast majority of cancer-related deaths. Gliomas can manifest in children and adults and their incidence depends on age, sex, and ethnicity [[1]](https://www.mdpi.com/1422-0067/22/19/10373). Gliomas occur in the glial cells of the brain and spinal cord and the glioma type depends on the glial cells they originate from. These cells include the astrocytes (astrocytoma), oligodendrocytes (oligodendrocytes/oligodendroglioma) [[2]](https://www.cancerresearchuk.org/about-cancer/brain-tumours/types/glioma-adults/) and the ependymal (ependymoma) glial cells [[3]](https://www.cancerresearchuk.org/about-cancer/brain-tumours/types/ependymoma/). The most common is astrocytoma which is characterised based on the WHO grades: pilocytic (Low Grade/Grade 1) which mainly occurs in children, diffuse (Grade 2), anaplastic (Grade 3) and glioblastoma (Grade 4) [[2]](https://www.cancerresearchuk.org/about-cancer/brain-tumours/types/glioma-adults/) with the survival rates decreasing with increase in grade [[1]](https://www.mdpi.com/1422-0067/22/19/10373).
 
@@ -8,15 +8,15 @@ Diagnosis and management of gliomas rely on tissue biopsy and treatment with rad
 
 Transcriptomics techniques, which use expression data generated from microarray and RNA sequencing methods, have been used to identify new biomarkers for glioma diagnosis and prognosis. This usually involves finding differential genes in normal and disease conditions. Similarly, machine learning models such as random forests, support vector machines, k-nearest neighbours, etc have been used to identify marker genes that can be used to predict disease outcomes or cancer subtypes [[6](https://www.sciencedirect.com/science/article/pii/S0888754319301740)]. Here, we apply transcriptomics data analysis to identify genes/RNA transcripts that can be used as potential biomarkers for glioma diagnosis. 
 
-# Methodology
+## Methodology
 
-## Data source
+### Data source
 Sixteen microarray datasets were downloaded from the Gene Expression Omnibus (GEO) database with assession numbers  GSE116520, GSE19728, GSE4290, GSE43289, GSE43378, GSE43911, GSE44971, GSE45921, GSE50161, GSE5675, GSE66354, GSE68015, GSE73066, GSE74462, and GSE90604.
 
-## Data Preprocessing
+### Data Preprocessing
 Probes IDs in datasets were mapped to their respective gene symbols and common genes (12,699) in all datasets were selected for analysis. Datasets with untransformed expression values were log 2 transformed and all datasets were quantile transformed. To account for possible batch effect, batch effect correction was performed. Because the datasets were used for different experimental purposes, samples in each dataset related to gliomas were selected for analysis. These include ependymoma, glioblastoma, astrocytoma, oligodendroglioma or mixed gliomas (gliomas occurring in both astrocytes and oligodendrocytes). Finally, preprocessed datasets were merged and used for differential gene expression analysis.
 
-## Data Analysis
+### Data Analysis
 Differential analysis was performed using the `limma` package in R (version 4.3.2). This was done to identify genes that are differentially expressed at disease conditions. Statistically significant genes based on p-value (false discovery rate, FDR) < 0.05 and absolute log fold change (logFC) of 1.5 and 2, depending on analysis criteria, were chosen as cutoffs. A volcano plot was used to visualise differential genes. Next, functional enrichment analysis was performed to determine enriched biological processes, molecular functions, cellular compartments and pathways these differential genes play roles in in human organisms.
 
 Analysis was done in three areas:
@@ -27,11 +27,11 @@ Analysis was done in three areas:
 
 Machine learning techniques were used to predict tumour and non-tumour conditions and detect cancer progression of astrocytoma and cancer cell types. The dataset was randomly split into train and test sets in a 75/25 ratio where the training data was used for model development and the test set used for evaluating performance. To reduce computational time and the number of features, statistically significant genes in the differential expression analysis were selected for model development. Further feature selection method based on the model's inherent feature selection capability was used to obtain the important features.
 
-# Results
+## Results
 
-## Differential gene expression analysis (DGEA)
+### Differential gene expression analysis (DGEA)
 
-### Non-tumour vs Tumour conditions
+#### Non-tumour vs Tumour conditions
 Genes with absolute logFC above 2 were used as a cutoff to identify differential genes in disease and healthy (reference) conditions. 485 and 166 genes were found to be downregulated and upregulated, respectively, in the disease state. Among these genes are `SVOP`, `CYP4X1`, `FRMPD4`, `UHRF1`, and `PARP9`.
 
 ![volcano_plot_normal_vs_tumour](imgs/norm_vs_tumor_dge.png)
@@ -44,7 +44,7 @@ It was found that most of these [upregulated genes](imgs/func_annotation/cc_up.p
 
 Additionally, KEGG pathway results reveal that [upregulated genes](imgs/func_annotation/kegg_up.png) are involved in many signalling pathways such as the p53, AGE-RAGE, P13K-Akt and Hippo pathways, and cell cycle pathways. They also play roles in disease or infection-related pathways such as cancer-related pathways, viral myocarditis, and viral infections. Others include extracellular cell matrix (ECM)-receptor interaction, cascade reactions of the Complement system, cellular senescence and protein digestion and absorption. However, [downregulated genes](imgs/func_annotation/kegg_down.png) are involved in pathways involving neurotransmitters, insulin, gastric acid and pancreatic secretion. They also play a role in the oxytocin and cyclic-adenosine monophosphate (cAMP) signalling pathways.
 
-### Tumour Grades
+#### Tumour Grades
 To identify biomarkers for tumour progression, DGEA was conducted on each grade of astrocytoma. Analysis was done by comparing the order of grade progression, that is, grade 1 and grade 2, grade 2 and 3, and grade 3 and 4, with the lower grade used as reference. The absolute logFC > 1.5 was used as the cutoff for finding differential genes. Between grades 1 and 2, 279 and 374 genes are up- and down-regulated as astrocytoma progresses from grade 1 to grade 2. Some of these genes include `SEMA3E`, `BLM`, `ETV5`, `CD24`, `SHANK2`, and `FBXO15`. From grade 2 to grade 3, 10 genes each were up and downregulated in both conditions while in grades 3 and 4, 4 and 12 genes were down and upregulated, respectively. 
 
 One significant insight is that the number of differential genes decreases with cancer progression. One plausible reason would be the significant change in the tumour microenvironment as the tumour progresses which affects gene expression patterns in cells where at late stages the tumour cell has adapted to its tumour microenvironment leading to less significant expression levels [[7](https://link.springer.com/article/10.1007/s12094-024-03697-w)[8](https://www.mdpi.com/2073-4409/13/19/1666)]. Some of these differentially expressed genes are `GJB6`, `MKX`, `LYVE1`, `KIF20A`, `IGFBP2`, `FOXM1`, for grades 2 and 3, `SMOC1`, `KLHL32`, `DPP10`, `BCAT1`, and `MEOX2` for grades 3 and 4, etc, to mention just a few. These genes could act as diagnostic and prognostic markers and therapeutic targets for cancer-stage diagnosis and treatment. For instance, the `IGFBP2` gene which encodes the human insulin-like growth factor 2 (IGF2) mRNA binding proteins 2 is believed to be a prognostic marker for many cancer types especially lower-grade gliomas [[9](https://cancerci.biomedcentral.com/articles/10.1186/s12935-021-01799-x)].
@@ -65,7 +65,7 @@ Functional annotation result (Fig 4) shows that this gene, found in specific and
 
 ___Fig 4: Number of common genes in each stage transition___
 
-### Cancer cell type
+#### Cancer cell type
 Glioma cancer can occur in any glial cell. To compare gene expressions in different glioma cells, DGEA was conducted to identify biomarkers that are unique to a particular cell type and common to all cell types. GSEA was conducted by comparing expression levels between astrocytoma and oligodendroglioma, ependymoma and mixed gliomas, ependymoma and mixed gliomas and oligodendrogliomas and mixed gliomas vs oligodendrogliomas. Differential genes (FDR < 0.05) were selected based on genes with at least 4-fold higher expression levels (logFC > 2) in one cell type compared to the other. Between astrocytoma and ependymoma, 237 downregulated genes and 173 upregulated genes were found. Between ependymoma and oligodendroglioma and ependymoma and mixed glioma, 84 and 24 genes were downregulated while 115 and 88 were upregulated, respectively. On another hand, the number of differential genes between astrocytoma and mixed glioma or with oligodendroglioma was few: 4 and 9 downregulated genes and 15 and 19 upregulated genes, respectively. This shows a close similarity between astrocytoma and oligodendroglioma and mixed glioma since mixed gliomas are cancers usually affecting both oligodendrogliomas and astrocytoma. However, no significant genes were found between mixed gliomas and oligodendrogliomas indicating that mixed gliomas may usually originate from oligodendrocytes and further affect astrocytes within them. 
 
 The expression levels of `CAPSL`, `EFCAB1` `ETV1` and `SPAG6` genes were found to be statistically different between ependymoma and astrocytoma, mixed gliomas or oligodendroglioma. Comparing expression levels in normal cells of these cell types would provide insight into their expression levels in healthy and disease states in all cell types. Fifteen genes were found to be common in all the glial cell types. These include `C9orf24`, `CITED1`, `CNR1`, `CRLF1`, `DACH1`, `EFCAB1`, `GABRG1`, `LRP2BP`, `MKX`, `PPP1R1B`, `RELN`, `RSPH1`, `SPAG6`, `SRPX`, and `VIPR2`. Fig 5 shows a Venn diagram visualising common genes between cell types. Furthermore, the expression levels of these common genes were found to be the same in mixed gliomas and oligodendrogliomas compared to astrocytoma and ependymoma where in some cases, their expression levels were higher in ependymoma than in astrocytoma and vice-versa (Fig 6).
@@ -89,7 +89,7 @@ ___Fig 7: Biological Process (Top 20) of common genes in all cancer cell types__
 
 ___Fig 8: Molecular Function (Top 20) of common genes in all cancer cell types___
 
-## Protein-Protein Interaction
+### Protein-Protein Interaction
 
 To understand the functional relationships between proteins and their impact on cellular processes, protein-protein interaction (PPIs) was performed on differentially expressed genes in normal versus cancer states. The number of connections by each gene was visualised in a word cloud. Cellular responses involving `SLC (17A7, 32A1)`, `GAD (1&2)`, `DLG4`, `SYP`, `TP53`, `SNAP25`, `GRIN2A`, `NRXNI`, and `SYN1` genes are mostly impacted in glioma cancers (Fig 9).
 
@@ -97,7 +97,7 @@ To understand the functional relationships between proteins and their impact on 
 
 ___Fig 9: Protein-Protein Interactions___
 
-## Machine Learning Results
+### Machine Learning Results
 
 Results can be found [here](./machine_learning_results.md)
 
