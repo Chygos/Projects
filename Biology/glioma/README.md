@@ -1,4 +1,4 @@
-# **Identifying glioma biomarkers using differential gene expression analysis and machine learning**
+# **Identifying Glioma Biomarkers using Differential Gene Expression Analysis and Machine Learning**
 
 ## Glioma cancers
 
