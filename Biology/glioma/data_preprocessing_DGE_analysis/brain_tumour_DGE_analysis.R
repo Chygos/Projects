@@ -61,22 +61,24 @@ plot_volcano <- function(model.fit, lfc_cutoff=2, p.value=0.05,
           plot.title = element_text(face='bold')) +
     labs(title=title, x='Log2 Fold change', y='Log 10 pvalue', 
          color='Regulation') +
-    scale_color_manual(values=c('#2C2D2D', 'forestgreen', 'indianred'))
+    scale_color_manual(values=c('#2C2D2D', 'forestgreen', 'indianred')) +
+    scale_x_continuous(expand = c(0.0, 0.25, 0.25, 0.25)) +
+    scale_y_continuous(expand = c(0.0, 0.25, 0.25, 0.25))
   
   top_up <- res |> filter(status == 'Up') |> slice_min(adj.P.Val, n=5)
   top_down <- res |> filter(status == 'Down') |> slice_min(adj.P.Val, n=5)
   
+  
   fig +
-    ggrepel::geom_text_repel(data = top_up, mapping=aes(logFC, -log10(adj.P.Val), 
-                                                        label=genes), 
-              size=3, color='#231F20', fontface='bold',
-              arrow = arrow(length = unit(0.02, "npc")), box.padding = 1) +
-    ggrepel::geom_text_repel(data=top_down, mapping=aes(logFC, -log10(adj.P.Val), 
-                                                        label=genes), 
-              size=3, color='#231F20', fontface='bold',
-              arrow = arrow(length = unit(0.02, "npc")), box.padding = 1)
+    ggrepel::geom_text_repel(data = top_up, 
+                             mapping=aes(logFC, -log10(adj.P.Val), label=genes), 
+              size=3, color='#231F20', fontface='bold', max.overlaps = 30,
+              arrow = arrow(length = unit(0.02, "inches")), box.padding = 0.6) +
+    ggrepel::geom_text_repel(data=top_down, 
+                             mapping=aes(logFC, -log10(adj.P.Val), label=genes), 
+              size=3, color='#231F20', fontface='bold', max.overlaps = 30,
+              arrow = arrow(length = unit(0.02, "inches")), box.padding = 0.6)
 }
-
 
 ## Differential gene expression analysis
 
@@ -573,37 +575,81 @@ mapped_proteins <- rba_string_map_ids(sig.genes, species = 9606)$stringId
 gene_ppi <- rba_string_interactions_network(mapped_proteins, 
                                             species=9606)
 
-
+head(gene_ppi)
 # visualise
-# get number of interactions for each gene
-n_gene_interactions <- graph_from_data_frame(gene_ppi) |>
-  degree() |>
-  sort(decreasing=T) |>
-  data.frame() |>
-  set_names('n_degrees') |>
-  rownames_to_column('geneID') |>
-  inner_join(distinct(gene_ppi[, c(1,3)]), by=c('geneID' = 'stringId_A'))
 
-n_gene_interactions |>
-  ggplot(aes(n_degrees)) +
-  geom_histogram(fill='steelblue', color='white', bins=50) +
-  theme_bw() +
-  theme(panel.grid=element_blank(), 
-        axis.text = element_text(size=8),
-        axis.title.x = element_text(size=8),
-        legend.title = element_text(size=9),
-        plot.title=element_text(face='bold', size=12)) +
-  scale_x_continuous(breaks=seq(0,120,10)) +
-  labs(title='Number of protein-protein interactions of significant genes')
+# get gene networks
+gene_network <- gene_ppi |>
+  select(preferredName_A, preferredName_B, score) |>
+  setNames(c('preferredName_A' = 'from', 
+             'preferredName_B' = 'to', 
+             'score' = 'weight')) |>
+  graph_from_data_frame(directed = FALSE)
+
+degree_values <- degree(gene_network)
 
 
-wordcloud::wordcloud(n_gene_interactions$preferredName_A, 
-                     n_gene_interactions$n_degrees,
-                     min.freq = 10, 
-                     scale = c(1.5,.52), 
-                     random.order = F,
-                     colors='darkgreen'
-                     )
+# top 10% genes with highest degrees (hub genes)
+threshold <- quantile(degree_values, 0.9)
+print(threshold)
+
+hub_genes <- names(degree_values[degree_values >= threshold])
+hub_network <- induced_subgraph(gene_network, vid=hub_genes)
+
+
+write_graph(gene_network, file='protein_interactions.graphml', format='graphml')
+write_graph(hub_network, file='hub_gene_interactions.graphml', format='graphml')
+
+data.frame(n_links=degree_values[degree_values >= threshold]) |>
+  arrange(n_links) |>
+  write.csv('hub_genes_links.csv', row.names = T)
+
+sort(hub_genes) |> writeLines('hub_genes.txt')
+
+## Hub genes enrichment information
+hub_enrichr <- read_csv('hub_gene_enrichment_result.csv',show_col_types = F)
+
+get_enrich_info <- function(df, enrich_info='Bio..+'){
+  source_name <- str_detect(df$source, enrich_info)
+  res <- df |>
+    filter(source_name) |>
+    select(`term name`, `intersecting genes`, 
+           `intersection size`, 
+           `p-value`, source) |>
+    mutate(`p-value` = -log10(as.numeric(`p-value`)),
+           `intersection size` = as.integer(`intersection size`))
+  return(res)
+}
+
+
+plot_function_enrichment <- function(df, enrich_info='Bio..+', topn=10){
+  res <- get_enrich_info(df, enrich_info) |>
+    slice_max(`p-value`, n=topn)
+  
+  enrich_name <- str_extract(unique(res$source), enrich_info)
+  
+  res |>
+    ggplot(aes(x= `p-value`, y=reorder(`term name`, `p-value`))) +
+    geom_col(fill='indianred', alpha=0.8) +
+    geom_text(aes(label=`intersection size`), hjust=1.2, 
+              size=3.3, color='white', fontface='bold') +
+    theme_classic() +
+    theme(plot.title=element_text(face='bold'), 
+          panel.grid = element_blank()) +
+    labs(title=paste(enrich_name, 'for hub genes', '(Top', topn, ')'),
+         subtitle='By Interaction size',
+         y='', x='-Log10(p-value)')
+}
+
+
+plot_function_enrichment(hub_enrichr, 'Cellular..+')
+plot_function_enrichment(hub_enrichr, 'Molecular..+')
+plot_function_enrichment(hub_enrichr, 'Bio..+')
+plot_function_enrichment(hub_enrichr, 'KEGG.?')
+plot_function_enrichment(hub_enrichr, 'WikiP..+')
+plot_function_enrichment(hub_enrichr, 'Reactome..+')
+plot_function_enrichment(hub_enrichr, 'Protein Atlas')
+plot_function_enrichment(hub_enrichr, 'Phenotype..+')
 
 
 ## Clustering
