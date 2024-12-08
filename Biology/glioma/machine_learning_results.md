@@ -53,7 +53,7 @@ By default logistic regression deals with binary classes, but can be extended to
 
 ![venn_cancer_grades](imgs/ml_imgs/lr_venn_tumor_grades.png)
 
-___Figure 5: Venn diagram showing common genes by cancer grade types for logistic regression__
+___Figure 5: Venn diagram showing common genes by cancer grade types for logistic regression___
 
 <img src="imgs/ml_imgs/rf_varimp_grade.png" alt="rf_top_features_cancer_grades" width="800" height="600">
 
