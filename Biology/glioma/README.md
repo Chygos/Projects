@@ -91,13 +91,16 @@ ___Fig 8: Molecular Function (Top 20) of common genes in all cancer cell types__
 
 ### Protein-Protein Interaction
 
-Protein-protein interaction (PPIs) was performed on differentially expressed genes in normal versus cancer states to understand the functional relationships between proteins and their impact on cellular processes. The number of connections by each gene was visualised in a word cloud. Cellular responses involving `SLC (17A7, 32A1)`, `GAD (1&2)`, `DLG4`, `SYP`, `TP53`, `SNAP25`, `GRIN2A`, `NRXNI`, and `SYN1` genes are mostly impacted in glioma cancers (Fig 9).
+Protein-protein interaction (PPIs) was performed on differentially expressed genes in normal versus cancer states to understand the functional relationships between proteins and their impact on cellular processes. [Top 10% Genes](imgs/func_annotation/hub_genes_links.csv) by the number of interactions were selected. Cellular responses involving `SLC (17A7, 32A1)`, `GAD (1&2)`, `DLG4`, `SYP`, `TP53`, `SNAP25`, `GRIN2A`, `NRXNI`, and `SYN1` genes are mostly impacted in glioma cancers (Fig 9).
 
-![PPI_result](imgs/func_annotation/ppi_degree_wordcloud.png)
+![PPI_result](imgs/func_annotation/hub_genes_linkages.png)
 
 ___Fig 9: Protein-Protein Interactions___
+
+Functional enrichment analysis was performed on these hub genes. It was found that synaptic signalling, cell-cell signalling and communication, and neurotransmitter biological processes are enriched in cancer. These genes are found in synpase, cell junction, axon, and neuron compartments and function as transmembrane transporters and ion-channels. Pathways they play roles in the nervous system such as dopamine, acetylcholine, GABA, glutamate, and serotonin neurotransmission and release, protein-protein interactions at synapses and insulin secretion. Similarly, phenotypic outcomes of dysregulation of these genes affect the central nervous system and mainly include seizures (Fig 10). More information can be found [here](imgs/func_annotation/hub_gene_enrichment_result.csv)
+
+__Fig 10: Hub Genes Phenotype Ontology__
 
 ### Machine Learning Results
 
 Results can be found [here](./machine_learning_results.md)
-
