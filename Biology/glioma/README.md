@@ -101,7 +101,7 @@ Functional enrichment analysis was performed on these hub genes. It was found th
 
 ![hub_gene_disease_result](imgs/func_annotation/hub_gene_phenotype.png)
 
-__Fig 10: Hub Genes Phenotype Ontology__
+___Fig 10: Hub Genes Phenotype Ontology___
 
 ### Machine Learning Results
 
