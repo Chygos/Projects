@@ -57,10 +57,10 @@ ___Figure 5: Venn diagram showing common genes by cancer grade types for logisti
 
 <img src="imgs/ml_imgs/rf_varimp_grade.png" alt="rf_top_features_cancer_grades" width="900" height="500">
 
-___Figure 6: Top 20 genes selected by Random forest__
+___Figure 6: Top 20 genes selected by Random forest___
 
 ### Cancer cell types
-The number of samples for each cancer cell type includes 498 for astrocytoma (AC), 118 for ependymoma (EP), 63 for oligodendrocytoma (OGC) and 15 for mixed glioma (MGC). To account for the class imbalance, weights were applied to evaluation metrics.
+The number of samples for each cancer cell type includes 498 for astrocytoma (AC), 118 for ependymoma (EP), 63 for oligodendrocytoma (OGC), and 15 for mixed glioma (MGC). Weights were applied to evaluation metrics to account for the class imbalance.
 
 __Table 3: Model performance evaluation on test data__
 
