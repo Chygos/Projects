@@ -78,7 +78,7 @@ ___Fig 5: Venn diagram showing the number of common genes in each cell type___
 
 ___Fig 6: Expression levels of common genes in all cancer cell types___
 
-One biological process revealed by pathway analysis is that these common genes are involved in glial cell differentiation indicating that mutation in any of these genes during cellular growth and development could lead to dysregulation of cellular pathways and probably cancer (Fig 7). Similarly, some of the genes are found as part of dendrite cell components and GABA-A receptor complex and they also take part in signalling pathways such as the ligand-gated receptor binding and G-protein coupled receptor binding (Fig 8). In general in neuroactive ligand-receptor interaction and retrograde endocannabinoid signalling (KEGG pathway).
+One biological process revealed by pathway analysis is that these common genes are involved in glial cell differentiation indicating that mutation in any of these genes during cellular growth and development could lead to dysregulation of cellular pathways and probably cancer (Fig 7). Similarly, some of the genes are found as part of dendrite cell components and GABA-A receptor complex and they also take part in signalling pathways such as the ligand-gated receptor binding and G-protein coupled receptor binding (Fig 8). In general, neuroactive ligand-receptor interaction and retrograde endocannabinoid signalling (KEGG pathway).
 
 ![BP_common_genes_expression_levels](imgs/func_annotation/bp_common_gene_cell.png)
 
@@ -91,7 +91,7 @@ ___Fig 8: Molecular Function (Top 20) of common genes in all cancer cell types__
 
 ### Protein-Protein Interaction
 
-To understand the functional relationships between proteins and their impact on cellular processes, protein-protein interaction (PPIs) was performed on differentially expressed genes in normal versus cancer states. The number of connections by each gene was visualised in a word cloud. Cellular responses involving `SLC (17A7, 32A1)`, `GAD (1&2)`, `DLG4`, `SYP`, `TP53`, `SNAP25`, `GRIN2A`, `NRXNI`, and `SYN1` genes are mostly impacted in glioma cancers (Fig 9).
+Protein-protein interaction (PPIs) was performed on differentially expressed genes in normal versus cancer states to understand the functional relationships between proteins and their impact on cellular processes. The number of connections by each gene was visualised in a word cloud. Cellular responses involving `SLC (17A7, 32A1)`, `GAD (1&2)`, `DLG4`, `SYP`, `TP53`, `SNAP25`, `GRIN2A`, `NRXNI`, and `SYN1` genes are mostly impacted in glioma cancers (Fig 9).
 
 ![PPI_result](imgs/func_annotation/ppi_degree_wordcloud.png)
 
