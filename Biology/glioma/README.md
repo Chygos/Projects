@@ -99,6 +99,8 @@ ___Fig 9: Protein-Protein Interactions___
 
 Functional enrichment analysis was performed on these hub genes. It was found that synaptic signalling, cell-cell signalling and communication, and neurotransmitter biological processes are enriched in cancer. These genes are found in synpase, cell junction, axon, and neuron compartments and function as transmembrane transporters and ion-channels. Pathways they play roles in the nervous system such as dopamine, acetylcholine, GABA, glutamate, and serotonin neurotransmission and release, protein-protein interactions at synapses and insulin secretion. Similarly, phenotypic outcomes of dysregulation of these genes affect the central nervous system and mainly include seizures (Fig 10). More information can be found [here](imgs/func_annotation/hub_gene_enrichment_result.csv)
 
+![hub_gene_disease_result](imgs/func_annotation/hub_gene_phenotype.png)
+
 __Fig 10: Hub Genes Phenotype Ontology__
 
 ### Machine Learning Results
