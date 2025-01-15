@@ -14,7 +14,7 @@ Taxi trips paid by credit cards or cards were filtered, aggregated and stored in
 
 ## __Analysis workflow__
 
-Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA) & Modelling ([Notebook Link](Taxi_demand_analysis/EDA/Yellow_taxi_analysis.ipynb))
+Analysis workflow is divided into two main parts: Exploratory Data Analysis (EDA) & Modelling ([Notebook Link](./EDA/Yellow_taxi_analysis.ipynb))
 
 ### Exploratory Data Analysis
 
